@@ -1,0 +1,10 @@
+apply plugin: "java"
+
+dependencies {
+    compile 'org.rxtx:rxtx:2.1.7';
+    compile 'org.scream3r:jssc:2.8.0';
+}
+repositories {
+    mavenLocal();
+    mavenCentral();
+}

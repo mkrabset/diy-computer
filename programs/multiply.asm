@@ -1,0 +1,58 @@
+LDX #00
+START:
+LDY #11
+LDZ #0d
+JMP MUL
+RET:
+LDX SL
+END:
+JMP START
+
+
+
+
+MUL:
+ STY AL
+ STZ BL
+
+ LDY #00
+ STY AH
+ STY SL
+ STY SH
+
+ LDZ #08
+L1:
+ LDY BL
+ CLC
+ ANDY #01
+ BEQ L2
+ LDY AL
+ CLC
+ ADDY SL
+ STY SL
+ LDY AH
+ ADDY SH
+ STY SH
+
+L2:
+ CLC
+ ROR BL
+ CLC
+ ROL AL
+ ROL AH
+ DEC Z
+ BNE L1
+ JMP RET
+
+BL:
+B
+
+AH:
+B
+AL:
+B
+
+SH:
+B
+SL:
+B

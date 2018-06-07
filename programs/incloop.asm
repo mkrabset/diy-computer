@@ -1,0 +1,7 @@
+L0:
+LDX #70
+L1:
+INC X
+CMPX #90
+BLE L1	
+JMP L0

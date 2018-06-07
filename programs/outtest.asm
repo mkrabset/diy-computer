@@ -1,0 +1,6 @@
+LDX #55
+L1:
+INC X
+OUT0 X
+JMP L1
+

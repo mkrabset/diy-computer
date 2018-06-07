@@ -1,0 +1,544 @@
+Modules:
+
+X-register (register_v2.fzz)
+-----------------------------
+	8 bit register with read/write/reset control
+
+	Name: X
+
+	Inputs:
+		OX  : write to bus, active low
+		RX  : reset, active low, immediate
+		IX  : read from bus, active low, positive CLK edge triggered
+		CLK : clock	
+		BUS : bus
+		
+	Outputs:
+		BUS : bus
+
+
+Y-register (register_v2.fzz)
+-----------------------------
+	8 bit register with read/write/reset control
+
+	Name: Y
+
+	Inputs:
+		OY  : write to bus, active low
+		RY  : reset, active high, immediate
+		IY  : read from bus, active low, positive CLK edge triggered
+		CLK : clock		
+		BUS : bus
+		
+	Outputs:
+		BUS : bus
+
+Z-register (register_v2.fzz)
+-----------------------------
+	8 bit register with read/write/reset control
+
+	Name: Z
+
+	Inputs:
+		OZ  : write to bus, active low
+		RZ  : reset, active high, immediate
+		IZ  : read from bus, active low, positive CLK edge triggered
+		CLK : clock
+		BUS : bus
+		
+	Outputs:
+		BUS : bus
+
+
+ALU-regs (aluregs.fzz)
+-----------------------
+	2 x 8 bit register (ACC,OP) with read/reset control, carry input and OP-invert control
+
+	Name: ALUREGS
+
+	Inputs:
+		IACC  : read ACC from bus, active low, positive CLK edge triggered
+		RACC  : reset ACC, active high, immediate
+		IOP   : read OP from bus, active low, positive CLK edge triggered
+		ROP   : reset OP, active high, immediate
+		INVOP : invert OOP
+		CIN   : carry in, transfered to OCIN (no logic connected on this board) (should be fed from ALUFLAGS.CF)
+		CLK   : clock
+		BUS   : bus
+
+	Outputs:
+		ACC   : 8-bit output of ACC-content to ALU
+		OP    : 8-bit output of (possibly inverted) content of OP to ALU
+		CIN  :  connected to CIN-input, transfers carry-in to ALU
+
+
+
+ALU (adder.fzz, aluctrl.fzz, aluregs.fzz, andorxor2.fzz, andorxor.fzz, not.fzz, rolror.fzz, zerodetect.fzz)
+------------------------------------------------------------------------------------------------------------
+	8-floor ALU, one logic function for each floor, supports add/subtract/and/or/xor/rol/ror/neg
+
+	Name: ALU
+
+	Inputs:
+		ACC     : 8-bit input of ACC-register from ALU-regs
+		OP      : 8-bit input of (possibly inverted) OP-register from ALU-regs
+		CIN     : carry in (from ALU-regs)
+		ALUOP0  : bit 0 of arithm.op selector
+		ALUOP1  : bit 1 of arithm.op selector
+		ALUOP2  : bit 2 of arithm.op selector
+
+	Outputs:
+		ALURES  : 8-bit ALU operation result
+		ALUCO   : ALU carry output
+		ALUNZ	: ALU nonzero output result
+
+	Operations: (selected by operation selector)
+		000 -> ADD/SUBTRACT
+		001 -> ROL (IACC8)
+		010 -> OR
+		011 -> NOT (invert IACC8 to result)
+		100 -> AND
+		101 -> ROR (IACC8)
+		110 -> XOR
+		111 -> Z (high impedance OALURES)
+
+
+ALU-flags (flagz.fzz)   OBS: merged with ALU
+----------------------
+	Master ALU-to-bus output control, and flag storage
+
+	Inputs:
+		OALU	: ALURES write to bus, active low
+		ALURES  : 8-bit result from ALU
+		ALUCO	: carry out bit from ALU
+		ALUNZ	: Non-zero bit from ALU
+		CS	: carry flag set, active low (immediate)
+		CC	: carry flag clear, active low (immediate)
+		CW	: latch carry-flag from ALUCO, positive CLK edge triggered
+		CLK	: clock
+		NZW	: latch nz-flag from ALUNZ, positive CLK edge triggered
+		NEGW	: latch neg-flag from MSB of ALURES, positive CLK edge triggered
+
+	Outputs:
+		BUS     : bus (write-only, ALURES is written to bus when OALU is low)
+		CF	: carry flag value (continious)
+		NZF	: nz-flag value (continious)
+		NEGF	: neg-flag value (continous)
+
+
+MAR (ram_mar.fzz)
+------------------
+	Write-only 16-bit Memory Address Register
+
+	Name: MAR
+
+	Inputs: 
+		IMARH   : Read HIGH-byte value from bus, active low, positive CLK edge triggered
+		IMARL   : Read LOW-byte value from bus, active low, positive CLK edge triggered
+		CLK     : clock
+		BUS	: bus
+
+	Outputs:
+		MAR     : 16 bit address to RAM module
+
+
+RAM (ram_mar.fzz (board 2))
+----------------------------
+	32 KB ram module
+
+	Name: RAM
+
+	Inputs:
+		MAR    : 16 bit address from MAR module (msb is unused)
+		IRAM   : Read value from bus into RAM, active low
+		CLK    : clock
+		ORAM   : Writes value of RAM to bus, active low
+		BUS    : bus
+
+	Outputs: 
+		BUS    : bus
+
+	Comment: The RAM-chip doesn't use a clock-signal to latch in a value when written to.
+		 It is also required that the write-signal (WE, pin 27) is deactivated (pulled high) BEFORE the 8-bit value
+                 on the I/O-pins. Otherwise the ram-write might fail.
+
+		 So, to solve this, we use the following support-chips:
+			* One 
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+Control signals from instruction decoder:
+------------------------------------------
+	Bus read control:
+		X.I    		: load x register from bus, active LOW
+		Y.I    		: load y register from bus, active LOW
+		Z.I    		: load z register from bus, active LOW
+                ALUREGS.O1.I	: load ALUREGS I1-register from bus, active LOW
+                ALUREGS.O2.I	: load ALUREGS I2-register from bus, active LOW
+		MAR.H.I		: load MAR high address register from bus, active LOW
+		MAR.L.I		: load MAR low address register from bus, active LOW
+                RAM.I   	: load ram from bus, active LOW
+		INSTOP.OP1.I	: load instruction operand 1 from bus, active LOW
+		INSTOP.OP2.I	: load instruction operand 2 from bus, active LOW
+		INST.I		: load instruction from bus, active LOW
+		NOP		: load nothing from bus (no bus read)
+
+	Bus write control:
+		X.O		: write x register to bus, active LOW
+		Y.O		: write x register to bus, active LOW
+		Z.O		: write x register to bus, active LOW
+		ALU.O		: write ALU result to bus, active LOW
+		RAM.O		: write ram value to bus, active LOW
+		INSTOP.OP1.O	: write instruction operand 1 to bus, active LOW
+		INSTOP.OP2.O	: write instruction operand 2 to bus, active LOW
+		PC.H.O		: write program counter high address to bus, active LOW
+		PC.L.O		: write program counter low address to bus, active LOW
+		SP.H.O		: write stack pointer high value to bus, active LOW
+		SP.L.O		: write stack pointer low value to bus, active LOW
+		
+
+
+		TODO: instruction-register, stack-pointer (possibly, depending on design), program counter
+
+
+	Register resets:
+		RX     : reset x register
+		RY     : reset y register
+		RZ     : reset z register
+		RACC   : reset ACC register
+		ROP    : reset OP register
+
+		TODO: stack-pointer (on init), program-counter (on init)
+
+	
+     	Misc:
+		INVOP  : Invert OP to ALU (used for subtraction)
+		ALUOP0 : bit 0 of arithm.op selector
+		ALUOP1 : bit 1 of arithm.op selector
+		ALUOP2 : bit 2 of arithm.op selector
+		CS     : set carry-flag
+		CC     : clear carry-flag
+		CW     : latch carry-flag
+		NZW    : latch nz-flag
+		NEGW   : latch neg-flag
+
+
+
+
+
+
+Instructions:
+
+Common microcode:
+------------------
+	0: BUS[PC.H -> MAR.H]
+	1: BUS[PC.L -> MAR.L], PC++
+	2: BUS[RAM -> INST]
+
+
+Load register immediate
+----------------------
+LDX #value:
+	3: BUS[PC.H -> MAR.H]
+	4: BUS[PC.L -> MAR.L], PC++
+	5: BUS[RAM -> X]
+	6: NEXTINSTR
+
+LDY #value:
+	3-4: Same as previous instruction
+	5: BUS[RAM -> Y]
+	6: NEXTINSTR
+
+LDZ #value:
+	3-4: Same as previous instruction
+	5: BUS[RAM -> Z]
+	6: NEXTINSTR
+
+
+Load register indirect
+-----------------------
+LDX $addr:
+	3: BUS[PC.H -> MAR.H]
+	4: BUS[PC.L -> MAR.L], PC++
+	5: BUS[RAM->INSTOP.OP1]
+	6: BUS[PC.H -> MAR.H]
+	7: BUS[PC.L -> MAR.L], PC++
+	8: BUS[RAM->INSTOP.OP2]
+	9: BUS[INSTOP.OP1 -> MAR.H]
+	A: BUS[INSTOP.OP2 -> MAR.L]
+	B: BUS[RAM -> X]
+	C: NEXTINSTR
+
+LDY $addr:
+	3-A: Same as previous instruction
+	B: BUS[RAM -> Y]
+	C: NEXTINSTR
+
+LDZ $addr:
+	3-A: Same as previous instruction
+	B: BUS[RAM -> Z]
+	C: NEXTINSTR
+
+
+Store register indirect
+------------------------
+STX $addr:
+	3-A: Same as previous instruction
+	B: BUS[X -> RAM]
+	C: NEXTINSTR
+
+STY $addr:
+	3-A: Same as previous instruction
+	B: BUS[Y -> RAM]
+	C: NEXTINSTR
+
+STZ $addr:
+	3-A: Same as previous instruction
+	B: BUS[Z -> RAM]
+	C: NEXTINSTR
+
+
+Add registers:
+---------------
+ADDXY:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+ADDXZ:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+ADDYX:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> Y]
+	6: NEXTINSTR
+
+ADDYZ:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+ADDZX:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+ADDZY:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], ALU.ADD, CC
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+
+Add registers (with carry)
+---------------------------
+ADDXYC:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+ADDXZC:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+ADDYXC:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> Y]
+	6: NEXTINSTR
+
+ADDYZC:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+ADDZXC:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+ADDZYC:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+
+Subtract registers:
+--------------------
+
+SUBXYC:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+SUBXZC:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> X]
+	6: NEXTINSTR
+
+SUBYXC:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> Y]
+	6: NEXTINSTR
+
+SUBYZC:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[Z -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+SUBZXC:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[X -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+SUBZYC:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[Y -> ALUREGS.O2], CS, INVOP2, ALU.ADD
+	5: BUS[ALU -> Z]
+	6: NEXTINSTR
+
+
+
+Add register with value:
+ADDX #value:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, CC
+	7: BUS[ALU -> X]
+	8: NEXTINSTR
+
+ADDY #value:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, CC
+	7: BUS[ALU -> Y]
+	8: NEXTINSTR
+
+ADDX #value:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, CC
+	7: BUS[ALU -> Z]
+	8: NEXTINSTR
+
+
+Add register with value (with carry):
+ADDXC #value:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, CC
+	7: BUS[ALU -> X]
+	8: NEXTINSTR
+
+ADDYC #value:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD
+	7: BUS[ALU -> Y]
+	8: NEXTINSTR
+
+ADDZC #value:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD
+	7: BUS[ALU -> Z]
+	8: NEXTINSTR
+
+
+Subtract register with value:
+SUBX #value:
+	3: BUS[X -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, INVOP2, CS
+	7: BUS[ALU -> X]
+	8: NEXTINSTR
+
+SUBY #value:
+	3: BUS[Y -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, INVOP2, CS
+	7: BUS[ALU -> Y]
+	8: NEXTINSTR
+
+SUBZ #value:
+	3: BUS[Z -> ALUREGS.O1]
+	4: BUS[PC.H -> MAR.H]
+	5: BUS[PC.L -> MAR.L], PC++
+	6: BUS[RAM -> INSTOP.OP2], ALU.ADD, INVOP2, CS
+	7: BUS[ALU -> Z]
+	8: NEXTINSTR
+
+
+Increase register value:
+INCX:
+	3: BUS[X -> ALUREGS.O1], ALU.ADD, RESOP2, CS
+	4: BUS[ALU -> X]
+	5: NEXTINSTR
+
+INCY:
+	3: BUS[Y -> ALUREGS.O1], ALU.ADD, RESOP2, CS
+	4: BUS[ALU -> Y]
+	5: NEXTINSTR
+
+INCZ:
+	3: BUS[Z -> ALUREGS.O1], ALU.ADD, RESOP2, CS
+	4: BUS[ALU -> Z]
+	5: NEXTINSTR
+
+
+Decrease register value:
+DECX:
+	3: BUS[X -> ALUREGS.O1], ALU.ADD, RESOP2, INVOP2, CC
+	4: BUS[ALU -> X]
+	5: NEXTINSTR
+
+DECY:
+	3: BUS[Y -> ALUREGS.O1], ALU.ADD, RESOP2, INVOP2, CC
+	4: BUS[ALU -> Y]
+	5: NEXTINSTR
+
+DECZ:
+	3: BUS[Z -> ALUREGS.O1], ALU.ADD, RESOP2, INVOP2, CC
+	4: BUS[ALU -> Z]
+	5: NEXTINSTR
+
+
+
+		
+
+
+
+
+
+
+
+

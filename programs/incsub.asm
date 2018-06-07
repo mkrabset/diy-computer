@@ -1,0 +1,16 @@
+
+START:
+JSR INCSUB
+JMP START
+
+INCSUB:
+INC X
+RTS
+
+
+
+
+
+
+
+

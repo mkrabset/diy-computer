@@ -1,0 +1,63 @@
+
+
+Floors: (from below)
+ 1) Ground floor with zero-detection, bus-control, flag-storage (74ls74 flipflops), and external connectors
+ 
+   Design: groundfloor_sync_cc_cs.fzz
+
+
+ 2) RolRor, shift left (rol), or right (ror), shift in carry-in, shift out respectively msb or lsb.
+    Sets 8 bit result, and carry out, Disconnected from nonzero output flag.
+    Disconnected from both 8-bit output and carry out when either of the operations are active.
+
+    Design: rolror.fzz, Inner pins connects down, Outer pins connects up.
+
+
+ 3) Logical AND, ANDs two 8-bit numbers together. (use 7408 IC)
+    Sets 8-bit result. Does not use carry in. Disconnected from nonzero and carryout output flags.
+    Disconnected from 8-bit output when not active.
+    Requires jumper wire to select AND-operation.
+ 
+    Design: andorxor2.fzz, Inner pins connects up, Outer pins connects down.
+
+
+ 4) Logical OR, ORs two 8-bit numbers together.  (use 7432 IC)
+    Sets 8-bit result. Does not use carry in. Disconnected from nonzero and carryout output flags.
+    Disconnected from 8-bit output when not active.
+    Requires jumper wire to select OR-operation.
+ 
+    Design: andorxor.fzz, Inner pins connects down, Outer pins connects up.
+
+
+ 5) Logical XOR, XORs two 8-bit numbers together.  (use 7486 IC)
+    Sets 8-bit result. Does not use carry in. Disconnected from nonzero and carryout output flags.
+    Disconnected from 8-bit output when not active.
+    Requires jumper wire to select XOR-operation.
+ 
+    Design: andorxor2.fzz, Inner pins connects up, Outer pins connects down.
+
+
+ 6) Logical NOT, inverts an 8-bit number (operand 2).
+    Sets 8-bit result, Does not use operand1 or carryIn. 
+    Disconnected from nonzero and carryout output bits.
+    Disconnected from 8-bit output when not active.
+
+    Design: not.fzz, Inner pins connects down, Outer pins connects up.
+
+ 7) Adder, adds two 8 bit numbers.
+    For subtraction, invert operand 2, and set carry in.
+    Sets 8 bit result, and carry out. Disconnected from nonzero output flag.
+    Disconnected from both 8-bit output and carry-out when not active.
+
+    Design: adder.fzz , Inner pins connects up. Outer pins connects down.
+
+ 8) AluCtrl. Operation MUX and status display.
+    Selects operation by pulling one of the operation activation pins low, while keeping all others high,
+    based on the operation selected by the op-select input pins (op2,op1,op0).
+
+    Led displays for: operand1, operand2, carryIn, result, carryOut, nonZero
+
+    Design: aluctrl.fzz, Inner pins connects down, Outer pins connects up.
+
+
+
