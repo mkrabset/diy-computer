@@ -24,6 +24,8 @@
 // Mastered clk
 #define MAS_CLK 12
 
+#define PROBE 11
+
 
 #define RUNDELAY 8000000
 #define MASTERING_DEBUG false
@@ -50,6 +52,7 @@ void setup() {
   pinMode(DS_DATA,OUTPUT);
   pinMode(SHIFT_DATA,OUTPUT);
   pinMode(LATCH_DATA,OUTPUT);
+  pinMode(PROBE,INPUT);
 
   pinMode(DS,OUTPUT);
   pinMode(SHIFT_CL,OUTPUT);
@@ -181,6 +184,8 @@ void processCommand() {
     setMastered(true);
     busWrite(false);
     execStep(mcAddress>>4,mcAddress&0x0f);
+  } else if (beginsWith(&buffer[0],"probe")) {
+    Serial.println(digitalRead(PROBE));
   }
   Serial.println(">");
 }
