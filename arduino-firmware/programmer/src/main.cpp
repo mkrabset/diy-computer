@@ -1,4 +1,8 @@
 #include <TimerOne.h>
+#include <Arduino.h>
+#include "main.h"
+
+
 
 // Shift-register pins for bus write
 #define OE_DATA 5
@@ -45,17 +49,17 @@ void setup() {
   pinMode(OE_DATA,OUTPUT);        // Set to input if controlled by decoder
   pinMode(DS_DATA,OUTPUT);
   pinMode(SHIFT_DATA,OUTPUT);
-  pinMode(LATCH_DATA,OUTPUT);  
+  pinMode(LATCH_DATA,OUTPUT);
 
   pinMode(DS,OUTPUT);
   pinMode(SHIFT_CL,OUTPUT);
-  pinMode(LATCH,OUTPUT);  
+  pinMode(LATCH,OUTPUT);
 
   pinMode(MAS_CLK,OUTPUT);
   digitalWrite(MAS_CLK,LOW);
-  
+
   pinMode(EXT_CLK,OUTPUT);
-  digitalWrite(EXT_CLK,LOW);  
+  digitalWrite(EXT_CLK,LOW);
 
   pinMode(SRC_SEL,OUTPUT);
   digitalWrite(SRC_SEL,LOW);
@@ -92,10 +96,10 @@ void test() {
   digitalWrite(MAS_CLK,LOW);
   }
 }
-  
-  
-  
-  
+
+
+
+
 
 void setMastered(boolean m) {
   mastered=m;
@@ -145,7 +149,7 @@ void processCommand() {
     Serial.println();
   } else if (beginsWith(&buffer[0],"initpc")) {
     initPC();
-    Serial.println("PC set to 0x0000");  
+    Serial.println("PC set to 0x0000");
   } else if (beginsWith(&buffer[0],"run")) {
     run();
   } else if (beginsWith(&buffer[0],"halt")) {
@@ -172,6 +176,11 @@ void processCommand() {
     }
   } else if (beginsWith(&buffer[0],"w ")) {
     writeBufferToRAM();
+  } else if (beginsWith(&buffer[0],"mc ")) {
+    int mcAddress=getHex(&buffer[3],3);
+    setMastered(true);
+    busWrite(false);
+    execStep(mcAddress>>4,mcAddress&0x0f);
   }
   Serial.println(">");
 }
@@ -182,7 +191,7 @@ void setMAR(int addr) {
   setData(addr>>8);
   execStep(125,3);  //  high address -> MAR_H
   setData(addr);
-  execStep(125,4);  //  low address -> MAR_H  
+  execStep(125,4);  //  low address -> MAR_H
   busWrite(false);
 }
 
@@ -227,17 +236,17 @@ void writeBufferToRAM() {
     if (last==-1) {
       break;
     }
-    
+
     data[dpos]=(byte)last;
     dpos++;
-  } 
-  
+  }
+
   for (int i=0;i<dpos;i++) {
     writeRAM(data[i]);
     incMAR();
   }
-  
-  
+
+
   Serial.print("Wrote ");
   Serial.print(dpos);
   Serial.println(" bytes");
@@ -294,7 +303,7 @@ void execStep(int instruction, int step) {
   delay(masteredDelay);
   digitalWrite(MAS_CLK,LOW);
   delay(masteredDelay);
-} 
+}
 
 void tick() {
   setMastered(false);
@@ -366,8 +375,3 @@ void printHex(int num, int precision) {
    sprintf(tmp, format, num);
    Serial.print(tmp);
 }
-
-
-
-
-
