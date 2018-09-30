@@ -1,0 +1,10 @@
+START:
+  LDX #01
+LP:
+  PUSH X
+  POP Y
+  INC X
+  OUT0 X
+  OUT1 Y
+  JMP LP
+

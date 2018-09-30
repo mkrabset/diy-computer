@@ -11,13 +11,12 @@ import jssc.SerialPortException;
 import java.io.File;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class SignalTest {
     Computer c = new Computer();
     InstructionSet s = new InstructionSet(c);
 
-    Signal signal = c.alu.op0Signal;
+    Signal signal = c.sp.dirUpSignal;
 
     public static void main(String... args) throws Exception {
         new SignalTest().start();
@@ -80,6 +79,7 @@ public class SignalTest {
             }
         });
         serialPort.closePort();
+        System.out.println("Success!");
     }
 
     private boolean probe(SerialPort serialPort, BlockingQueue<String> inputQueue) throws Exception {

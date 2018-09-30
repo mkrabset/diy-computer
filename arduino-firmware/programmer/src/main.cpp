@@ -29,7 +29,7 @@
 
 #define RUNDELAY 8000000
 #define MASTERING_DEBUG false
-#define MASTERING_DELAY 1
+#define MASTERING_DELAY 10
 
 long masteredDelay=MASTERING_DELAY;
 long runDelay=RUNDELAY;
@@ -184,6 +184,8 @@ void processCommand() {
     setMastered(true);
     busWrite(false);
     execStep(mcAddress>>4,mcAddress&0x0f);
+    Serial.print("Set mc to #");
+    Serial.println(mcAddress, HEX);
   } else if (beginsWith(&buffer[0],"probe")) {
     Serial.println(digitalRead(PROBE));
   }
