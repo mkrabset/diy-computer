@@ -4,7 +4,9 @@ import ivark.diycomputer.Computer;
 import ivark.diycomputer.instructionset.eeprom.SerialWriter;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,122 +30,122 @@ public class Compiler {
     }
 
     private void compile(File file) throws Exception {
-        Map<String, Integer> labelMap = createLabelMap(file);
-        String s = genCode(file, labelMap);
-        writeProg(s);
+        List<String> lines = getLines(new FileReader(file));
+        List<String> installInstructions = generateInstallInstructions(lines);
+        writeProg(installInstructions);
     }
 
-    private Map<String, Integer> createLabelMap(File file) throws IOException {
-        int address = 0;
-        Map<String, Integer> labelAddress = new HashMap<>();
-        try (BufferedReader r = new BufferedReader(new FileReader(file))) {
+    public List<String> generateInstallInstructions(List<String> lines) {
+        Map<String, Integer> labelMap = createLabelMap(lines);
+        return genCode(lines, labelMap);
+    }
+
+
+    private List<String> getLines(Reader reader) throws IOException {
+        List<String> result = new ArrayList<>();
+        try (BufferedReader r = new BufferedReader(reader)) {
             String line = r.readLine();
             while (line != null) {
                 line = line.trim();
-                if (line.startsWith("#")) {
-                  line=r.readLine();
+                if (line.startsWith("#") || line.isEmpty()) {
+                    line = r.readLine();
                     continue;
                 }
-                if (line.equals("B")) {
-                    address++;
-                } else if (!line.isEmpty()) {
-                    Matcher matcher = LABELPATTERN.matcher(line.trim());
-                    if (matcher.matches()) {
-                        String label = matcher.group(1);
-                        labelAddress.put(label, address);
+                result.add(line);
+                line=r.readLine();
+            }
+        }
+        return result;
+    }
+
+    private Map<String, Integer> createLabelMap(List<String> lines) {
+        Map<String, Integer> result = new HashMap<>();
+        int address = 0;
+        for (String line : lines) {
+            if (line.equals("B")) {
+                address++;
+            } else {
+                Matcher matcher = LABELPATTERN.matcher(line.trim());
+                if (matcher.matches()) {
+                    String label = matcher.group(1);
+                    result.put(label, address);
+                } else {
+                    Instruction i = findInstruction(is, line);
+                    if (i != null) {
+                        address++;
+                        if (i.pattern.toString().contains("....")) {
+                            address += 2;
+                        } else if (i.pattern.toString().contains("..")) {
+                            address += 1;
+                        }
                     } else {
-                        Instruction i = findInstruction(is, line);
-                        if (i != null) {
-                            address++;
+                        throw new RuntimeException("Compile error:" + line);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+
+    private List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
+        List<String> result = new ArrayList<>();
+        int address = 0;
+        result.add("mar 0000");  // Set memory address register to zero
+        for (String line : lines) {
+            System.out.print((toHex(address, 4) + "  " + line + "                 ").substring(0, 20));
+
+            if (line.equals("B")) {
+                address++;
+                result.add("w 00");
+                System.out.println("00");
+            } else {
+                Matcher matcher = LABELPATTERN.matcher(line.trim());
+                if (matcher.matches()) {
+                    System.out.println();
+                } else {
+                    Instruction i = findInstruction(is, line);
+                    address++;
+                    System.out.print(toHex(i.num, 2) + " ");
+                    String instr = "w " + toHex(i.num, 2);
+                    if (matchesDirectly(i, line)) {
+                        Matcher m = i.pattern.matcher(line);
+                        m.matches();
+                        if (m.groupCount() >= 1) {
+                            String arg = m.group(1);
+                            instr = instr + " " + arg;
+                            System.out.print(arg);
                             if (i.pattern.toString().contains("....")) {
                                 address += 2;
                             } else if (i.pattern.toString().contains("..")) {
                                 address += 1;
                             }
-                        } else {
-                            throw new RuntimeException("Compile error:" + line);
                         }
-                    }
-                }
-                line = r.readLine();
-            }
-        }
-        return labelAddress;
-    }
-
-
-    private String genCode(File file, Map<String, Integer> lblMap) throws IOException {
-
-        int address = 0;
-        StringBuilder sb = new StringBuilder();
-        sb.append("mar 0000\n");
-        //sb.append("md 10000\n");
-        try (BufferedReader r = new BufferedReader(new FileReader(file))) {
-            String line = r.readLine();
-            while (line != null) {
-                line = line.trim();
-                if (line.startsWith("#")) {
-                    line=r.readLine();
-                    continue;
-                }
-
-                if (!line.isEmpty()) {
-                    System.out.print((toHex(address, 4) + "  " + line + "                 ").substring(0,20));
-                }
-
-                if (line.equals("B")) {
-                    address++;
-                    sb.append("w 00\n");
-                    System.out.println("00");
-                } else if (!line.isEmpty()) {
-                    Matcher matcher = LABELPATTERN.matcher(line.trim());
-                    if (matcher.matches()) {
                         System.out.println();
-                    } else {
-                        Instruction i = findInstruction(is, line);
-                        address++;
-                        System.out.print(toHex(i.num,2)+" ");
-                        sb.append("w " + toHex(i.num, 2));
-                        if (matchesDirectly(i, line)) {
-                            Matcher m = i.pattern.matcher(line);
-                            m.matches();
-                            if (m.groupCount() >= 1) {
-                                String arg = m.group(1);
-                                sb.append(" " + arg);
-                                System.out.print(arg);
-                                if (i.pattern.toString().contains("....")) {
-                                    address+=2;
-                                } else if (i.pattern.toString().contains("..")) {
-                                    address+=1;
-                                }
-                            }
-                            System.out.println();
-                            sb.append("\n");
-                        } else if (matchesWithLabel(i, line)) {
-                            Matcher m = getDirectLabelPattern(i).matcher(line);
-                            m.matches();
-                            Integer arg = lblMap.get(m.group(1));
-                            sb.append(toHex(arg, 4) + "\n");
-                            System.out.println(toHex(arg,4));
-                            address+=2;
-                        } else if (matchesWithIndirectLabel(i, line)) {
-                            Matcher m = getIndirectLabelPattern(i).matcher(line);
-                            m.matches();
-                            Integer arg = lblMap.get(m.group(1));
-                            if (arg==null) {
-                                throw new RuntimeException("Unknown label: "+m.group(1)+" in instruction "+line);
-                            }
-                            sb.append(toHex(arg,4)+"\n");
-                            System.out.println(toHex(arg,4));
-                            address+=2;
+                    } else if (matchesWithLabel(i, line)) {
+                        Matcher m = getDirectLabelPattern(i).matcher(line);
+                        m.matches();
+                        Integer arg = lblMap.get(m.group(1));
+                        instr = instr + toHex(arg, 4);
+                        System.out.println(toHex(arg, 4));
+                        address += 2;
+                    } else if (matchesWithIndirectLabel(i, line)) {
+                        Matcher m = getIndirectLabelPattern(i).matcher(line);
+                        m.matches();
+                        Integer arg = lblMap.get(m.group(1));
+                        if (arg == null) {
+                            throw new RuntimeException("Unknown label: " + m.group(1) + " in instruction " + line);
                         }
+                        instr = instr + toHex(arg, 4);
+                        System.out.println(toHex(arg, 4));
+                        address += 2;
                     }
+                    result.add(instr);
                 }
-                line = r.readLine();
             }
         }
-        sb.append("initpc\n");
-        return sb.toString();
+        result.add("initpc");
+        return result;
     }
 
     private Instruction findInstruction(InstructionSet is, String line) {
@@ -193,14 +195,16 @@ public class Compiler {
     }
 
 
-    protected void writeProg(String spec) throws Exception {
-        System.out.println(spec);
+    protected void writeProg(List<String> installInstructions) throws Exception {
 
-        File tempFile = File.createTempFile("eeprom", "display");
+        File tempFile = File.createTempFile("diyprog", "diy");
         try (PrintWriter pw = new PrintWriter(new FileWriter(tempFile))) {
-            pw.print(spec);
+            for (String line:installInstructions) {
+                pw.print(line+"\n");
+            }
             pw.flush();
         }
+
         try (SerialWriter sw = new SerialWriter()) {
             sw.writeToSerial(tempFile.getAbsolutePath());
         }
