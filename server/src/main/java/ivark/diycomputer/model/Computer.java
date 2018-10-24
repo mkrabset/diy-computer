@@ -1,7 +1,6 @@
-package ivark.diycomputer;
+package ivark.diycomputer.model;
 
 import ivark.diycomputer.instructionset.InstructionSet;
-import ivark.diycomputer.model.*;
 
 import java.util.Arrays;
 import java.util.List;

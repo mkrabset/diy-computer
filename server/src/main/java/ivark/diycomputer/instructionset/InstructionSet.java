@@ -1,6 +1,6 @@
 package ivark.diycomputer.instructionset;
 
-import ivark.diycomputer.Computer;
+import ivark.diycomputer.model.Computer;
 import ivark.diycomputer.model.BUS.BusReader;
 import ivark.diycomputer.model.BUS.BusWriter;
 import ivark.diycomputer.model.PC;
@@ -10,7 +10,6 @@ import ivark.diycomputer.model.Signal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static ivark.diycomputer.model.BUS.BusReader.*;
 import static ivark.diycomputer.model.BUS.BusWriter.*;

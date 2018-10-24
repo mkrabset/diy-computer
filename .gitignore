@@ -2,4 +2,7 @@
 manager/out/
 .gradle/
 *.iml
+*.class
+server/out
+build/
 

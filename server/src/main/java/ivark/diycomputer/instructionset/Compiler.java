@@ -1,6 +1,6 @@
 package ivark.diycomputer.instructionset;
 
-import ivark.diycomputer.Computer;
+import ivark.diycomputer.model.Computer;
 import ivark.diycomputer.instructionset.eeprom.SerialWriter;
 
 import java.io.*;
@@ -32,7 +32,12 @@ public class Compiler {
     private void compile(File file) throws Exception {
         List<String> lines = getLines(new FileReader(file));
         List<String> installInstructions = generateInstallInstructions(lines);
-        writeProg(installInstructions);
+
+        System.out.println("\n\nInstall-instructions:");
+        System.out.println("---------------------");
+        installInstructions.forEach(System.out::println);
+
+        //writeProg(installInstructions);
     }
 
     public List<String> generateInstallInstructions(List<String> lines) {
@@ -41,7 +46,7 @@ public class Compiler {
     }
 
 
-    private List<String> getLines(Reader reader) throws IOException {
+    public List<String> getLines(Reader reader) throws IOException {
         List<String> result = new ArrayList<>();
         try (BufferedReader r = new BufferedReader(reader)) {
             String line = r.readLine();
