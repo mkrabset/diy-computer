@@ -5,6 +5,8 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -13,18 +15,12 @@ import java.util.concurrent.BlockingQueue;
  */
 public class SerialWriter implements Closeable {
     SerialPort serialPort;
+    final BlockingQueue<String> inputQueue;
 
-    public SerialWriter() throws Exception {
-        this.serialPort = getSerialPort();
-    }
-
-    public void writeToSerial(String fileName) throws Exception {
-        if (serialPort==null) {
-            throw new RuntimeException("SerialWriter closed");
-        }
-        System.out.println("Writing to serial");
-        try (FileInputStream fis = new FileInputStream(new File(fileName))) {
-            BlockingQueue<String> inputQueue = new ArrayBlockingQueue<>(100);
+    public SerialWriter() {
+        try {
+            this.serialPort = getSerialPort();
+            this.inputQueue = new ArrayBlockingQueue<>(100);
 
             final StringBuilder sb = new StringBuilder();
             serialPort.addEventListener(event -> {
@@ -38,6 +34,7 @@ public class SerialWriter implements Closeable {
                                 if (b == '\n') {
                                     String msg = sb.toString().trim();
                                     System.out.println("Receiving: " + msg);
+                                    onReceived(msg);
                                     inputQueue.add(msg);
                                     sb.delete(0, sb.length());
                                 } else {
@@ -51,17 +48,44 @@ public class SerialWriter implements Closeable {
                 }
             }, SerialPortEvent.RXCHAR);
 
-            waitForAck(inputQueue);
-
-            BufferedReader br=new BufferedReader(new InputStreamReader(fis));
-            String line=br.readLine();
-            while (line!=null) {
-                System.out.println("Send:"+line);
-                serialPort.writeString(line+'\n');
-                waitForAck(inputQueue);
-                line=br.readLine();
-            }
+            waitForAck(inputQueue);  // TODO: Requires initial ack
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to create serial writer",e);
         }
+    }
+
+    public void writeToSerial(File fileName) throws Exception {
+        if (serialPort == null) {
+            throw new RuntimeException("SerialWriter closed");
+        }
+        System.out.println("Writing file " + fileName + " to serial");
+        try (FileInputStream fis = new FileInputStream(fileName)) {
+            writeToSerial(fis);
+        }
+    }
+
+    public void writeToSerial(InputStream fis) throws Exception {
+        List<String> lines=new ArrayList<>();
+        BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+        String line = br.readLine();
+        while (line != null) {
+            lines.add(line);
+            line = br.readLine();
+        }
+        writeToSerial(lines);
+    }
+
+    public void writeToSerial(List<String> lines) throws Exception {
+        for (String line:lines) {
+            writeToSerial(line);
+        }
+    }
+
+    public void writeToSerial(String line) throws Exception {
+        System.out.println("Send:" + line);
+        serialPort.writeString(line + '\n');
+        onSent(line);
+        waitForAck(inputQueue);
     }
 
     private void waitForAck(BlockingQueue<String> inputQueue) throws Exception {
@@ -71,7 +95,7 @@ public class SerialWriter implements Closeable {
         }
     }
 
-    private SerialPort getSerialPort() throws Exception {
+    private SerialPort getSerialPort() {
         String prefix = "/dev/ttyUSB";
         for (int i = 0; i <= 8; i++) {
             try {
@@ -99,13 +123,16 @@ public class SerialWriter implements Closeable {
     }
 
     @Override
-    public void close() throws IOException {
+    public void close() {
         try {
             serialPort.removeEventListener();
             serialPort.closePort();
-            serialPort = null;
+            serialPort=null;
         } catch (Exception e) {
-            throw new RuntimeException("Failed to close serialwriter",e);
+            throw new RuntimeException("Failed to close serialwriter", e);
         }
     }
+
+    public void onSent(String msg) {}
+    public void onReceived(String msg) {}
 }

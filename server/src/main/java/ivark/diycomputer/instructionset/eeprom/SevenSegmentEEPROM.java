@@ -80,7 +80,7 @@ public class SevenSegmentEEPROM {
             pw.flush();
         }
         try (SerialWriter sw=new SerialWriter()) {
-            sw.writeToSerial(tempFile.getAbsolutePath());
+            sw.writeToSerial(tempFile);
         }
     }
 }

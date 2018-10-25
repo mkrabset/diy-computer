@@ -1,0 +1,40 @@
+.OutOfSync {
+    background: #FFE0E0;
+}
+
+.InSync {
+    background: #FFFFFF;
+}
+
+#codeedit {
+    flex-direction: column;
+    display: flex;
+    height: 86vh;
+}
+
+#code {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#upload {
+    float: left;
+}
+
+
+#clearcode {
+    float: right;
+    width: 100px;
+    margin: 0;
+    height:100%;
+    font-size: 14px;
+}
+
+span.red {
+    color: red;
+}
+
+span.green {
+    color: green;
+}

@@ -1,28 +1,41 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import LogPanel from "./components/LogPanel";
+import CodeEdit from "./components/CodeEdit";
+import ActionPanel from "./components/ActionPanel";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor() {
+        super();
+        this.setBatchLog=this.setBatchLog.bind(this);
+        this.batchLog=null;
+    }
+
+    setBatchLog(batchLog) {
+        this.batchLog = batchLog;
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div id="appContainer">
+                    <div id="leftPanel">
+                        <div className="header">MACHINE CODE</div>
+                        <CodeEdit/>
+                    </div>
+                    <div id="middlePanel">
+                        <div className="header">ACTION</div>
+                        <ActionPanel/>
+                    </div>
+                    <div id="rightPanel">
+                        <div className="header">LOG</div>
+                        <LogPanel batchLogSetter={this.setBatchLog}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;

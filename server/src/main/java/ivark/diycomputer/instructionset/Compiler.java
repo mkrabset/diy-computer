@@ -211,7 +211,7 @@ public class Compiler {
         }
 
         try (SerialWriter sw = new SerialWriter()) {
-            sw.writeToSerial(tempFile.getAbsolutePath());
+            sw.writeToSerial(tempFile);
         }
     }
 
