@@ -128,7 +128,7 @@ class ActionPanel extends Component {
                 <input value={this.state.runDelay}
                        //onChange={this.updateRunDelay.bind(this)}
                        onChange={event => this.setState({runDelay: event.target.value.replace(/\D/,'')})}
-                       onBlur={event=>{this.updateRunDelay();this.readRunDelay()}}
+                       onBlur={event=>this.updateRunDelay()}
                 />
                 <br/>
                 <br/>
