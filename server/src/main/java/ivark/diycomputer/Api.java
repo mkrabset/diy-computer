@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class Api {
     private final Computer C = new Computer();
     private String code = "";
+    private int runDelay=500000;
 
     private SerialWriter serialWriter;
 
@@ -76,6 +77,22 @@ public class Api {
     @Path("/batchlog")
     public JsonNode getBatchLog(@QueryParam("from") int from) {
         return batchLog.getLog(from);
+    }
+
+
+    @POST
+    @Path("/runDelay")
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void setRunDelay(String runDelay) throws Exception {
+        this.runDelay = Math.max(Integer.valueOf(runDelay), 10);
+        serialWriter.writeToSerial("rd "+ this.runDelay);
+    }
+
+    @GET
+    @Path("/runDelay")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Integer getRunDelay() throws Exception {
+        return runDelay;
     }
 
     @POST

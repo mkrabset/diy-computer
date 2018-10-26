@@ -20,9 +20,11 @@ class ActionPanel extends Component {
         this.run= this.run.bind(this);
         this.halt= this.halt.bind(this);
         this.step= this.step.bind(this);
+        this.updateRunDelay= this.updateRunDelay.bind(this);
         this.state = {
             expanded: false,
-            camOn: false
+            camOn: false,
+            runDelay: 500000
         };
     }
 
@@ -32,6 +34,25 @@ class ActionPanel extends Component {
             body: command
         }).then(result => {
 
+            }
+        );
+    }
+
+    updateRunDelay() {
+        fetch("http://" + config.host + ":" + config.apiPort + "/api/runDelay", {
+            method: "post",
+            body: ""+this.state.runDelay
+        }).then(result => {
+
+            }
+        );
+    }
+
+    readRunDelay() {
+        fetch("http://" + config.host + ":" + config.apiPort + "/api/runDelay", {
+            method: "get"
+        }).then(result => {
+             result.text().then(txt=>this.setState({runDelay: txt}));
             }
         );
     }
@@ -98,6 +119,11 @@ class ActionPanel extends Component {
                 <button onClick={this.run}>Run</button><br/>
                 <button onClick={this.halt}>Halt</button><br/>
                 <button onClick={this.step}>Single step</button><br/>
+                <input value={this.state.runDelay}
+                       //onChange={this.updateRunDelay.bind(this)}
+                       onChange={event => this.setState({runDelay: event.target.value.replace(/\D/,'')})}
+                       onBlur={event=>{this.updateRunDelay();this.readRunDelay()}}
+                />
                 <br/>
                 <br/>
                 <img id="mjpeg_dest" className={this.state.expanded?"expanded":""} hidden={!this.state.camOn} alt="CAM" onClick={this.toggleExpand}/>
