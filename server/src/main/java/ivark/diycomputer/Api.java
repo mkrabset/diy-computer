@@ -125,7 +125,7 @@ public class Api {
                 break;
             }
             case step: {
-                serialWriter.writeToSerial("step");
+                serialWriter.writeToSerial("s");
                 break;
             }
             case reconnect: {
