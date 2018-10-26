@@ -30,17 +30,21 @@ public class Api {
 
     @PostConstruct
     public void init() {
-        this.serialWriter = new SerialWriter() {
-            @Override
-            public void onSent(String msg) {
-                Api.this.batchLog.log("SENT: "+msg);
-            }
+        try {
+            this.serialWriter = new SerialWriter() {
+                @Override
+                public void onSent(String msg) {
+                    Api.this.batchLog.log("SENT: " + msg);
+                }
 
-            @Override
-            public void onReceived(String msg) {
-                Api.this.batchLog.log("RECV:"+msg);
-            }
-        };
+                @Override
+                public void onReceived(String msg) {
+                    Api.this.batchLog.log("RECV:" + msg);
+                }
+            };
+        } catch (Exception e) {
+            System.out.println("Failed to connect");
+        }
     }
 
     @Autowired
