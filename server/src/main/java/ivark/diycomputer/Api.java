@@ -124,12 +124,16 @@ public class Api {
                 serialWriter.writeToSerial("step");
                 break;
             }
+            case reconnect: {
+                serialWriter.close();
+                init();
+            }
         }
     }
 
 
     enum Command {
-        install, initPc, run, halt, step
+        install, initPc, run, halt, step, reconnect
     }
 }
 

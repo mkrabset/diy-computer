@@ -15,6 +15,7 @@ class ActionPanel extends Component {
         this.reload_img = this.reload_img.bind(this);
         this.sendCommand = this.sendCommand.bind(this);
         this.toggleExpand= this.toggleExpand.bind(this);
+        this.reconnect= this.reconnect.bind(this);
         this.installCode= this.installCode.bind(this);
         this.resetPc= this.resetPc.bind(this);
         this.run= this.run.bind(this);
@@ -91,6 +92,10 @@ class ActionPanel extends Component {
         })
     }
 
+    reconnect() {
+        this.sendCommand("reconnect");
+    }
+
     installCode() {
         this.sendCommand("install")
     }
@@ -114,6 +119,7 @@ class ActionPanel extends Component {
     render() {
         return (
             <div id="actionpanel">
+                <button onClick={this.reconnect}>Reconnect</button><br/>
                 <button onClick={this.installCode}>Install Code</button><br/>
                 <button onClick={this.resetPc}>Reset program counter</button><br/>
                 <button onClick={this.run}>Run</button><br/>
