@@ -129,7 +129,12 @@ public class Api {
                 break;
             }
             case reconnect: {
-                serialWriter.close();
+                try {
+                    serialWriter.close();
+                } catch (Exception e) {
+
+                }
+                serialWriter=null;
                 init();
             }
         }
