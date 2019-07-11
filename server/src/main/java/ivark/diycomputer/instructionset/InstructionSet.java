@@ -28,17 +28,17 @@ public class InstructionSet {
             instructions.add(createSubAbsolute(r));
             instructions.add(createCmpAbsolute(r));
 
-            instructions.add(createAddIndirect(r));
-            instructions.add(createSubIndirect(r));
-            instructions.add(createCmpIndirect(r));
+            instructions.add(createAddDirect(r));
+            instructions.add(createSubDirect(r));
+            instructions.add(createCmpDirect(r));
 
             instructions.add(createOpAbsolute(r, "AND", c.alu.andOpSignals));
             instructions.add(createOpAbsolute(r, "OR", c.alu.orOpSignals));
             instructions.add(createOpAbsolute(r, "XOR", c.alu.xorOpSignals));
 
-            instructions.add(createOpIndirect(r, "AND", c.alu.andOpSignals));
-            instructions.add(createOpIndirect(r, "OR", c.alu.orOpSignals));
-            instructions.add(createOpIndirect(r, "XOR", c.alu.xorOpSignals));
+            instructions.add(createOpDirect(r, "AND", c.alu.andOpSignals));
+            instructions.add(createOpDirect(r, "OR", c.alu.orOpSignals));
+            instructions.add(createOpDirect(r, "XOR", c.alu.xorOpSignals));
 
             instructions.add(createOpSingleOperand("ROL", c.alu.rolOpSignals, r, false));
             instructions.add(createOpSingleOperand("ROR", c.alu.rorOpSignals, r, true));
@@ -61,11 +61,11 @@ public class InstructionSet {
         instructions.add(createCmpRegs(c.xreg, c.zreg));
         instructions.add(createCmpRegs(c.yreg, c.zreg));
         instructions.add(createNop());
-        instructions.add(createOpIndirect("ROR", c.alu.rorOpSignals, true));
-        instructions.add(createOpIndirect("ROL", c.alu.rolOpSignals, false));
-        instructions.add(createOpIndirect("NOT", c.alu.notOpSignals, true));
-        instructions.add(createIncDecIndirect("INC", true));
-        instructions.add(createIncDecIndirect("DEC", false));
+        instructions.add(createOpDirect("ROR", c.alu.rorOpSignals, true));
+        instructions.add(createOpDirect("ROL", c.alu.rolOpSignals, false));
+        instructions.add(createOpDirect("NOT", c.alu.notOpSignals, true));
+        instructions.add(createIncDecDirect("INC", true));
+        instructions.add(createIncDecDirect("DEC", false));
 
         instructions.add(createSec());
         instructions.add(createClc());
@@ -177,7 +177,7 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createAddIndirect(Register r) {
+    private Instruction createAddDirect(Register r) {
         Instruction i = new Instruction(c, "ADD" + r.name, "ADD" + r.name + " \\$(....)", r.name + " := " + r.name + " + ram(arg)");
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
@@ -187,7 +187,7 @@ public class InstructionSet {
     }
 
     // User needs to use SEC/SLC depending on borrow/noborrow (SEC for noborrow)
-    private Instruction createSubIndirect(Register r) {
+    private Instruction createSubDirect(Register r) {
         Instruction i = new Instruction(c, "SUB" + r.name, "SUB" + r.name + " \\$(....)", r.name + " := " + r.name + " - ram(arg)");
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
@@ -196,7 +196,7 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createCmpIndirect(Register r) {
+    private Instruction createCmpDirect(Register r) {
         Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " \\$(....)", "flags := " + "cmp(" + r.name + ",ram(arg))");
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
@@ -233,7 +233,7 @@ public class InstructionSet {
     }
 
 
-    private Instruction createOpIndirect(Register r, String opName, Signal[] aluOpSignals) {
+    private Instruction createOpDirect(Register r, String opName, Signal[] aluOpSignals) {
         Instruction i = new Instruction(c, opName + r.name, opName + r.name + " \\$(....)", r.name + " := " + r.name + " " + opName + " ram(arg)");
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
@@ -265,7 +265,7 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createOpIndirect(String opName, Signal[] opSignals, boolean useOperandB) {
+    private Instruction createOpDirect(String opName, Signal[] opSignals, boolean useOperandB) {
         Instruction i = new Instruction(c, opName, opName + " \\$(....)", "ram(arg):=" + opName + "(ram(arg))");
         argsToMar(i);
         addStep(i, RAM_OUT, useOperandB ? ALU_B_IN : ALU_A_IN);
@@ -273,7 +273,7 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createIncDecIndirect(String opName, boolean inc) {
+    private Instruction createIncDecDirect(String opName, boolean inc) {
         Instruction i = new Instruction(c, opName, opName + " \\$(....)", "ram(arg):=" + opName + "(ram(arg))");
         argsToMar(i);
         addStep(i, BusWriter.NO_OUTPUT, BusReader.ALU_B_IN);

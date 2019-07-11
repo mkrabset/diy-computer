@@ -4,12 +4,11 @@ import ivark.diycomputer.model.Computer;
 import ivark.diycomputer.instructionset.eeprom.SerialWriter;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -18,7 +17,9 @@ import java.util.regex.Pattern;
 public class Compiler {
     private InstructionSet is;
 
-    final static private Pattern LABELPATTERN = Pattern.compile("([a-zA-Z][a-zA-Z0-9]*)\\:");
+    final static private Pattern LABELPATTERN = Pattern.compile("([a-zA-Z][a-zA-Z0-9_]*)\\:");
+    final static private Pattern BYTELINEPATTERN = Pattern.compile("B *0x *([0-9a-fA-F ]*)");
+    final static private Pattern STRINGLINEPATTERN = Pattern.compile("S '(.*)'");
 
     static public void main(String... args) throws Exception {
         Compiler compiler = new Compiler(new Computer());
@@ -52,6 +53,9 @@ public class Compiler {
             String line = r.readLine();
             while (line != null) {
                 line = line.trim();
+                if (line.contains("//")) {
+                    line=line.substring(0,line.indexOf("//")).trim();
+                }
                 if (line.startsWith("#") || line.isEmpty()) {
                     line = r.readLine();
                     continue;
@@ -67,8 +71,10 @@ public class Compiler {
         Map<String, Integer> result = new HashMap<>();
         int address = 0;
         for (String line : lines) {
-            if (line.equals("B")) {
-                address++;
+            if (BYTELINEPATTERN.matcher(line).matches()) {
+                address += getBytesFromByteline(line).length;
+            } else if (STRINGLINEPATTERN.matcher(line).matches()) {
+                address += getBytesFromStringline(line).length;
             } else {
                 Matcher matcher = LABELPATTERN.matcher(line.trim());
                 if (matcher.matches()) {
@@ -92,18 +98,49 @@ public class Compiler {
         return result;
     }
 
+    private String[] getBytesFromByteline(String byteline) {
+        Matcher matcher = BYTELINEPATTERN.matcher(byteline);
+        if (matcher.matches()) {
+            String hex = matcher.group(1).trim();
+            return hex.replace(" ", "").split("(?<=\\G.{2})");
+        } else {
+            throw new RuntimeException("Illegal byte line: \n"+byteline);
+        }
+    }
+
+    private String[] getBytesFromStringline(String byteline) {
+        Matcher matcher = STRINGLINEPATTERN.matcher(byteline);
+        if (matcher.matches()) {
+            String str = matcher.group(1).trim()+"\0";
+            return str.chars().mapToObj(c -> toHex(c, 2)).toArray(String[]::new);
+        } else {
+            throw new RuntimeException("Illegal byte line: \n"+byteline);
+        }
+    }
 
     private List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
         List<String> result = new ArrayList<>();
         int address = 0;
         result.add("mar 0000");  // Set memory address register to zero
         for (String line : lines) {
-            System.out.print((toHex(address, 4) + "  " + line + "                 ").substring(0, 20));
+            System.out.print((toHex(address, 4) + "  " + line + "                                                   ").substring(0, 40));
 
-            if (line.equals("B")) {
-                address++;
-                result.add("w 00");
-                System.out.println("00");
+            if (BYTELINEPATTERN.matcher(line).matches()) {
+                String[] bytes = getBytesFromByteline(line);
+                address += bytes.length;
+                for (String bytestring : bytes) {
+                    result.add("w " + bytestring);
+                }
+                System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
+                System.out.println();
+            } else if (STRINGLINEPATTERN.matcher(line).matches()) {
+                String[] bytes = getBytesFromStringline(line);
+                address+= bytes.length;
+                for (String bytestring:bytes) {
+                    result.add("w "+bytestring);
+                }
+                System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
+                System.out.println();
             } else {
                 Matcher matcher = LABELPATTERN.matcher(line.trim());
                 if (matcher.matches()) {
@@ -131,6 +168,9 @@ public class Compiler {
                         Matcher m = getDirectLabelPattern(i).matcher(line);
                         m.matches();
                         Integer arg = lblMap.get(m.group(1));
+                        if (m.group(2)!=null && !m.group(2).isEmpty()) {
+                            arg+=Integer.valueOf(m.group(2));
+                        }
                         instr = instr + toHex(arg, 4);
                         System.out.println(toHex(arg, 4));
                         address += 2;
@@ -174,7 +214,7 @@ public class Compiler {
     }
 
     private boolean matchesWithLabel(Instruction i, String line) {
-        if (i.pattern.toString().contains("\\(\\$(....)\\)")) {
+        if (i.pattern.toString().contains("\\$(....)")) {
             if (getDirectLabelPattern(i).matcher(line).matches()) {
                 return true;
             }
@@ -183,7 +223,7 @@ public class Compiler {
     }
 
     private boolean matchesWithIndirectLabel(Instruction i, String line) {
-        if (i.pattern.toString().contains("\\$(....)")) {
+        if (i.pattern.toString().contains("\\(\\$(....)\\)")) {
             if (getIndirectLabelPattern(i).matcher(line).matches()) {
                 return true;
             }
@@ -192,11 +232,11 @@ public class Compiler {
     }
 
     private Pattern getDirectLabelPattern(Instruction i) {
-        return Pattern.compile(i.pattern.toString().replace("\\(\\$(....)\\)", "\\(([a-zA-Z][a-zA-Z0-9]*)\\)"));
+        return Pattern.compile(i.pattern.toString().replace("\\$(....)", "([a-zA-Z][a-zA-Z0-9_]*)\\+?([0-2]?)"));
     }
 
     private Pattern getIndirectLabelPattern(Instruction i) {
-        return Pattern.compile(i.pattern.toString().replace("\\$(....)", "([a-zA-Z][a-zA-Z0-9]*)"));
+        return Pattern.compile(i.pattern.toString().replace("\\(\\$(....)\\)", "\\(([a-zA-Z][a-zA-Z0-9_]*)\\)"));
     }
 
 
