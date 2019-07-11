@@ -35,7 +35,7 @@ BNE WAIT
 RTS
 
 W:
-B
+B 0x 00
 
 
 MUL: 
@@ -73,13 +73,13 @@ MUL2:
  POP X
  RTS
 BL:
-B
+B 0x 00
 AH:
-B
+B 0x 00
 AL:
-B
+B 0x 00
 SH:
-B
+B 0x 00
 SL:
-B
+B 0x 00
 

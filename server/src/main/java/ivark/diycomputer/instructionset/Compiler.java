@@ -111,7 +111,7 @@ public class Compiler {
     private String[] getBytesFromStringline(String byteline) {
         Matcher matcher = STRINGLINEPATTERN.matcher(byteline);
         if (matcher.matches()) {
-            String str = matcher.group(1).trim()+"\0";
+            String str = matcher.group(1).replace("\\0","\0");
             return str.chars().mapToObj(c -> toHex(c, 2)).toArray(String[]::new);
         } else {
             throw new RuntimeException("Illegal byte line: \n"+byteline);
@@ -121,6 +121,7 @@ public class Compiler {
     private List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
         List<String> result = new ArrayList<>();
         int address = 0;
+        result.add("md 0");  // Set max speed for programming (masterdelay=0)
         result.add("mar 0000");  // Set memory address register to zero
         for (String line : lines) {
             System.out.print((toHex(address, 4) + "  " + line + "                                                   ").substring(0, 40));
