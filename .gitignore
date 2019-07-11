@@ -6,3 +6,4 @@ manager/out/
 server/out
 build/
 server/src/main/resources/static/
+.vscode/
