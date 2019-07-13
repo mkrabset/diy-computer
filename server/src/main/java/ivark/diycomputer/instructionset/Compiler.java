@@ -263,7 +263,7 @@ public class Compiler {
     }
 
     private Pattern getDirectLabelPattern(Instruction i) {
-        return Pattern.compile(i.pattern.toString().replace("\\$(....)", "([a-zA-Z][a-zA-Z0-9_]*)\\+?([0-2]?)"));
+        return Pattern.compile(i.pattern.toString().replace("\\$(....)", "([a-zA-Z][a-zA-Z0-9_]*)\\+?([0-3]?)"));
     }
 
     private Pattern getIndirectLabelPattern(Instruction i) {

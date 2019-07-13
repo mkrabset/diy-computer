@@ -57,7 +57,7 @@ public class VirtualMachine {
         instReg.instr=0;
         instReg.step=0;
 
-        int d=10;
+        int d=0;
 
         while(true) {
             if (instReg.step>=3) {
@@ -70,7 +70,7 @@ public class VirtualMachine {
             parts.forEach(p->p.onCLKRisingDone());
             sleep(d);
             if (instReg.step==0) {
-                log(1,"\n"+toHex(pc.pc_h*256+pc.pc_l,4)+": ");
+                log(1,"\n"+toHex((pc.pc_h & 0xff)*256+(pc.pc_l & 0xff),4)+": ");
             }
             parts.forEach(p->p.onCLKFalling());
             sleep(d);
@@ -194,7 +194,7 @@ public class VirtualMachine {
         }
 
         int getAddress() {
-            return addr_h * 256 + addr_l;
+            return (int)(addr_h & 0xff) * 256 + (int)(addr_l & 0xff);
         }
 
         @Override
@@ -387,11 +387,11 @@ public class VirtualMachine {
                 } else {
                     if (op0) {
                         // rol
-                        byte outval = (byte) (b << 1);
+                        byte outval = (byte) (a << 1);
                         if (fc) {
                             outval |= 0x01;
                         }
-                        return new Result(a, b, outval, (b & 0x80) == 0x80);
+                        return new Result(a, b, outval, (a & 0x80) == 0x80);
                     } else {
                         // add
                         int sum = a + b + (fc ? 1 : 0);
@@ -553,9 +553,9 @@ public class VirtualMachine {
         @Override
         void onCLKRisingDone() {
             value = newvalue;
-//            if (instReg.getBusReader() == reader) {
-//                log(5,"Output " + name + " : " + (int)(value & 0xff));
-//            }
+            if (instReg.getBusReader() == reader) {
+                log(5,"Output " + name + " : " + (int)(value & 0xff));
+            }
         }
 
         @Override
