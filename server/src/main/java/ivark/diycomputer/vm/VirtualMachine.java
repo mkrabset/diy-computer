@@ -35,6 +35,7 @@ public class VirtualMachine {
     private Out out1 = new Out("OUT1", BUS.BusReader.OUTPUT_1_IN);
     private Out out2 = new Out("OUT2", BUS.BusReader.OUTPUT_2_IN);
     private List<Part> parts = Arrays.asList(instReg, mar, ram, alu, sp, pc, xreg, yreg, zreg, tmpreg, out0, out1, out2);
+    private static final int LEVEL=0;
 
     public static void main(String... args) throws Exception {
         new VirtualMachine().run(args[0]);
@@ -56,26 +57,30 @@ public class VirtualMachine {
         instReg.instr=0;
         instReg.step=0;
 
-        int d=0;
+        int d=10;
 
         while(true) {
             if (instReg.step>=3) {
                 BUS.BusWriter w = instReg.getBusWriter();
                 BUS.BusReader r = instReg.getBusReader();
-                System.out.println(instReg.getCurrentInstruction().opcode + ", step " + instReg.step+" , "+bustraffic(w,r));
+                log(1,instReg.getCurrentInstruction().opcode + ", step " + instReg.step+" "+bustraffic(w,r)+", "+signals());
             }
             parts.forEach(p->p.onCLKRising());
             sleep(d);
             parts.forEach(p->p.onCLKRisingDone());
             sleep(d);
             if (instReg.step==0) {
-                System.out.println("\n"+toHex(pc.pc_h*256+pc.pc_l,4)+": ");
+                log(1,"\n"+toHex(pc.pc_h*256+pc.pc_l,4)+": ");
             }
             parts.forEach(p->p.onCLKFalling());
             sleep(d);
             parts.forEach(p->p.onCLKFallingDone());
             sleep(d);
         }
+    }
+
+    private String signals() {
+        return instReg.getMicrocode().activeSignals.stream().map(s->s.fullName()).collect(Collectors.joining(", "));
     }
 
     String bustraffic(BUS.BusWriter w, BUS.BusReader r) {
@@ -548,9 +553,9 @@ public class VirtualMachine {
         @Override
         void onCLKRisingDone() {
             value = newvalue;
-            if (instReg.getBusReader() == reader) {
-                System.out.println("Output " + name + " : " + value);
-            }
+//            if (instReg.getBusReader() == reader) {
+//                log(5,"Output " + name + " : " + (int)(value & 0xff));
+//            }
         }
 
         @Override
@@ -593,5 +598,11 @@ public class VirtualMachine {
         }
 
         abstract byte getBusOutput();
+    }
+
+    public void log(int level, String msg) {
+        if (level>=LEVEL) {
+            System.out.println(msg);
+        }
     }
 }
