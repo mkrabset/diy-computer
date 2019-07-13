@@ -54,20 +54,20 @@ public class Compiler {
             while (line != null) {
                 line = line.trim();
                 if (line.contains("//")) {
-                    line=line.substring(0,line.indexOf("//")).trim();
+                    line = line.substring(0, line.indexOf("//")).trim();
                 }
                 if (line.startsWith("#") || line.isEmpty()) {
                     line = r.readLine();
                     continue;
                 }
                 result.add(line);
-                line=r.readLine();
+                line = r.readLine();
             }
         }
         return result;
     }
 
-    private Map<String, Integer> createLabelMap(List<String> lines) {
+    public Map<String, Integer> createLabelMap(List<String> lines) {
         Map<String, Integer> result = new HashMap<>();
         int address = 0;
         for (String line : lines) {
@@ -104,25 +104,44 @@ public class Compiler {
             String hex = matcher.group(1).trim();
             return hex.replace(" ", "").split("(?<=\\G.{2})");
         } else {
-            throw new RuntimeException("Illegal byte line: \n"+byteline);
+            throw new RuntimeException("Illegal byte line: \n" + byteline);
         }
     }
 
     private String[] getBytesFromStringline(String byteline) {
         Matcher matcher = STRINGLINEPATTERN.matcher(byteline);
         if (matcher.matches()) {
-            String str = matcher.group(1).replace("\\0","\0");
+            String str = matcher.group(1).replace("\\0", "\0");
             return str.chars().mapToObj(c -> toHex(c, 2)).toArray(String[]::new);
         } else {
-            throw new RuntimeException("Illegal byte line: \n"+byteline);
+            throw new RuntimeException("Illegal byte line: \n" + byteline);
         }
     }
 
-    private List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
+    public List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
         List<String> result = new ArrayList<>();
-        int address = 0;
         result.add("md 0");  // Set max speed for programming (masterdelay=0)
         result.add("mar 0000");  // Set memory address register to zero
+        List<Byte> byteCode = getByteCode(lines, lblMap);
+        String instr="w ";
+        for (byte b: byteCode) {
+            instr+=toHex((int)b,2);
+            if (instr.length() > 32) {
+                result.add(instr);
+                instr="w ";
+            }
+        }
+        if (instr.length()>2) {
+            result.add(instr);
+        }
+        result.add("initpc");
+        return result;
+    }
+
+
+    public List<Byte> getByteCode(List<String> lines, Map<String, Integer> lblMap) {
+        List<Byte> result = new ArrayList<>();
+        int address = 0;
         for (String line : lines) {
             System.out.print((toHex(address, 4) + "  " + line + "                                                   ").substring(0, 40));
 
@@ -130,15 +149,15 @@ public class Compiler {
                 String[] bytes = getBytesFromByteline(line);
                 address += bytes.length;
                 for (String bytestring : bytes) {
-                    result.add("w " + bytestring);
+                    result.add(toByte(bytestring));
                 }
                 System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
                 System.out.println();
             } else if (STRINGLINEPATTERN.matcher(line).matches()) {
                 String[] bytes = getBytesFromStringline(line);
-                address+= bytes.length;
-                for (String bytestring:bytes) {
-                    result.add("w "+bytestring);
+                address += bytes.length;
+                for (String bytestring : bytes) {
+                    result.add(toByte(bytestring));
                 }
                 System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
                 System.out.println();
@@ -150,14 +169,17 @@ public class Compiler {
                     Instruction i = findInstruction(is, line);
                     address++;
                     System.out.print(toHex(i.num, 2) + " ");
-                    String instr = "w " + toHex(i.num, 2);
+
+                    result.add((byte) i.num);
                     if (matchesDirectly(i, line)) {
                         Matcher m = i.pattern.matcher(line);
                         m.matches();
                         if (m.groupCount() >= 1) {
-                            String arg = m.group(1);
-                            instr = instr + " " + arg;
-                            System.out.print(arg);
+                            String[] argbytes = m.group(1).split("(?<=\\G.{2})");
+                            for (String argbyte : argbytes) {
+                                result.add(toByte(argbyte));
+                            }
+                            System.out.print(Stream.of(argbytes).collect(Collectors.joining(" ")));
                             if (i.pattern.toString().contains("....")) {
                                 address += 2;
                             } else if (i.pattern.toString().contains("..")) {
@@ -169,10 +191,13 @@ public class Compiler {
                         Matcher m = getDirectLabelPattern(i).matcher(line);
                         m.matches();
                         Integer arg = lblMap.get(m.group(1));
-                        if (m.group(2)!=null && !m.group(2).isEmpty()) {
-                            arg+=Integer.valueOf(m.group(2));
+                        if (m.group(2) != null && !m.group(2).isEmpty()) {
+                            arg += Integer.valueOf(m.group(2));
                         }
-                        instr = instr + toHex(arg, 4);
+                        String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
+                        for (String argbyte : argbytes) {
+                            result.add(toByte(argbyte));
+                        }
                         System.out.println(toHex(arg, 4));
                         address += 2;
                     } else if (matchesWithIndirectLabel(i, line)) {
@@ -182,16 +207,21 @@ public class Compiler {
                         if (arg == null) {
                             throw new RuntimeException("Unknown label: " + m.group(1) + " in instruction " + line);
                         }
-                        instr = instr + toHex(arg, 4);
+                        String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
+                        for (String argbyte : argbytes) {
+                            result.add(toByte(argbyte));
+                        }
                         System.out.println(toHex(arg, 4));
                         address += 2;
                     }
-                    result.add(instr);
                 }
             }
         }
-        result.add("initpc");
         return result;
+    }
+
+    private Byte toByte(String s) {
+        return (byte) Integer.parseInt(s, 16);
     }
 
     private Instruction findInstruction(InstructionSet is, String line) {
@@ -245,8 +275,8 @@ public class Compiler {
 
         File tempFile = File.createTempFile("diyprog", "diy");
         try (PrintWriter pw = new PrintWriter(new FileWriter(tempFile))) {
-            for (String line:installInstructions) {
-                pw.print(line+"\n");
+            for (String line : installInstructions) {
+                pw.print(line + "\n");
             }
             pw.flush();
         }
