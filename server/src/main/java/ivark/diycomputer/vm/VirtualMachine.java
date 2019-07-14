@@ -59,11 +59,11 @@ public class VirtualMachine {
 
         int d=0;
 
-        while(true) {
+        while(!instReg.isActive(c.clock.haltSignal)) {
             if (instReg.step>=3) {
                 BUS.BusWriter w = instReg.getBusWriter();
                 BUS.BusReader r = instReg.getBusReader();
-                log(1,instReg.getCurrentInstruction().opcode + ", step " + instReg.step+" "+bustraffic(w,r)+", "+signals());
+                log(1,instReg.getCurrentInstruction().opcode + ", step " + instReg.step+" "+bustraffic(w,r)+", "+signals()+", status: "+statusflags());
             }
             parts.forEach(p->p.onCLKRising());
             sleep(d);
@@ -85,10 +85,20 @@ public class VirtualMachine {
 
     String bustraffic(BUS.BusWriter w, BUS.BusReader r) {
         if (w!=null && r!=null) {
-            return w.name()+" -> "+r.name() + "  ("+toHex((int)getValueFromBus(),2)+")";
+            byte busval = getValueFromBus();
+            return w.name()+" -> "+r.name() + "  ("+(int)(busval & 0xff)+" = 0x"+toHex((int)busval,2)+" = "+toBinary(busval)+")";
         } else {
             return "";
         }
+    }
+
+    private String statusflags() {
+        return "c="+(alu.fc?1:0)+",z="+(alu.fz?1:0)+",n="+(alu.fn?1:0)+",v="+(alu.fv?1:0);
+    }
+
+    String toBinary(byte value) {
+        String padded="00000000"+Integer.toBinaryString((int)value);
+        return padded.substring(padded.length()-8);
     }
 
     private void sleep(int i) {
@@ -96,7 +106,7 @@ public class VirtualMachine {
     }
 
 
-    private static String toHex(Integer v, int length) {
+    private static String toHex(int v, int length) {
         String padded = "0000000" + Integer.toHexString(v);
         return padded.substring(padded.length() - length);
     }
@@ -114,15 +124,17 @@ public class VirtualMachine {
 
         void onCLKRisingDone() {
             instr = newInst;
-            if (isActive(c.instreg.contSignal)) {
-                step = 0;
-            }
+
         }
 
         @Override
         protected void onCLKFallingDone() {
-            step++;
-            step &= 0x0f;
+            if (isActive(c.instreg.contSignal)) {
+                step = 0;
+            } else {
+                step++;
+                step &= 0x0f;
+            }
         }
 
         boolean isActive(Signal signal) {
@@ -365,7 +377,7 @@ public class VirtualMachine {
                 } else {
                     if (op0) {
                         // ror
-                        byte outval = (byte) (b >>> 1);
+                        byte outval = (byte) ((b & 0xff) >>> 1);
                         if (fc) {
                             outval |= 0x80;
                         }
@@ -387,14 +399,14 @@ public class VirtualMachine {
                 } else {
                     if (op0) {
                         // rol
-                        byte outval = (byte) (a << 1);
+                        byte outval = (byte) ((a & 0xff) << 1);
                         if (fc) {
                             outval |= 0x01;
                         }
                         return new Result(a, b, outval, (a & 0x80) == 0x80);
                     } else {
                         // add
-                        int sum = a + b + (fc ? 1 : 0);
+                        int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
                         return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
                     }
                 }
