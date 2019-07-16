@@ -1,0 +1,23 @@
+
+Some throughts for the next model:
+
+* Led connectors instead of on-pcb leds
+* Current-limiting resistors (330ohm) on all ic outputs.
+* Use of 74LS181 for ALU (in addition to ROR/ROL circuitry)
+* Support pushing/popping status register to stack
+* 64 ram
+* 16 bit address bus + 8 bit data bus
+* Ground planes
+* 4k EEPROMS (12 address lines (4 step bits, 8 instruction bits))
+* Ground-connectors on mounting holes on all pcbs
+* 4 inputs, 4 outputs
+* small 7seg displays for display outputs
+* display hex for instruction/step
+* halt instruction
+* Easy change between programmer and internal clock
+* Ground connector between programmer and rest of board
+* Decoder on one floor
+* More power connectors on each part
+* Always m3 caps on all ic power
+
+

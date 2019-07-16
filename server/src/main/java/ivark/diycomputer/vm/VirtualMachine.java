@@ -57,7 +57,7 @@ public class VirtualMachine {
         instReg.instr=0;
         instReg.step=0;
 
-        int d=0;
+        int d=1;
 
         while(!instReg.isActive(c.clock.haltSignal)) {
             if (instReg.step>=3) {
