@@ -21,3 +21,24 @@ Some throughts for the next model:
 * Always m3 caps on all ic power
 
 
+
+16 bit address transfers
+------------------------
+JMP-register:
+ - Receives 8 bits high/low from 8bit-bus
+ - Transmits 16 bits memory address to pc when jump-condition occurs (flags+cond match)
+
+PC:
+ - Receives 16 bits memory address from JMP-register when jump-condition occurs
+ - Transmits 8 bits high/low to 8bit bus (store return adress on stack during jsr + maybe for relative addressing)
+ - Return address (RTS) goes via JMP-register. (eg. load return address from stack to JMP-reg, then unconditional jump)
+
+SP:
+ - Transmits 16 bit address (stackpointer value) to MAR.
+ - Supports inc/dec for pop/push (builtin 16 bit adder)
+
+MAR:
+ - Receives 16 bit address from SP or PC
+ - Receives 8 bit high and low offset value from 8bit bus
+
+
