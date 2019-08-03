@@ -39,6 +39,7 @@ SP:
 
 MAR:
  - Receives 16 bit address from SP or PC
- - Receives 8 bit high and low offset value from 8bit bus
+ - Receives high/low from 8bit bus 
+ - Receives 8bit offset value from 8bit bus
 
 
