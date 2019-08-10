@@ -1,0 +1,79 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=eepromwriter-generic
+*Date=11:21:45
+*CreatedBy=Fritzing 0.9.1b.11.19.8d2d5970658f0bed09c661c9ea9a515b5f40f44c
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;DIP (Dual Inline) [THT];36.845;-30.8422;0;Bottom;74LS595
+2;;;32.3765;-52.393;0;Bottom;TXT2
+3;;;76.85;-23.8572;0;Bottom;Via27
+4;;;14.9728;-23.1516;0;Bottom;TXT1
+5;;THT;12.715;-24.4922;90;Bottom;VCC-16
+6;;;20.97;-28.3022;0;Bottom;Via13
+7;;THT;12.715;-19.4122;90;Bottom;VCC-64
+8;;;44.465;-37.8272;0;Bottom;Via24
+9;;;29.225;-21.9522;0;Bottom;Via21
+10;;;93.995;-4.17211;0;Bottom;Hole1
+11;;THT;25.415;-20.6822;-180;Bottom;J17
+12;;;20.97;-21.9522;0;Bottom;Via12
+13;;THT;12.715;-32.1122;0;Bottom;A11
+14;;THT;7.63504;-27.0322;0;Bottom;WE-16
+15;220;THT;79.39;-17.5072;0;Bottom;R2
+16;;;71.7785;-34.0172;-90;Bottom;NANO
+17;;THT;12.715;-21.9522;90;Bottom;VCC
+18;;;43.195;-24.4922;0;Bottom;Via6
+19;;THT;10.175;-20.6822;-180;Bottom;J16
+20;;;17.16;-32.7472;0;Bottom;Via16
+21;;;4.46004;-62.5922;0;Bottom;Hole4
+22;;;34.94;-16.2372;0;Bottom;Via7
+23;;;94.27;-18.843;0;Bottom;TXT6
+24;;;14.9728;-33.3116;0;Bottom;TXT1
+25;;;36.21;-21.9522;0;Bottom;Via5
+26;;;56.53;-39.7322;0;Bottom;Via26
+27;;;19.065;-23.8572;0;Bottom;Via14
+28;;;49.545;-14.3322;0;Bottom;Via20
+29;;;36.21;-52.4322;0;Bottom;Via19
+30;220;THT;79.39;-9.2522;0;Bottom;R1
+31;;;49.0276;-57.7547;0;Bottom;TXT4
+32;;THT;10.175;-38.4622;0;Bottom;J14
+33;;;66.69;-21.3172;0;Bottom;Via3
+34;;;94.3389;-10.5644;0;Bottom;TXT6
+35;;;56.53;-43.5422;0;Bottom;Via25
+36;;5 mm [THT];88.28;-19.3562;-180;Bottom;LED2
+37;;;14.9728;-20.6116;0;Bottom;TXT1
+38;;;68.595;-23.8572;0;Bottom;Via2
+39;;;17.16;-25.7622;0;Bottom;Via17
+40;;;59.705;-21.3172;0;Bottom;Via4
+41;;THT;7.63504;-21.9522;0;Bottom;WE-64
+42;;;82.565;-11.7922;0;Bottom;Via30
+43;100nF;100 mil [THT, multilayer];41.925;-16.2372;-180;Bottom;C1
+44;;5 mm [THT];88.28;-11.1012;-180;Bottom;LED1
+45;;;5.44782;-25.6916;0;Bottom;TXT1
+46;;;15.255;-21.9522;0;Bottom;Via18
+47;;;93.995;-62.5922;0;Bottom;Hole3
+48;;;83.2;-20.0472;0;Bottom;Via28
+49;;;61.61;-23.8572;0;Bottom;Via1
+50;;THT;7.63504;-24.4922;0;Bottom;WE
+51;;;73.04;-54.3372;0;Bottom;Via8
+52;;DIP (Dual Inline) [THT];62.88;-14.3322;-90;Bottom;74LS595
+53;;;4.46004;-4.17211;0;Bottom;Hole2
+54;;;62.88;-54.3372;0;Bottom;Via9
+55;;;77.438;-1.86763;0;Bottom;TXT5
+56;;;19.065;-31.4772;0;Bottom;Via15
+57;;THT;12.715;-34.6522;0;Bottom;A11
+58;;;18.8675;-10.9766;0;Bottom;TXT3
+59;;THT;25.415;-38.4622;0;Bottom;J15
+60;;;5.44782;-23.1516;0;Bottom;TXT1
+61;;;61.61;-28.3022;0;Bottom;Via23
+62;;;49.545;-27.6672;0;Bottom;Via11
+63;;;74.31;-20.6822;0;Bottom;Via29
+64;;;45.735;-32.1122;0;Bottom;Via10
