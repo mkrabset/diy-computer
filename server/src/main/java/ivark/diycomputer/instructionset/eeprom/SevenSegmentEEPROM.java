@@ -10,16 +10,26 @@ import java.io.PrintWriter;
  */
 public class SevenSegmentEEPROM {
 
-    static final int[] data={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f};
+    static final int[] data={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+    static final int MODULO=16;
 
     static public void main(String...args) throws Exception{
+
+
+
+        // Invert for common cathode
+        for (int i=0;i<data.length;i++) {
+            data[i]=~data[i];
+        }
+
+
         StringBuilder pw=new StringBuilder();
 
         for (int h=0;h<16;h++) {
             pw.append("w "+toHex(h*16+768,4));
             for (int l=0;l<16;l++) {
                 int val=h*16+l;
-                pw.append(" "+toHex(flip(data[val % 10]),2));
+                pw.append(" "+toHex(flip(data[val % MODULO]),2));
             }
             pw.append("\n");
         }
@@ -28,7 +38,7 @@ public class SevenSegmentEEPROM {
             pw.append("w "+toHex(h*16+512,4));
             for (int l=0;l<16;l++) {
                 int val=h*16+l;
-                pw.append(" "+toHex(flip(data[(val/10) % 10]),2));
+                pw.append(" "+toHex(flip(data[(val/MODULO) % MODULO]),2));
             }
             pw.append("\n");
         }
@@ -37,7 +47,7 @@ public class SevenSegmentEEPROM {
             pw.append("w "+toHex(h*16+256,4));
             for (int l=0;l<16;l++) {
                 int val=h*16+l;
-                pw.append(" "+toHex(flip(data[(val/100) % 10]),2));
+                pw.append(" "+toHex(flip(data[(val/(MODULO*MODULO)) % MODULO]),2));
             }
             pw.append("\n");
         }
@@ -46,7 +56,7 @@ public class SevenSegmentEEPROM {
             pw.append("w "+toHex(h*16,4));
             for (int l=0;l<16;l++) {
                 int val=h*16+l;
-                pw.append(" "+toHex(flip(data[(val/1000) % 10]),2));
+                pw.append(" "+toHex(flip(data[(val/(MODULO*MODULO*MODULO)) % MODULO]),2));
             }
             pw.append("\n");
         }
