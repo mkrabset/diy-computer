@@ -14,23 +14,29 @@
 #define OE 9
 #define CE 10
 
+#define PIN_BUSY 7
+#define PIN_ERROR 6
+
 int bitPin[8]={A5,A4,A3,12,11,A0,A1,A2};
 
 byte data[256];
 
 #define MAX_BUF 256
 
-#define ADDRESS_BITS 11
+#define ADDRESS_BITS 13
 
 boolean bitOrderFlipped;
 long cpos=0;
 char buffer[MAX_BUF];
 char buffer2[MAX_BUF];
 bool commandComplete=false;
+volatile boolean failed=false;
 
 void setup() {
   pinMode(A6,INPUT);
   pinMode(A7,INPUT);
+  pinMode(PIN_BUSY,OUTPUT);
+  pinMode(PIN_ERROR,OUTPUT);
   digitalWrite(WE, HIGH);
   digitalWrite(OE, HIGH);
   digitalWrite(CE,HIGH);
@@ -151,6 +157,7 @@ boolean verifyData(byte* data, int startAddress, int length) {
   digitalWrite(CE,HIGH);
   digitalWrite(OE_SHIFTREG,HIGH);
   digitalWrite(WE,HIGH);
+  failed=failed | !ok;
   return ok;
 }
 
@@ -209,10 +216,13 @@ void serialEvent() {
 
 void loop() {
   if (commandComplete) {
+    digitalWrite(PIN_BUSY,HIGH);
     processCommand();
+    digitalWrite(PIN_BUSY,LOW);
     cpos=0;
     commandComplete=false;
   }
+    digitalWrite(PIN_ERROR,failed);
 }
 
 void processCommand() {
