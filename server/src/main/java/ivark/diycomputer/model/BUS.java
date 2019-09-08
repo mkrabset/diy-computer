@@ -7,18 +7,19 @@ public class BUS {
     public enum BusWriter {
         ALU_OUT,
         PC_OUT,
-        SP_OUT,
         RAM_OUT,
-
         X_OUT,
+
         Y_OUT,
         Z_OUT,
         TMP_OUT,
-
         INPUT_0_OUT,
+
         INPUT_1_OUT,
-        UNUSED_4,
+        UNUSED_6,
         UNUSED_5,
+        UNUSED_4,
+
         UNUSED_3,
         UNUSED_2,
         UNUSED_1,

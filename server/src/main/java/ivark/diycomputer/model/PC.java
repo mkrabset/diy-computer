@@ -11,13 +11,14 @@ public class PC extends Module {
     public final Signal jumpCond1Signal = new Signal("JMP.COND.1", false);
     public final Signal jumpCond2Signal = new Signal("JMP.COND.2", false);
     public final Signal jumpCond3Signal = new Signal("JMP.COND.3", false);
+    public final Signal resetSignal=new Signal("RESET",false); // Note: this as async on 74ls161
 
     public PC(String name) {
         super(name);
     }
 
     public List<Signal> signals() {
-        return Arrays.asList(incSignal, lowOutSignal, jumpCond0Signal, jumpCond1Signal, jumpCond2Signal, jumpCond3Signal);
+        return Arrays.asList(incSignal, lowOutSignal, jumpCond0Signal, jumpCond1Signal, jumpCond2Signal, jumpCond3Signal, resetSignal);
     }
 
     public enum JumpCondition {

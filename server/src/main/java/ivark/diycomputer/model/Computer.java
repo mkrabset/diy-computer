@@ -9,29 +9,31 @@ import java.util.List;
  * Created by ivark on 13.05.17.
  */
 public class Computer {
-    public final PC pc=new PC("PC");
-    public final MAR mar=new MAR("MAR");
-    public final RAM ram=new RAM("RAM");
-    public final INSTREG instreg=new INSTREG("INSTREG");
-    public final ALU alu=new ALU("ALU");
-    public final Register xreg=new Register("X", BUS.BusReader.X_IN, BUS.BusWriter.X_OUT);
-    public final Register yreg=new Register("Y", BUS.BusReader.Y_IN, BUS.BusWriter.Y_OUT);
-    public final Register zreg=new Register("Z", BUS.BusReader.Z_IN, BUS.BusWriter.Z_OUT);
-    public final Register tmp=new Register("TMP", BUS.BusReader.TMP_IN, BUS.BusWriter.TMP_OUT);
-    public final SP sp=new SP("SP");
-    public final CLK clock=new CLK("CLK");
-    public final List<Module> modules= Arrays.asList(pc,mar,ram,instreg,alu,xreg,yreg,zreg, tmp, sp, clock);
+    public final PC pc = new PC("PC");
+    public final MUXHAT muxhat = new MUXHAT("MUXHAT");
+    public final MUX mux = new MUX("MUX");
+    public final MAR mar = new MAR("MAR");
+    public final RAM ram = new RAM("RAM");
+    public final INSTREG instreg = new INSTREG("INSTREG");
+    public final ALU alu = new ALU("ALU");
+    public final Register xreg = new Register("X", BUS.BusReader.X_IN, BUS.BusWriter.X_OUT);
+    public final Register yreg = new Register("Y", BUS.BusReader.Y_IN, BUS.BusWriter.Y_OUT);
+    public final Register zreg = new Register("Z", BUS.BusReader.Z_IN, BUS.BusWriter.Z_OUT);
+    public final Register tmp = new Register("TMP", BUS.BusReader.TMP_IN, BUS.BusWriter.TMP_OUT);
+    public final SP sp = new SP("SP");
+    public final CLK clock = new CLK("CLK");
+    public final List<Module> modules = Arrays.asList(pc, muxhat, mux, mar, ram, instreg, alu, xreg, yreg, zreg, tmp, sp, clock);
 
 
     public Computer() {
-        for (Module m:modules) {
-            for (Signal s:m.signals()) {
-                s.owner=m;
+        for (Module m : modules) {
+            for (Signal s : m.signals()) {
+                s.owner = m;
             }
         }
     }
 
-    public static void main(String...args) {
+    public static void main(String... args) {
         Computer c = new Computer();
 
         System.out.println("NON-BUS-IO signals:");
@@ -51,8 +53,8 @@ public class Computer {
     }
 
     private void printNonBusIOSignals() {
-        for (Module m:modules) {
-            for (Signal s:m.signals()) {
+        for (Module m : modules) {
+            for (Signal s : m.signals()) {
                 System.out.println(s.descr());
             }
         }
