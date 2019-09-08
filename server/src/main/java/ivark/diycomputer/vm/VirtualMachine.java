@@ -179,13 +179,28 @@ public class VirtualMachine {
 
         @Override
         void onCLKRising() {
-            newAddr_h = instReg.getBusReader() == BUS.BusReader.MAR_H_IN ? getValueFromBus() : addr_h;
-            newAddr_l = instReg.getBusReader() == BUS.BusReader.MAR_L_IN ? getValueFromBus() : addr_l;
-            if (instReg.isActive(c.mar.incSignal)) {
+            if (instReg.isActive(c.mar.loadHighSignal) && instReg.isActive(c.mar.loadLowSignal)) {
+                if (instReg.isActive(c.mux.selectStackPointerSignal)) {
+                    newAddr_h=sp.val_h;
+                    newAddr_l=sp.val_l;
+                } else {
+                    newAddr_h=pc.pc_h;
+                    newAddr_l=pc.pc_l;
+                }
+            } else if (instReg.isActive(c.mar.loadLowSignal)) {
+                newAddr_h=addr_h;
+                newAddr_l=getValueFromBus();
+            } else if (instReg.isActive(c.mar.loadHighSignal)) {
+                newAddr_h=getValueFromBus();
+                newAddr_l=addr_l;
+            } else if (instReg.isActive(c.mar.incSignal)){
                 newAddr_l++;
                 if (newAddr_l == 0) {
                     newAddr_h++;
                 }
+            } else {
+                newAddr_l=addr_l;
+                newAddr_h=addr_h;
             }
         }
 
@@ -303,7 +318,7 @@ public class VirtualMachine {
 
         @Override
         byte getBusOutput() {
-            return instReg.isActive(c.pc.lowOutSignal) ? pc_l : pc_h;
+            return instReg.isActive(c.muxhat.pcOutLowSignal) ? pc_l : pc_h;
         }
 
         boolean isJump() {
@@ -503,7 +518,7 @@ public class VirtualMachine {
 
         @Override
         byte getBusOutput() {
-            return instReg.isActive(c.sp.highOutSignal) ? val_h : val_l;
+            return 0;
         }
     }
 

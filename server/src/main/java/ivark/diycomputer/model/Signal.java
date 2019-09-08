@@ -6,9 +6,9 @@ import java.util.List;
 /**
  * Created by ivark on 13.05.17.
  */
-public class Signal {
-    public static final Signal DUMMY_ACTIVE_LOW=new Signal("DUMMY_AL",false);
-    public static final Signal DUMMY_ACTIVE_HIGH=new Signal("DUMMY_AH",true);
+public abstract class Signal {
+    public static final ActiveLowSignal DUMMY_ACTIVE_LOW=new ActiveLowSignal("DUMMY_AL");
+    public static final ActiveHighSignal DUMMY_ACTIVE_HIGH=new ActiveHighSignal("DUMMY_AH");
 
 
     public Module owner;
@@ -30,5 +30,17 @@ public class Signal {
 
     public String toString() {
         return name;
+    }
+
+    static public class ActiveHighSignal extends Signal {
+        public ActiveHighSignal(String name) {
+            super(name, true);
+        }
+    }
+
+    static public class ActiveLowSignal extends Signal {
+        public ActiveLowSignal(String name) {
+            super(name, true);
+        }
     }
 }

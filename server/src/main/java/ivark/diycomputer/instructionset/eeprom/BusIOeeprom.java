@@ -17,7 +17,7 @@ public class BusIOeeprom extends DecoderEEPromBase {
 
     @Override
     int getDefaultValue() {
-        return BUS.BusWriter.NO_OUTPUT.getPattern() | BUS.BusReader.NO_INPUT.getPattern();
+        return BUS.BusWriter.ZEROS.getPattern() | BUS.BusReader.NO_INPUT.getPattern();
     }
 
     @Override

@@ -7,23 +7,23 @@ import ivark.diycomputer.model.Signal;
  */
 public class Level3EEPROM_Activehigh extends SignalEEpromBase {
 
-    private Signal[] signals={
+    private Signal.ActiveHighSignal[] signals = {
             c.alu.updateFlagsSignal,
             c.alu.invertBSignal,
             c.alu.setCarrySignal,
             c.alu.clearCarrySignal,
 
-            Signal.DUMMY_ACTIVE_HIGH,
-            c.sp.highOutSignal,
+            c.muxhat.pcOutLowSignal,
             c.mar.incSignal,
-            c.pc.incSignal};
+            c.pc.incSignal,
+            Signal.DUMMY_ACTIVE_HIGH
+    };
 
-    public static void main(String...args) throws Exception {
+    public static void main(String... args) throws Exception {
         Level3EEPROM_Activehigh eeprom = new Level3EEPROM_Activehigh();
         String spec = eeprom.gen();
         eeprom.writeSpec(spec);
     }
-
 
 
     @Override

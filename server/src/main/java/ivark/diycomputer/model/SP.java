@@ -7,9 +7,9 @@ import java.util.List;
  * Created by ivark on 24.06.17.
  */
 public class SP extends Module {
-    public final Signal resetSignal=new Signal("RESET", false);
-    public final Signal cntSignal = new Signal("CNT", false);
-    public final Signal dirUpSignal = new Signal("DIRUP", false);
+    public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET");
+    public final Signal.ActiveLowSignal cntSignal = new Signal.ActiveLowSignal("CNT");
+    public final Signal.ActiveLowSignal dirUpSignal = new Signal.ActiveLowSignal("DIRUP");
 
     public SP(String name) {
         super(name);

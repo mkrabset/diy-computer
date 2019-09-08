@@ -7,25 +7,25 @@ import ivark.diycomputer.model.Signal;
  */
 public class Level2EEPROM extends SignalEEpromBase {
 
-    private Signal[] signals={
-            Signal.DUMMY_ACTIVE_LOW,
-            Signal.DUMMY_ACTIVE_LOW,
-            c.pc.lowOutSignal,
-            Signal.DUMMY_ACTIVE_LOW,
-
+    private Signal.ActiveLowSignal[] signals = {
+            c.mar.loadLowSignal,
+            c.mar.loadHighSignal,
             c.sp.dirUpSignal,
             c.sp.cntSignal,
+
             c.sp.resetSignal,
-            c.instreg.contSignal};
+            c.instreg.contSignal,
+            c.mux.selectStackPointerSignal,
+            Signal.DUMMY_ACTIVE_LOW
+    };
 
 
-    public static void main(String...args) throws Exception {
+    public static void main(String... args) throws Exception {
         Level2EEPROM eeprom = new Level2EEPROM();
         String spec = eeprom.gen();
         System.out.println(spec);
         eeprom.writeSpec(spec);
     }
-
 
 
     @Override

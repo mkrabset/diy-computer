@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MUXHAT extends Module {
-    private static final Signal pcOutLowSignal=new Signal("PC_OUT_LOW",true);
+    public final Signal.ActiveHighSignal pcOutLowSignal=new Signal.ActiveHighSignal("PC_OUT_LOW");
 
     public MUXHAT(String name) {
         super(name);

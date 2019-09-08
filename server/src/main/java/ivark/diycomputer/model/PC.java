@@ -5,20 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PC extends Module {
-    public final Signal incSignal = new Signal("CNT", true);
-    public final Signal lowOutSignal =new Signal("LOWOUT",false);
-    public final Signal jumpCond0Signal = new Signal("JMP.COND.0", false);
-    public final Signal jumpCond1Signal = new Signal("JMP.COND.1", false);
-    public final Signal jumpCond2Signal = new Signal("JMP.COND.2", false);
-    public final Signal jumpCond3Signal = new Signal("JMP.COND.3", false);
-    public final Signal resetSignal=new Signal("RESET",false); // Note: this as async on 74ls161
+    public final Signal.ActiveHighSignal incSignal = new Signal.ActiveHighSignal("CNT");
+    public final Signal.ActiveLowSignal jumpCond0Signal = new Signal.ActiveLowSignal("JMP.COND.0");
+    public final Signal.ActiveLowSignal jumpCond1Signal = new Signal.ActiveLowSignal("JMP.COND.1");
+    public final Signal.ActiveLowSignal jumpCond2Signal = new Signal.ActiveLowSignal("JMP.COND.2");
+    public final Signal.ActiveLowSignal jumpCond3Signal = new Signal.ActiveLowSignal("JMP.COND.3");
+    public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET"); // Note: this as async on 74ls161
 
     public PC(String name) {
         super(name);
     }
 
     public List<Signal> signals() {
-        return Arrays.asList(incSignal, lowOutSignal, jumpCond0Signal, jumpCond1Signal, jumpCond2Signal, jumpCond3Signal, resetSignal);
+        return Arrays.asList(incSignal, jumpCond0Signal, jumpCond1Signal, jumpCond2Signal, jumpCond3Signal, resetSignal);
     }
 
     public enum JumpCondition {

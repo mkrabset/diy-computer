@@ -1,9 +1,10 @@
 package ivark.diycomputer.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MUX extends Module {
-    private static final Signal selectPcSignal=new Signal("select_pc",true);
+    public final Signal.ActiveLowSignal selectStackPointerSignal=new Signal.ActiveLowSignal("selectStackPointer");
 
     public MUX(String name) {
         super(name);
@@ -11,6 +12,6 @@ public class MUX extends Module {
 
     @Override
     public List<Signal> signals() {
-        return null;
+        return Arrays.asList(selectStackPointerSignal);
     }
 }

@@ -7,11 +7,13 @@ import ivark.diycomputer.model.Signal;
  */
 public class Level1EEPROM extends SignalEEpromBase {
 
-    private Signal[] signals={
+    private Signal.ActiveLowSignal[] signals={
             c.alu.op2Signal,
             c.alu.op1Signal,
             c.alu.op0Signal,
-            Signal.DUMMY_ACTIVE_LOW,
+            c.pc.resetSignal,  // Note: Can be replaced by a short microcode sequence loading zeros into jumpreg and then jump unconditionally
+                               //       Probably a better idea than wasting this signal slot.
+                               //       Only used for initialization.
 
             c.pc.jumpCond0Signal,
             c.pc.jumpCond1Signal,

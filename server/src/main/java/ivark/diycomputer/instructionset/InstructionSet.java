@@ -160,7 +160,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " #(..)", "flags := " + "cmp(" + r.name + ",arg)");
         addStep(i, r.busWrite(), ALU_A_IN, c.mar.incSignal);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal, c.pc.incSignal);
-        addStep(i, NO_OUTPUT, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
+        addStep(i, ZEROS, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
         return i;
     }
 
@@ -168,7 +168,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r1.name, "CMP" + r1.name + "," + r2.name, "flags := " + "cmp(" + r1.name + "," + r2.name + ")");
         addStep(i, r1.busWrite(), ALU_A_IN);
         addStep(i, r2.busWrite(), ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, NO_OUTPUT, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
+        addStep(i, ZEROS, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
         return i;
     }
 
@@ -201,15 +201,15 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, NO_OUTPUT, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
+        addStep(i, ZEROS, NO_INPUT, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
         return i;
     }
 
     private void argsToMar(Instruction i) {
-        addStep(i, c.mar.incSignal);
-        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal, c.pc.incSignal);
-        addStep(i, RAM_OUT, MAR_L_IN, c.pc.incSignal);
-        addStep(i, TMP_OUT, MAR_H_IN);
+        addStep(i, c.mar.incSignal);  // TODO: verify that this step is correct
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal, c.pc.incSignal);       // Store hi value in tmp
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal, c.pc.incSignal); // Load low value from ram
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);                // Load hi value from tmp
     }
 
     private Instruction createOp(String opName, Signal[] opSignals, Register r, Register r2, boolean subMode) {
@@ -251,7 +251,7 @@ public class InstructionSet {
 
     private Instruction createInc(Register r) {
         Instruction i = new Instruction(c, "INC" + r.name, "INC " + r.name, r.name + " := " + r.name + " + 1 ");
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.ALU_B_IN);
+        addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         addStep(i, r.busWrite(), ALU_A_IN, c.alu.setCarrySignal);
         addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
@@ -259,7 +259,7 @@ public class InstructionSet {
 
     private Instruction createDec(Register r) {
         Instruction i = new Instruction(c, "DEC" + r.name, "DEC " + r.name, r.name + " := " + r.name + " - 1 ");
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.ALU_B_IN);
+        addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         addStep(i, r.busWrite(), ALU_A_IN, c.alu.clearCarrySignal);
         addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal, c.alu.invertBSignal);
         return i;
@@ -276,7 +276,7 @@ public class InstructionSet {
     private Instruction createIncDecDirect(String opName, boolean inc) {
         Instruction i = new Instruction(c, opName, opName + " \\$(....)", "ram(arg):=" + opName + "(ram(arg))");
         argsToMar(i);
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.ALU_B_IN);
+        addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         if (inc) {
             addStep(i, RAM_OUT, ALU_A_IN, c.alu.setCarrySignal);
             addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.updateFlagsSignal);
@@ -319,14 +319,21 @@ public class InstructionSet {
 
     private Instruction createJsrDirect() {
         Instruction i = new Instruction(c, "JSR", "JSR \\$(....)", "if (cond) pc=address, push returnaddress");
-        addStep(i, c.mar.incSignal);
+
+        addStep(i, c.mar.incSignal);  // TODO: verify that this should be done. Could be wrong all over the place
+
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.pc.incSignal, c.mar.incSignal, c.sp.cntSignal);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.pc.incSignal, c.sp.cntSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_H_IN, c.sp.highOutSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_L_IN);
-        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN);
-        addStep(i,c.mar.incSignal);
-        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.pc.lowOutSignal);
+
+        // Stack pointer to mar
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
+
+        // Store return address on stack
+        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.mar.incSignal);
+        addStep(i, c.mar.incSignal);
+        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
+
+        // Jump to subroutine
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
@@ -334,23 +341,34 @@ public class InstructionSet {
     private Instruction createJsrInDirect() {
         Instruction i = new Instruction(c, "JSR", "JSR \\(\\$(....)\\)", "if (cond) pc=ram($address), push returnaddress");
         argsToMar(i);
+
+        // Copy jump address to jump address register
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.mar.incSignal, c.sp.cntSignal);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.sp.cntSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_H_IN, c.sp.highOutSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_L_IN);
-        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN);
-        addStep(i,c.mar.incSignal);
-        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.pc.lowOutSignal);
+
+        // Stack pointer to mar
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
+
+        // Store return address on stack
+        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.mar.incSignal);
+        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
+
+        // Jump to subroutine
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
 
     private Instruction createRts() {
         Instruction i = new Instruction(c, "RTS", "RTS", "pc=pop()");
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_H_IN, c.sp.highOutSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_L_IN);
+
+        // Move stack pointer to mar
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
+
+        // Pop return address from stack into jump address register
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.mar.incSignal, c.sp.cntSignal, c.sp.dirUpSignal);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.sp.cntSignal, c.sp.dirUpSignal);
+
+        // Jump back from subroutine
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
@@ -358,16 +376,20 @@ public class InstructionSet {
     private Instruction createPush(Register r) {
         Instruction i = new Instruction(c, "PUSH" + r.name, "PUSH " + r.name, "push(" + r.name + ")");
         addStep(i, c.sp.cntSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_H_IN, c.sp.highOutSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_L_IN);
+
+        // Move stack pointer to mar
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
+
         addStep(i, r.busWrite(), BusReader.RAM_IN);
         return i;
     }
 
     private Instruction createPop(Register r) {
         Instruction i = new Instruction(c, "POP" + r.name, "POP " + r.name, r.name + "=pop()");
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_H_IN, c.sp.highOutSignal);
-        addStep(i, BusWriter.SP_OUT, BusReader.MAR_L_IN, c.sp.cntSignal, c.sp.dirUpSignal);
+
+        // Move stack pointer to mar
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal, c.sp.dirUpSignal);
+
         addStep(i, BusWriter.RAM_OUT, r.busRead());
         return i;
     }
@@ -394,14 +416,14 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "RAMLOAD", "RAMLOAD", "RAMLOAD");
 
         // Set initial address (step 3-4)
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.MAR_H_IN);
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.MAR_L_IN);
+        addStep(i, BusWriter.ZEROS, NO_INPUT, c.mar.loadHighSignal);
+        addStep(i, BusWriter.ZEROS, NO_INPUT, c.mar.loadLowSignal);
 
         // Inc address (step 5)
         addStep(i, c.mar.incSignal);
 
         // Load ram (step 6)
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.RAM_IN);
+        addStep(i, BusWriter.ZEROS, BusReader.RAM_IN);
 
         // Reset (step 7)
         addStep(i, c.sp.resetSignal);
@@ -412,7 +434,7 @@ public class InstructionSet {
 
     private Instruction createResetPc() {
         Instruction i = new Instruction(c, "RESETPC", "RESETPC", "RESETPC");
-        addStep(i, BusWriter.NO_OUTPUT, BusReader.TMP_IN);
+        addStep(i, BusWriter.ZEROS, BusReader.TMP_IN);
         addStep(i, BusWriter.TMP_OUT, BusReader.PC_JMP_H_IN);
         addStep(i, BusWriter.TMP_OUT, BusReader.PC_JMP_L_IN);
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
@@ -436,7 +458,7 @@ public class InstructionSet {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < instructions.size(); i++) {
-            sb.append("Instruction #" + toHex(i, 2) + " ("+i+")\n");
+            sb.append("Instruction #" + toHex(i, 2) + " (" + i + ")\n");
             sb.append(instructions.get(i).toString());
             sb.append("\n\n");
         }
@@ -458,7 +480,7 @@ public class InstructionSet {
     }
 
     public void checkRamWrite() {
-        for (Instruction i:instructions) {
+        for (Instruction i : instructions) {
             i.checkRamWrite();
         }
     }

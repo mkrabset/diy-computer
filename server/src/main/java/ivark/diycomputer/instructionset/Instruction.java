@@ -1,5 +1,6 @@
 package ivark.diycomputer.instructionset;
 
+import ivark.diycomputer.model.BUS;
 import ivark.diycomputer.model.Computer;
 
 import java.util.ArrayList;
@@ -28,9 +29,17 @@ public final class Instruction {
             this.opcode = opcode;
             this.pattern = Pattern.compile(pattern);
             this.description = description;
-            addStep(new Microcode().bus(PC_OUT, MAR_H_IN));
-            addStep(new Microcode().withActive(c.pc.lowOutSignal, c.pc.incSignal).bus(PC_OUT, MAR_L_IN));      // PC_l to MAR_l, pc++
-            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN));                              // RAM to INSTREG
+
+            // Load new instruction cycle:
+            // Load both high and low from pc to mar, and set mar offset to zero
+            addStep(new Microcode()
+                    .bus(BUS.BusWriter.ZEROS, MAR_OFFSET_IN)
+                    .withActive(c.mar.loadHighSignal, c.mar.loadLowSignal));
+
+            // Put ram-value into instruction register, and increase pc and mar by 1
+            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.mar.incSignal, c.pc.incSignal));
+
+            // Instruction is loaded, offset is zero, and pc/mar points to first operand or next instruction.
         } catch (Exception e) {
             throw new Error(e);
         }
@@ -61,8 +70,9 @@ public final class Instruction {
     }
 
     public void addContinueAfterCompletion() {
-        if (steps.size() < 16) {
-            steps.add(new Microcode().withActive(c.instreg.contSignal));
+        steps.add(new Microcode().withActive(c.instreg.contSignal));
+        if (steps.size()>16) {
+            throw new RuntimeException("Too many steps for instruction: +n"+toString());
         }
     }
 
