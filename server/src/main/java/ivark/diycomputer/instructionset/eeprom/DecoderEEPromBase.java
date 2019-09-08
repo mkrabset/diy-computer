@@ -19,7 +19,7 @@ abstract class DecoderEEPromBase {
         StringBuilder sb=new StringBuilder();
         sb.append("f\n");
         for (int i=0;i<128;i++) {
-            sb.append("w "+toHex(i*16,4)+" ");
+            sb.append("w "+toHex((i*16)*2,4)+" ");  // Multiply by 2 because of flip and unused a12
             Instruction instr=(i>=instructionSet.instructions.size())
                     ? new Instruction(c,"DUMMY","DUMMY","DUMMY")
                     : instructionSet.instructions.get(i);
@@ -29,7 +29,7 @@ abstract class DecoderEEPromBase {
                     Microcode step = instr.steps.get(s);
                     value=getValue(step);
                 }
-                sb.append(toHex(value,2));
+                sb.append(toHex(value,2)+"00");
             }
             sb.append("\n");
         }

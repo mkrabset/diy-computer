@@ -129,7 +129,7 @@ boolean writeData(byte* data, int startAddress, int length) {
     digitalWrite(WE,HIGH);
     delay(7);
   }
-  delay(20);
+  delay(2);
   dataReadMode();
   digitalWrite(OE,HIGH);
   digitalWrite(CE,HIGH);

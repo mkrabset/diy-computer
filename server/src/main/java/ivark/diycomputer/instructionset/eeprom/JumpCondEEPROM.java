@@ -20,7 +20,6 @@ public class JumpCondEEPROM {
 
     private String getSpec() {
         StringBuffer sb=new StringBuffer();
-        //sb.append("f\n");
         for (int i=0;i<256;i++) {
             if (i % 16==0) {
                 sb.append("w "+toHex(i,4)+" ");

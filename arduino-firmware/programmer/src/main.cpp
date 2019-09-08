@@ -18,14 +18,8 @@
 // Pin for src selection    Mastered / Freerunning
 #define SRC_SEL A4
 
-// Pin for ext_clk (Freerunning clk input)
+// Pin for ext_clk 
 #define EXT_CLK A3
-
-// Mastered clk
-#define MAS_CLK 12
-
-#define PROBE 11
-
 
 #define RUNDELAY 8000000
 #define MASTERING_DEBUG false
@@ -52,14 +46,10 @@ void setup() {
   pinMode(DS_DATA,OUTPUT);
   pinMode(SHIFT_DATA,OUTPUT);
   pinMode(LATCH_DATA,OUTPUT);
-  pinMode(PROBE,INPUT);
-
+  
   pinMode(DS,OUTPUT);
   pinMode(SHIFT_CL,OUTPUT);
   pinMode(LATCH,OUTPUT);
-
-  pinMode(MAS_CLK,OUTPUT);
-  digitalWrite(MAS_CLK,LOW);
 
   pinMode(EXT_CLK,OUTPUT);
   digitalWrite(EXT_CLK,LOW);
@@ -94,9 +84,9 @@ void test() {
   set(125,5);
   while(true) {
   delay(masteredDelay*100);
-  digitalWrite(MAS_CLK,HIGH);
+  digitalWrite(EXT_CLK,HIGH);
   delay(masteredDelay*100);
-  digitalWrite(MAS_CLK,LOW);
+  digitalWrite(EXT_CLK,LOW);
   }
 }
 
@@ -186,9 +176,7 @@ void processCommand() {
     execStep(mcAddress>>4,mcAddress&0x0f);
     Serial.print("Set mc to #");
     Serial.println(mcAddress, HEX);
-  } else if (beginsWith(&buffer[0],"probe")) {
-    Serial.println(digitalRead(PROBE));
-  }
+  } 
   Serial.println(">");
 }
 
@@ -306,9 +294,9 @@ void execStep(int instruction, int step) {
   }
   set(instruction,step);
   delay(masteredDelay);
-  digitalWrite(MAS_CLK,HIGH);
+  digitalWrite(EXT_CLK,HIGH);
   delay(masteredDelay);
-  digitalWrite(MAS_CLK,LOW);
+  digitalWrite(EXT_CLK,LOW);
   delay(masteredDelay);
 }
 
