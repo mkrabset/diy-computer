@@ -10,6 +10,13 @@ import static junit.framework.TestCase.fail;
 public class OverflowTest2 {
 
     @Test
+    public void writeTest() {
+        for (int i=-8;i<=7;i++) {
+            System.out.println(new Word(i,4)+" = "+i);
+        }
+    }
+
+    @Test
     public void addtest() {
         for (int ai = -8; ai <= 7; ai++) {
             Word a=new Word(ai,4);
