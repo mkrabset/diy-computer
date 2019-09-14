@@ -92,3 +92,31 @@ When only one of these signals is LOW, loading will be from the bus)
 #### Outputs
 * 16 bit stackpointer address to MUX
 
+
+### INSTREG
+#### Inputs
+##### Control signals from decoder
+* cont - continue to next instruction (active low)
+##### Control signals from I/O decoder
+* load - load next instruction from bus (RAM) (active low)
+#### Outputs
+* 13 bits to decoder, 1 bit is jumper configurable (A12)
+
+
+### REGISTERS (x,y,z,tmp)
+#### Inputs
+##### Control signals from I/O decoder
+* EN - write register value to bus (active low)
+* LOAD - read register value from bus (active low)
+##### Others
+* CLK
+#### Inputs/Outputs
+* 8 bits to/from bus
+
+
+### OUTPUT-REGS (0,1,2) 
+#### Inputs
+##### Control signals from I/O decoder
+* load - loads register with bus value
+##### Bus
+* 8 bits bus to read from
