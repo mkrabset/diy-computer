@@ -120,3 +120,37 @@ When only one of these signals is LOW, loading will be from the bus)
 * load - loads register with bus value
 ##### Bus
 * 8 bits bus to read from
+
+### ALU
+#### Inputs
+##### Control signals from decoder
+* cs - set carry (active high)
+* cc - clear carry (active high)
+* flagw - update flags (active high)
+* op0 - Operation select 0
+* op1 - Operation select 1
+* floor - floor select (low means 1.st floor, high means 2nd floor)
+##### Control signals from I/O decoder
+* OE - write result to bus (active low)
+##### Others
+CLK
+##### Operand inputs
+* 8 bits operand A input
+* 8 bits operand B input
+#### Outputs
+##### Flags (to PC module)
+* carry
+* overflow
+* zero
+* neg
+##### Result
+* 8 bits result to bus
+
+
+### ALUREGS
+#### Inputs
+##### Control signals from decoder
+* invb - Invert B value
+##### Control signals from I/O decoder
+* load_a - Load A from bus (active low)
+* load_b - Load B from bus (active low)
