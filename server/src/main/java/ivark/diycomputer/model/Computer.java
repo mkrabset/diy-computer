@@ -53,11 +53,24 @@ public class Computer {
     }
 
     private void printNonBusIOSignals() {
-        for (Module m : modules) {
-            for (Signal s : m.signals()) {
+        System.out.println("Active LOW:");
+        System.out.println("===========");
+        modules.forEach(m->{
+            m.signals().stream().filter(s->s.activeValue==false).forEach(s->{
                 System.out.println(s.descr());
-            }
-        }
+            });
+        });
+        System.out.println();
+
+        System.out.println("Active HIGH:");
+        System.out.println("===========");
+        modules.forEach(m->{
+            m.signals().stream().filter(s->s.activeValue==true).forEach(s->{
+                System.out.println(s.descr());
+            });
+        });
+        System.out.println();
+
     }
 
 

@@ -365,8 +365,8 @@ public class InstructionSet {
         addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
 
         // Pop return address from stack into jump address register
-        addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.mar.incSignal, c.sp.cntSignal, c.sp.dirUpSignal);
-        addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.sp.cntSignal, c.sp.dirUpSignal);
+        addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.mar.incSignal, c.sp.cntSignal, c.sp.dirDownSignal);
+        addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.sp.cntSignal, c.sp.dirDownSignal);
 
         // Jump back from subroutine
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
@@ -388,7 +388,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "POP" + r.name, "POP " + r.name, r.name + "=pop()");
 
         // Move stack pointer to mar
-        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal, c.sp.dirUpSignal);
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal, c.sp.dirDownSignal);
 
         addStep(i, BusWriter.RAM_OUT, r.busRead());
         return i;

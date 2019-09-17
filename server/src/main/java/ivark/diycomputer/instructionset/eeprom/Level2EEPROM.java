@@ -10,7 +10,7 @@ public class Level2EEPROM extends SignalEEpromBase {
     private Signal.ActiveLowSignal[] signals = {
             c.mar.loadLowSignal,
             c.mar.loadHighSignal,
-            c.sp.dirUpSignal,
+            c.sp.dirDownSignal,
             c.sp.cntSignal,
 
             c.sp.resetSignal,

@@ -3,12 +3,12 @@
 ### PC
 #### Inputs
 ##### Control signals from decoder
-* reset
-* cnt
-* jump-cond #0
-* jump-cond #1
-* jump-cond #2
-* jump-cond #3
+* reset (active low)
+* cnt (active high)
+* jump-cond #0 (active low) (lowest pin on left side of board)
+* jump-cond #1 (active low) (2nd lowest pin on left side of board)
+* jump-cond #2 (active low)
+* jump-cond #3 (active low) (4th pin from bottom on left side of board)
 ##### Control signals from I/O-decoder
 * load_high (active low)
 * load_low (active low)
@@ -44,7 +44,7 @@
 ##### Address data from PC/SP (via MUX)
 * 16 bits from SP or PC depending on MUX.select
 #### Outputs
-* 8 bits to bus
+* 8 bits to bus (bit 0 is top on right side of board)
 
 
 ### MAR

@@ -40,7 +40,7 @@ public abstract class Signal {
 
     static public class ActiveLowSignal extends Signal {
         public ActiveLowSignal(String name) {
-            super(name, true);
+            super(name, false);
         }
     }
 }

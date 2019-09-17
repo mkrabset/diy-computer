@@ -492,7 +492,7 @@ public class VirtualMachine {
                 newval_h = 0;
                 newval_l = 0;
             } else if (instReg.isActive(c.sp.cntSignal)) {
-                if (instReg.isActive(c.sp.dirUpSignal)) {
+                if (instReg.isActive(c.sp.dirDownSignal)) {
                     newval_l++;
                     if (newval_l == 0) {
                         newval_h++;

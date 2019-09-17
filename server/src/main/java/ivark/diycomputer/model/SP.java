@@ -9,7 +9,7 @@ import java.util.List;
 public class SP extends Module {
     public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET");
     public final Signal.ActiveLowSignal cntSignal = new Signal.ActiveLowSignal("CNT");
-    public final Signal.ActiveLowSignal dirUpSignal = new Signal.ActiveLowSignal("DIRUP");
+    public final Signal.ActiveLowSignal dirDownSignal = new Signal.ActiveLowSignal("DIRDOWN");
 
     public SP(String name) {
         super(name);
@@ -17,6 +17,6 @@ public class SP extends Module {
 
     @Override
     public List<Signal> signals() {
-        return Arrays.asList(cntSignal, dirUpSignal, resetSignal);
+        return Arrays.asList(cntSignal, dirDownSignal, resetSignal);
     }
 }

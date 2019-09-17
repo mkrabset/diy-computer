@@ -6,7 +6,7 @@ package ivark.diycomputer.model;
 public class BUS {
     public enum BusWriter {
         ALU_OUT,
-        PC_OUT,
+        PC_OUT,  // on muxhat
         RAM_OUT,
         X_OUT,
 

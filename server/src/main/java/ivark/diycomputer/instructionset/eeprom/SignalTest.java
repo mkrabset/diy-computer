@@ -16,7 +16,7 @@ public class SignalTest {
     Computer c = new Computer();
     InstructionSet s = new InstructionSet(c);
 
-    Signal signal = c.sp.dirUpSignal;
+    Signal signal = c.sp.dirDownSignal;
 
     public static void main(String... args) throws Exception {
         new SignalTest().start();
