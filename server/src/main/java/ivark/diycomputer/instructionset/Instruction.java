@@ -39,7 +39,7 @@ public final class Instruction {
             // Put ram-value into instruction register, and increase pc and mar by 1
             addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.mar.incSignal, c.pc.incSignal));
 
-            // Instruction is loaded, offset is zero, and pc/mar points to first operand or next instruction.
+            // Instruction is loaded, offset is zero, and pc and mar points to first operand or next instruction.
         } catch (Exception e) {
             throw new Error(e);
         }

@@ -8,15 +8,14 @@ import ivark.diycomputer.model.Signal;
 public class Level3EEPROM_Activehigh extends SignalEEpromBase {
 
     private Signal.ActiveHighSignal[] signals = {
-            c.alu.updateFlagsSignal,
-            c.alu.invertBSignal,
-            c.alu.setCarrySignal,
+            Signal.DUMMY_ACTIVE_HIGH,
             c.alu.clearCarrySignal,
-
-            c.muxhat.pcOutLowSignal,
+            c.alu.setCarrySignal,
+            c.alu.invertBSignal,
+            c.alu.updateFlagsSignal,
             c.mar.incSignal,
+            c.muxhat.pcOutLowSignal,
             c.pc.incSignal,
-            Signal.DUMMY_ACTIVE_HIGH
     };
 
     public static void main(String... args) throws Exception {

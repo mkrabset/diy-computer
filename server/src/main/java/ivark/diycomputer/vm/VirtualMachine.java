@@ -382,7 +382,7 @@ public class VirtualMachine {
             }
             boolean op0 = !instReg.isActive(c.alu.op0Signal);
             boolean op1 = !instReg.isActive(c.alu.op1Signal);
-            boolean op2 = !instReg.isActive(c.alu.op2Signal);
+            boolean op2 = !instReg.isActive(c.alu.flrSignal);
             if (op2) {
                 if (op1) {
                     if (!op0) {
