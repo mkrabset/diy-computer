@@ -109,10 +109,15 @@ public class InstructionSet {
         instructions.add(createRamLoad());
         instructions.add(createResetPc());
 
+        for (int i=instructions.size();i<256;i++) {
+            instructions.add(new Instruction(c,"dummy","dummy", "dummy"));
+        }
 
         for (Instruction ins : instructions) {
             ins.addContinueAfterCompletion();
         }
+
+
 
         for (int i = 0; i < instructions.size(); i++) {
             instructions.get(i).num = i;

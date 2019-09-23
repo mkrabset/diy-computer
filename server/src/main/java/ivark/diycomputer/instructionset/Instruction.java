@@ -65,14 +65,19 @@ public final class Instruction {
                 }
             }
             sb.append(step.activeSignals.stream().map(s -> s.fullName()).collect(joining(", ")) + "\n");
+            if (step.activeSignals.size()==1 && step.activeSignals.get(0).equals(c.instreg.contSignal)) {
+                break;
+            }
         }
         return sb.toString();
     }
 
     public void addContinueAfterCompletion() {
-        steps.add(new Microcode().withActive(c.instreg.contSignal));
         if (steps.size()>16) {
             throw new RuntimeException("Too many steps for instruction: +n"+toString());
+        }
+        for (int i=steps.size();i<16;i++) {
+            steps.add(new Microcode().withActive(c.instreg.contSignal));
         }
     }
 

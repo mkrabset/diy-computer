@@ -25,6 +25,8 @@
 #define MASTERING_DEBUG false
 #define MASTERING_DELAY 10
 
+#define CLK_LED 13
+
 long masteredDelay=MASTERING_DELAY;
 long runDelay=RUNDELAY;
 
@@ -52,7 +54,9 @@ void setup() {
   pinMode(LATCH,OUTPUT);
 
   pinMode(EXT_CLK,OUTPUT);
+  pinMode(CLK_LED,OUTPUT);
   digitalWrite(EXT_CLK,LOW);
+  digitalWrite(CLK_LED,LOW);
 
   pinMode(SRC_SEL,OUTPUT);
   digitalWrite(SRC_SEL,LOW);
@@ -76,7 +80,10 @@ void setup() {
   Timer1.initialize(runDelay);
 }
 
-
+void clock(bool val) {
+  digitalWrite(EXT_CLK,val);
+  digitalWrite(CLK_LED,val);
+}
 
 void test() {
   setMastered(true);
@@ -84,9 +91,9 @@ void test() {
   set(125,5);
   while(true) {
   delay(masteredDelay*100);
-  digitalWrite(EXT_CLK,HIGH);
+  clock(HIGH);
   delay(masteredDelay*100);
-  digitalWrite(EXT_CLK,LOW);
+  clock(LOW);
   }
 }
 
@@ -184,20 +191,20 @@ void setMAR(int addr) {
   setMastered(true);
   busWrite(true);
   setData(addr>>8);
-  execStep(125,3);  //  high address -> MAR_H
+  execStep(128,2);  //  high address -> MAR_H
   setData(addr);
-  execStep(125,4);  //  low address -> MAR_H
+  execStep(128,3);  //  low address -> MAR_H
   busWrite(false);
 }
 
 void initPC() {
   setMastered(true);
   busWrite(false);
-  execStep(125,7);
-  for (int s=3;s<=7;s++) {
-    execStep(126,s); // Step sequence for reset pc, instruction 126, steps 3-6
+  execStep(128,6); // reset sp
+  for (int s=2;s<=6;s++) {
+    execStep(129,s); // Step sequence for reset pc, instruction 129, steps 2-6
   }
-  execStep(126,7);
+  execStep(129,6);
   halted=true;
   setMastered(false);
 }
@@ -294,18 +301,18 @@ void execStep(int instruction, int step) {
   }
   set(instruction,step);
   delay(masteredDelay);
-  digitalWrite(EXT_CLK,HIGH);
+  clock(HIGH);
   delay(masteredDelay);
-  digitalWrite(EXT_CLK,LOW);
+  clock(LOW);
   delay(masteredDelay);
 }
 
 void tick() {
   setMastered(false);
   delayMicroseconds(runDelay);
-  digitalWrite(EXT_CLK,HIGH);
+  clock(HIGH);
   delayMicroseconds(runDelay);
-  digitalWrite(EXT_CLK,LOW);
+  clock(LOW);
 }
 
 volatile boolean highCLK=false;
@@ -325,14 +332,14 @@ void writeRAM(byte b) {
   setMastered(true);
   busWrite(true);
   setData(b);
-  execStep(125,6);  //  BUS -> RAM
+  execStep(125,5);  //  BUS -> RAM
   busWrite(false);
 }
 
 void incMAR() {
   setMastered(true);
   busWrite(false);
-  execStep(125,5);  // MAR++
+  execStep(125,4);  // MAR++
 }
 
 boolean beginsWith(char *src, char pattern[]) {

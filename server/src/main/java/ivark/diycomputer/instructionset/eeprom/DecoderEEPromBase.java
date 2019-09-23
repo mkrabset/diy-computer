@@ -18,7 +18,7 @@ abstract class DecoderEEPromBase {
     public String gen() {
         StringBuilder sb=new StringBuilder();
         sb.append("f\n");
-        for (int i=0;i<128;i++) {
+        for (int i=0;i<256;i++) {
             sb.append("w "+toHex((i*16)*2,4)+" ");  // Multiply by 2 because of flip and unused a12
             Instruction instr=(i>=instructionSet.instructions.size())
                     ? new Instruction(c,"DUMMY","DUMMY","DUMMY")
