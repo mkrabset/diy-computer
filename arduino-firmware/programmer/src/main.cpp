@@ -85,22 +85,6 @@ void clock(bool val) {
   digitalWrite(CLK_LED,val);
 }
 
-void test() {
-  setMastered(true);
-  busWrite(false);
-  set(125,5);
-  while(true) {
-  delay(masteredDelay*100);
-  clock(HIGH);
-  delay(masteredDelay*100);
-  clock(LOW);
-  }
-}
-
-
-
-
-
 void setMastered(boolean m) {
   mastered=m;
   if (!mastered) {
@@ -332,14 +316,14 @@ void writeRAM(byte b) {
   setMastered(true);
   busWrite(true);
   setData(b);
-  execStep(125,5);  //  BUS -> RAM
+  execStep(128,5);  //  BUS -> RAM
   busWrite(false);
 }
 
 void incMAR() {
   setMastered(true);
   busWrite(false);
-  execStep(125,4);  // MAR++
+  execStep(128,4);  // MAR++
 }
 
 boolean beginsWith(char *src, char pattern[]) {
