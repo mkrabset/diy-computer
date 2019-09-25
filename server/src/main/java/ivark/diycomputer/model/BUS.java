@@ -6,7 +6,7 @@ package ivark.diycomputer.model;
 public class BUS {
     public enum BusWriter {
         ZEROS,
-        UNUSED_1,
+        FLOATING,
         UNUSED_2,
         UNUSED_3,
         INPUT_3_OUT,
