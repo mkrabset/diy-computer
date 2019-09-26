@@ -120,7 +120,7 @@ public class Compiler {
 
     public List<String> genCode(List<String> lines, Map<String, Integer> lblMap) {
         List<String> result = new ArrayList<>();
-        result.add("md 10");  // Set max speed for programming (masterdelay=0)
+        //result.add("md 10000");  // Set max speed for programming (masterdelay=0)
         result.add("mar 0000");  // Set memory address register to zero
         List<Byte> byteCode = getByteCode(lines, lblMap);
         String instr="w ";

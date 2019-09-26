@@ -1,4 +1,4 @@
-/usr/local/java/jdk/bin/java -javaagent:/usr/local/java/idea-IU-183.4886.37/lib/idea_rt.jar=33949:/usr/local/java/idea-IU-183.4886.37/bin -Dfile.encoding=UTF-8 -classpath /usr/local/java/jdk/jre/lib/charsets.jar:/usr/local/java/jdk/jre/lib/deploy.jar:/usr/local/java/jdk/jre/lib/ext/cldrdata.jar:/usr/local/java/jdk/jre/lib/ext/dnsns.jar:/usr/local/java/jdk/jre/lib/ext/jaccess.jar:/usr/local/java/jdk/jre/lib/ext/jfxrt.jar:/usr/local/java/jdk/jre/lib/ext/localedata.jar:/usr/local/java/jdk/jre/lib/ext/nashorn.jar:/usr/local/java/jdk/jre/lib/ext/sunec.jar:/usr/local/java/jdk/jre/lib/ext/sunjce_provider.jar:/usr/local/java/jdk/jre/lib/ext/sunpkcs11.jar:/usr/local/java/jdk/jre/lib/ext/zipfs.jar:/usr/local/java/jdk/jre/lib/javaws.jar:/usr/local/java/jdk/jre/lib/jce.jar:/usr/local/java/jdk/jre/lib/jfr.jar:/usr/local/java/jdk/jre/lib/jfxswt.jar:/usr/local/java/jdk/jre/lib/jsse.jar:/usr/local/java/jdk/jre/lib/management-agent.jar:/usr/local/java/jdk/jre/lib/plugin.jar:/usr/local/java/jdk/jre/lib/resources.jar:/usr/local/java/jdk/jre/lib/rt.jar:/home/ivark/projects/diy-computer/server/out/production/classes:/home/ivark/projects/diy-computer/server/out/production/resources:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/1.5.9.RELEASE/bda9733d5e6ba6d1a97deead1738713dc0631b3e/spring-boot-starter-web-1.5.9.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jersey/1.5.9.RELEASE/f7be1e712bee3e06e8b28fed4e7a844a08b9efab/spring-boot-starter-jersey-1.5.9.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.scream3r/jssc/2.8.0/7e8d93052a8743a7937a6d46854057ac1ce876c1/jssc-2.8.0.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.8.3/cfc4a64ecdb762d39c5d24823ed079df261562c4/jackson-datatype-jsr310-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-kotlin/2.8.3/e90081bf64336ff0bdf2600131ec7aa65c5f028c/jackson-module-kotlin-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.25.1/19d1e4276eb7b6386640c344d9e5c01eba7eae5d/jersey-media-json-jackson-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.8.7/3d6ac461d0b478c85ca380468f675c7217295591/jackson-jaxrs-json-provider-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.8.7/814af809cd9fca86e9d89c17080bb0446b06569d/jackson-jaxrs-base-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.8.7/4d7e1de1694d9f95eada828dabf43121b3afc435/jackson-module-jaxb-annotations-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/1.5.2.RELEASE/2eb3cf38e0ab2611f305626ea5dc96619ddadc1d/spring-boot-starter-validation-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/1.5.2.RELEASE/c72938c86ed3beadb385f29bc2954c8ca3aa47ab/spring-boot-starter-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/1.5.2.RELEASE/354320ef371fc4fc126d1bb8564cd73085a48823/spring-boot-starter-tomcat-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-bean-validation/2.25.1/1971927d79cad0ad2b5a3bfda24967748a2023d/jersey-bean-validation-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.25.1/a31bfcd2fcae5beb979d3f41079b6f4020d6fbc9/jersey-spring3-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.5.0-b32/c3accae585955e49c771d464899e906ecc9ffb4/hk2-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.5.0-b32/686bbe7f80b1b879d64c06bc6606c97721a795f2/config-types-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.5.0-b32/dce05ac4225dbc0c1c382ad02e3b5bee51f0168a/hk2-config-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.3.4.Final/2f6c8c0b646afe18e3ad205726729d3c4a85fe2e/hibernate-validator-5.3.4.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.7.RELEASE/d25b11a605589f176e3ecf1dcae62a991a18b377/spring-webmvc-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.7.RELEASE/7b69fc68cdb74c1c92f72905af6995696fcb56aa/spring-web-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.25.1/cf5f7a76fcea38158b890ab7a0142d4db709a882/jersey-container-servlet-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.25.1/400e30bb035a0cdf3c554530224141ce659a0d1e/jersey-container-servlet-core-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.25.1/276e2ee0fd1cdabf99357fce560c5baab675b1a2/jersey-server-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.0.3/ed9cbaeb8dccd2027348185044012aac145a5c61/kotlin-reflect-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.5.2.RELEASE/8a9b8c747bc2c86eefde10330cb2984541bcb9d1/spring-boot-autoconfigure-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.5.2.RELEASE/46bb5d8c9ab5d3ef9e158ca5906ee7d3569befc1/spring-boot-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/1.5.2.RELEASE/32210889e1f9bb09ac134b9f43a117ed62f0bed2/spring-boot-starter-logging-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.5.0-b32/f38ecef23edc769942a95c062efd63541044de42/spring-bridge-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.7.RELEASE/34b66b0b7910122ef95ba4fff6da9238ef80a5de/spring-context-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.7.RELEASE/3f243d685e4a8a78a0c291445c6d85560ec4d339/spring-aop-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.7.RELEASE/2de9f59f3202965438f3a02057d6ad8274636044/spring-beans-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.7.RELEASE/5257b6486e43d8c05674323fea5b415d4da72f38/spring-expression-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.7.RELEASE/54fa2db94cc7222edc90ec71354e47cd1dc07f7b/spring-core-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/7a27ea250c5130b2922b86dea63cbb1cc10a660c/snakeyaml-1.17.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.11/dfa65e7857d46630761c0571758a56f7cbd1e9ba/tomcat-embed-websocket-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.11/72761f51fc7cef3ee19d4aafc7adc605df9f611f/tomcat-embed-core-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.11/60253815b897166903bf5ec41219c5bb15333a69/tomcat-embed-el-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.0.Final/3616bb87707910296e2c195dc016287080bba5af/jboss-logging-3.3.0.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.3/864c8e370a691e343210cc7c532fc198cee460d8/classmate-1.3.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.25.1/4d563b1f93352ee9fad597e9e1daf2c6159993c6/jersey-client-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-jaxb/2.25.1/d7da0beeed5614a3bfd882662faec602699e24b/jersey-media-jaxb-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.25.1/2438ce68d4907046095ab54aa83a6092951b4bbb/jersey-common-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-entity-filtering/2.25.1/4a5805060f796ec2c9bb1ba0ce91c1db6d889524/jersey-entity-filtering-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/104e9c2b5583cfcfeac0402316221648d6d8ea6b/javax.ws.rs-api-2.0.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-core/2.5.0-b32/8cb6a8a9522ec523b7740d29f555bdbe9d936af2/hk2-core-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.5.0-b32/60dc979763ea885e796cba4d3e322af8d500ba74/hk2-runlevel-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.5.0-b32/195474f8ad0a8d130e9ea949a771bcf1215fc33b/hk2-locator-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.5.0-b32/6a576c9653832ce610b80a2f389374ef19d96171/hk2-api-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.5.0-b32/b2fa50c8186a38728c35fe6a9da57ce4cc806923/javax.inject-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.0.3/20738122b53399036c321eeb84687367757d622a/kotlin-stdlib-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.11/ccedfbacef4a6515d2983e3f89ed753d5d4fb665/logback-classic-1.1.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.24/e6a8629079856a2aa7862c6327ccf6dd1988d7fc/jcl-over-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.24/25a2be668cb2ad1d05d76c0773df73b4b53617fd/jul-to-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.24/6ab46c51a3848286a0db3ba7b22037b3834c3c44/log4j-over-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.25.1/a2bb4f8208e134cf2cf71dfb8824e42942f7bd06/jersey-guava-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.5.0-b32/5108a926988c4ceda7f1e681dddfe3101454a002/hk2-utils-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.5.0-b32/6af37c3f8ec6f9e9653ec837eb508da28ce443cd/aopalliance-repackaged-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.21.0-GA/598244f595db5c5fb713731eddbb1c91a58d959b/javassist-3.21.0-GA.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.5.0-b32/17f054f3e91898c0c0fc52163ad904b13c24e8b/class-model-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-runtime/1.0.3/10f40d016700cf4287e49fa1d51c2a8507e9b946/kotlin-runtime-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.11/88b8df40340eed549fb07e2613879bf6b006704d/logback-core-1.1.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.24/3f6b4bd4f8dbe8d4bea06d107a3826469b85c3e9/slf4j-api-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/asm-all-repackaged/2.5.0-b32/dc705f1d54cd5a96cbc5a473525e75ef1cb59a9e/asm-all-repackaged-2.5.0-b32.jar ivark.diycomputer.model.Computer
+/usr/local/java/jdk/bin/java -javaagent:/usr/local/java/idea-IU-183.4886.37/lib/idea_rt.jar=37365:/usr/local/java/idea-IU-183.4886.37/bin -Dfile.encoding=UTF-8 -classpath /usr/local/java/jdk/jre/lib/charsets.jar:/usr/local/java/jdk/jre/lib/deploy.jar:/usr/local/java/jdk/jre/lib/ext/cldrdata.jar:/usr/local/java/jdk/jre/lib/ext/dnsns.jar:/usr/local/java/jdk/jre/lib/ext/jaccess.jar:/usr/local/java/jdk/jre/lib/ext/jfxrt.jar:/usr/local/java/jdk/jre/lib/ext/localedata.jar:/usr/local/java/jdk/jre/lib/ext/nashorn.jar:/usr/local/java/jdk/jre/lib/ext/sunec.jar:/usr/local/java/jdk/jre/lib/ext/sunjce_provider.jar:/usr/local/java/jdk/jre/lib/ext/sunpkcs11.jar:/usr/local/java/jdk/jre/lib/ext/zipfs.jar:/usr/local/java/jdk/jre/lib/javaws.jar:/usr/local/java/jdk/jre/lib/jce.jar:/usr/local/java/jdk/jre/lib/jfr.jar:/usr/local/java/jdk/jre/lib/jfxswt.jar:/usr/local/java/jdk/jre/lib/jsse.jar:/usr/local/java/jdk/jre/lib/management-agent.jar:/usr/local/java/jdk/jre/lib/plugin.jar:/usr/local/java/jdk/jre/lib/resources.jar:/usr/local/java/jdk/jre/lib/rt.jar:/home/ivark/projects/diy-computer/server/out/production/classes:/home/ivark/projects/diy-computer/server/out/production/resources:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-web/1.5.9.RELEASE/bda9733d5e6ba6d1a97deead1738713dc0631b3e/spring-boot-starter-web-1.5.9.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jersey/1.5.9.RELEASE/f7be1e712bee3e06e8b28fed4e7a844a08b9efab/spring-boot-starter-jersey-1.5.9.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.scream3r/jssc/2.8.0/7e8d93052a8743a7937a6d46854057ac1ce876c1/jssc-2.8.0.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.datatype/jackson-datatype-jsr310/2.8.3/cfc4a64ecdb762d39c5d24823ed079df261562c4/jackson-datatype-jsr310-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-kotlin/2.8.3/e90081bf64336ff0bdf2600131ec7aa65c5f028c/jackson-module-kotlin-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-json-jackson/2.25.1/19d1e4276eb7b6386640c344d9e5c01eba7eae5d/jersey-media-json-jackson-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/2.8.7/3d6ac461d0b478c85ca380468f675c7217295591/jackson-jaxrs-json-provider-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/2.8.7/814af809cd9fca86e9d89c17080bb0446b06569d/jackson-jaxrs-base-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.module/jackson-module-jaxb-annotations/2.8.7/4d7e1de1694d9f95eada828dabf43121b3afc435/jackson-module-jaxb-annotations-2.8.7.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.8.3/cea3788c72271d45676ce32c0665991674b24cc5/jackson-databind-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.8.3/5e1dc37c96308851c3ff609c250dc849c4b12022/jackson-core-2.8.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-validation/1.5.2.RELEASE/2eb3cf38e0ab2611f305626ea5dc96619ddadc1d/spring-boot-starter-validation-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/1.5.2.RELEASE/c72938c86ed3beadb385f29bc2954c8ca3aa47ab/spring-boot-starter-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-tomcat/1.5.2.RELEASE/354320ef371fc4fc126d1bb8564cd73085a48823/spring-boot-starter-tomcat-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-bean-validation/2.25.1/1971927d79cad0ad2b5a3bfda24967748a2023d/jersey-bean-validation-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-spring3/2.25.1/a31bfcd2fcae5beb979d3f41079b6f4020d6fbc9/jersey-spring3-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2/2.5.0-b32/c3accae585955e49c771d464899e906ecc9ffb4/hk2-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/config-types/2.5.0-b32/686bbe7f80b1b879d64c06bc6606c97721a795f2/config-types-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-config/2.5.0-b32/dce05ac4225dbc0c1c382ad02e3b5bee51f0168a/hk2-config-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-validator/5.3.4.Final/2f6c8c0b646afe18e3ad205726729d3c4a85fe2e/hibernate-validator-5.3.4.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.7.RELEASE/d25b11a605589f176e3ecf1dcae62a991a18b377/spring-webmvc-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.7.RELEASE/7b69fc68cdb74c1c92f72905af6995696fcb56aa/spring-web-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet/2.25.1/cf5f7a76fcea38158b890ab7a0142d4db709a882/jersey-container-servlet-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.containers/jersey-container-servlet-core/2.25.1/400e30bb035a0cdf3c554530224141ce659a0d1e/jersey-container-servlet-core-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-server/2.25.1/276e2ee0fd1cdabf99357fce560c5baab675b1a2/jersey-server-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.8.0/45b426f7796b741035581a176744d91090e2e6fb/jackson-annotations-2.8.0.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-reflect/1.0.3/ed9cbaeb8dccd2027348185044012aac145a5c61/kotlin-reflect-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-autoconfigure/1.5.2.RELEASE/8a9b8c747bc2c86eefde10330cb2984541bcb9d1/spring-boot-autoconfigure-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/1.5.2.RELEASE/46bb5d8c9ab5d3ef9e158ca5906ee7d3569befc1/spring-boot-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-logging/1.5.2.RELEASE/32210889e1f9bb09ac134b9f43a117ed62f0bed2/spring-boot-starter-logging-1.5.2.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/spring-bridge/2.5.0-b32/f38ecef23edc769942a95c062efd63541044de42/spring-bridge-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-context/4.3.7.RELEASE/34b66b0b7910122ef95ba4fff6da9238ef80a5de/spring-context-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.7.RELEASE/3f243d685e4a8a78a0c291445c6d85560ec4d339/spring-aop-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-beans/4.3.7.RELEASE/2de9f59f3202965438f3a02057d6ad8274636044/spring-beans-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-expression/4.3.7.RELEASE/5257b6486e43d8c05674323fea5b415d4da72f38/spring-expression-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.springframework/spring-core/4.3.7.RELEASE/54fa2db94cc7222edc90ec71354e47cd1dc07f7b/spring-core-4.3.7.RELEASE.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.17/7a27ea250c5130b2922b86dea63cbb1cc10a660c/snakeyaml-1.17.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-websocket/8.5.11/dfa65e7857d46630761c0571758a56f7cbd1e9ba/tomcat-embed-websocket-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-core/8.5.11/72761f51fc7cef3ee19d4aafc7adc605df9f611f/tomcat-embed-core-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.apache.tomcat.embed/tomcat-embed-el/8.5.11/60253815b897166903bf5ec41219c5bb15333a69/tomcat-embed-el-8.5.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.validation/validation-api/1.1.0.Final/8613ae82954779d518631e05daa73a6a954817d5/validation-api-1.1.0.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jboss.logging/jboss-logging/3.3.0.Final/3616bb87707910296e2c195dc016287080bba5af/jboss-logging-3.3.0.Final.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/com.fasterxml/classmate/1.3.3/864c8e370a691e343210cc7c532fc198cee460d8/classmate-1.3.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-client/2.25.1/4d563b1f93352ee9fad597e9e1daf2c6159993c6/jersey-client-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.media/jersey-media-jaxb/2.25.1/d7da0beeed5614a3bfd882662faec602699e24b/jersey-media-jaxb-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.core/jersey-common/2.25.1/2438ce68d4907046095ab54aa83a6092951b4bbb/jersey-common-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.ext/jersey-entity-filtering/2.25.1/4a5805060f796ec2c9bb1ba0ce91c1db6d889524/jersey-entity-filtering-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.ws.rs/javax.ws.rs-api/2.0.1/104e9c2b5583cfcfeac0402316221648d6d8ea6b/javax.ws.rs-api-2.0.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/javax.annotation/javax.annotation-api/1.2/479c1e06db31c432330183f5cae684163f186146/javax.annotation-api-1.2.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-core/2.5.0-b32/8cb6a8a9522ec523b7740d29f555bdbe9d936af2/hk2-core-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-runlevel/2.5.0-b32/60dc979763ea885e796cba4d3e322af8d500ba74/hk2-runlevel-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-locator/2.5.0-b32/195474f8ad0a8d130e9ea949a771bcf1215fc33b/hk2-locator-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-api/2.5.0-b32/6a576c9653832ce610b80a2f389374ef19d96171/hk2-api-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/javax.inject/2.5.0-b32/b2fa50c8186a38728c35fe6a9da57ce4cc806923/javax.inject-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.0.3/20738122b53399036c321eeb84687367757d622a/kotlin-stdlib-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.1.11/ccedfbacef4a6515d2983e3f89ed753d5d4fb665/logback-classic-1.1.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/jcl-over-slf4j/1.7.24/e6a8629079856a2aa7862c6327ccf6dd1988d7fc/jcl-over-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/jul-to-slf4j/1.7.24/25a2be668cb2ad1d05d76c0773df73b4b53617fd/jul-to-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/log4j-over-slf4j/1.7.24/6ab46c51a3848286a0db3ba7b22037b3834c3c44/log4j-over-slf4j-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.jersey.bundles.repackaged/jersey-guava/2.25.1/a2bb4f8208e134cf2cf71dfb8824e42942f7bd06/jersey-guava-2.25.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/osgi-resource-locator/1.0.1/4ed2b2d4738aed5786cfa64cba5a332779c4c708/osgi-resource-locator-1.0.1.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/hk2-utils/2.5.0-b32/5108a926988c4ceda7f1e681dddfe3101454a002/hk2-utils-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/aopalliance-repackaged/2.5.0-b32/6af37c3f8ec6f9e9653ec837eb508da28ce443cd/aopalliance-repackaged-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.javassist/javassist/3.21.0-GA/598244f595db5c5fb713731eddbb1c91a58d959b/javassist-3.21.0-GA.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2/class-model/2.5.0-b32/17f054f3e91898c0c0fc52163ad904b13c24e8b/class-model-2.5.0-b32.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-runtime/1.0.3/10f40d016700cf4287e49fa1d51c2a8507e9b946/kotlin-runtime-1.0.3.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-core/1.1.11/88b8df40340eed549fb07e2613879bf6b006704d/logback-core-1.1.11.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.24/3f6b4bd4f8dbe8d4bea06d107a3826469b85c3e9/slf4j-api-1.7.24.jar:/home/ivark/.gradle/caches/modules-2/files-2.1/org.glassfish.hk2.external/asm-all-repackaged/2.5.0-b32/dc705f1d54cd5a96cbc5a473525e75ef1cb59a9e/asm-all-repackaged-2.5.0-b32.jar ivark.diycomputer.model.Computer
 NON-BUS-IO signals:
 --------------------
 Active LOW:
@@ -41,8 +41,9 @@ Instruction: NOP (No operation)
 Pattern    : NOP
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT, INSTREG.CONT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #01 (1)
@@ -50,9 +51,10 @@ Instruction: LDX (X := arg)
 Pattern    : LDX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> X_IN]	PC.CNT, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> X_IN]	PC.CNT
+4	INSTREG.CONT
 
 
 Instruction #02 (2)
@@ -60,11 +62,13 @@ Instruction: LDX (X := ram(arg))
 Pattern    : LDX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> X_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> X_IN]
+7	INSTREG.CONT
 
 
 Instruction #03 (3)
@@ -72,11 +76,13 @@ Instruction: STX (X -> ram(arg))
 Pattern    : STX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> RAM_IN]
+7	INSTREG.CONT
 
 
 Instruction #04 (4)
@@ -84,11 +90,12 @@ Instruction: ADDX (X := X + arg)
 Pattern    : ADDX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #05 (5)
@@ -96,11 +103,12 @@ Instruction: SUBX (X := X + arg)
 Pattern    : SUBX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #06 (6)
@@ -108,11 +116,12 @@ Instruction: CMPX (flags := cmp(X,arg))
 Pattern    : CMPX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #07 (7)
@@ -120,14 +129,15 @@ Instruction: ADDX (X := X + ram(arg))
 Pattern    : ADDX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #08 (8)
@@ -135,14 +145,15 @@ Instruction: SUBX (X := X - ram(arg))
 Pattern    : SUBX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #09 (9)
@@ -150,14 +161,15 @@ Instruction: CMPX (flags := cmp(X,ram(arg)))
 Pattern    : CMPX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
-7	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
+8	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #0a (10)
@@ -165,11 +177,12 @@ Instruction: ANDX (X := X AND arg)
 Pattern    : ANDX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #0b (11)
@@ -177,11 +190,12 @@ Instruction: ORX (X := X OR arg)
 Pattern    : ORX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> X_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> X_IN]	ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #0c (12)
@@ -189,11 +203,12 @@ Instruction: XORX (X := X XOR arg)
 Pattern    : XORX #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #0d (13)
@@ -201,14 +216,15 @@ Instruction: ANDX (X := X AND ram(arg))
 Pattern    : ANDX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #0e (14)
@@ -216,14 +232,15 @@ Instruction: ORX (X := X OR ram(arg))
 Pattern    : ORX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> X_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> X_IN]	ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #0f (15)
@@ -231,14 +248,15 @@ Instruction: XORX (X := X XOR ram(arg))
 Pattern    : XORX \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[X_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[X_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> X_IN]	ALU.OP1, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #10 (16)
@@ -246,11 +264,12 @@ Instruction: ROLX (X := ROL(X))
 Pattern    : ROLX
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #11 (17)
@@ -258,10 +277,11 @@ Instruction: RORX (X := ROR(X))
 Pattern    : RORX
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_B_IN]
-3	BUS[ALU_OUT --> X_IN]	ALU.FLAGW, INSTREG.CONT
-4	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_B_IN]
+4	BUS[ALU_OUT --> X_IN]	ALU.FLAGW
+5	INSTREG.CONT
 
 
 Instruction #12 (18)
@@ -269,11 +289,12 @@ Instruction: NOTX (X := NOT(X))
 Pattern    : NOTX
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #13 (19)
@@ -281,11 +302,12 @@ Instruction: INCX (X := X + 1 )
 Pattern    : INC X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[X_OUT --> ALU_A_IN]	ALU.CS
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[X_OUT --> ALU_A_IN]	ALU.CS
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #14 (20)
@@ -293,11 +315,12 @@ Instruction: DECX (X := X - 1 )
 Pattern    : DEC X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[X_OUT --> ALU_A_IN]	ALU.CC
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[X_OUT --> ALU_A_IN]	ALU.CC
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #15 (21)
@@ -305,11 +328,12 @@ Instruction: ADDXY (X := X ADD Y)
 Pattern    : ADDX Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #16 (22)
@@ -317,11 +341,12 @@ Instruction: SUBXY (X := X SUB Y)
 Pattern    : SUBX Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT, ALU.INVB
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, ALU.INVB
+6	INSTREG.CONT
 
 
 Instruction #17 (23)
@@ -329,11 +354,12 @@ Instruction: ANDXY (X := X AND Y)
 Pattern    : ANDX Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #18 (24)
@@ -341,11 +367,12 @@ Instruction: ORXY (X := X OR Y)
 Pattern    : ORX Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #19 (25)
@@ -353,11 +380,12 @@ Instruction: XORXY (X := X XOR Y)
 Pattern    : XORX Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #1a (26)
@@ -365,11 +393,12 @@ Instruction: ADDXZ (X := X ADD Z)
 Pattern    : ADDX Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #1b (27)
@@ -377,11 +406,12 @@ Instruction: SUBXZ (X := X SUB Z)
 Pattern    : SUBX Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT, ALU.INVB
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, ALU.INVB
+6	INSTREG.CONT
 
 
 Instruction #1c (28)
@@ -389,11 +419,12 @@ Instruction: ANDXZ (X := X AND Z)
 Pattern    : ANDX Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #1d (29)
@@ -401,11 +432,12 @@ Instruction: ORXZ (X := X OR Z)
 Pattern    : ORX Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #1e (30)
@@ -413,11 +445,12 @@ Instruction: XORXZ (X := X XOR Z)
 Pattern    : XORX Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> X_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #1f (31)
@@ -425,9 +458,10 @@ Instruction: LDY (Y := arg)
 Pattern    : LDY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> Y_IN]	PC.CNT, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> Y_IN]	PC.CNT
+4	INSTREG.CONT
 
 
 Instruction #20 (32)
@@ -435,11 +469,13 @@ Instruction: LDY (Y := ram(arg))
 Pattern    : LDY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> Y_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> Y_IN]
+7	INSTREG.CONT
 
 
 Instruction #21 (33)
@@ -447,11 +483,13 @@ Instruction: STY (Y -> ram(arg))
 Pattern    : STY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> RAM_IN]
+7	INSTREG.CONT
 
 
 Instruction #22 (34)
@@ -459,11 +497,12 @@ Instruction: ADDY (Y := Y + arg)
 Pattern    : ADDY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #23 (35)
@@ -471,11 +510,12 @@ Instruction: SUBY (Y := Y + arg)
 Pattern    : SUBY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #24 (36)
@@ -483,11 +523,12 @@ Instruction: CMPY (flags := cmp(Y,arg))
 Pattern    : CMPY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #25 (37)
@@ -495,14 +536,15 @@ Instruction: ADDY (Y := Y + ram(arg))
 Pattern    : ADDY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #26 (38)
@@ -510,14 +552,15 @@ Instruction: SUBY (Y := Y - ram(arg))
 Pattern    : SUBY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #27 (39)
@@ -525,14 +568,15 @@ Instruction: CMPY (flags := cmp(Y,ram(arg)))
 Pattern    : CMPY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
-7	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
+8	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #28 (40)
@@ -540,11 +584,12 @@ Instruction: ANDY (Y := Y AND arg)
 Pattern    : ANDY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #29 (41)
@@ -552,11 +597,12 @@ Instruction: ORY (Y := Y OR arg)
 Pattern    : ORY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Y_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Y_IN]	ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #2a (42)
@@ -564,11 +610,12 @@ Instruction: XORY (Y := Y XOR arg)
 Pattern    : XORY #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #2b (43)
@@ -576,14 +623,15 @@ Instruction: ANDY (Y := Y AND ram(arg))
 Pattern    : ANDY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #2c (44)
@@ -591,14 +639,15 @@ Instruction: ORY (Y := Y OR ram(arg))
 Pattern    : ORY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Y_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Y_IN]	ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #2d (45)
@@ -606,14 +655,15 @@ Instruction: XORY (Y := Y XOR ram(arg))
 Pattern    : XORY \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Y_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Y_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Y_IN]	ALU.OP1, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #2e (46)
@@ -621,11 +671,12 @@ Instruction: ROLY (Y := ROL(Y))
 Pattern    : ROLY
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #2f (47)
@@ -633,10 +684,11 @@ Instruction: RORY (Y := ROR(Y))
 Pattern    : RORY
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_B_IN]
-3	BUS[ALU_OUT --> Y_IN]	ALU.FLAGW, INSTREG.CONT
-4	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_B_IN]
+4	BUS[ALU_OUT --> Y_IN]	ALU.FLAGW
+5	INSTREG.CONT
 
 
 Instruction #30 (48)
@@ -644,11 +696,12 @@ Instruction: NOTY (Y := NOT(Y))
 Pattern    : NOTY
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #31 (49)
@@ -656,11 +709,12 @@ Instruction: INCY (Y := Y + 1 )
 Pattern    : INC Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[Y_OUT --> ALU_A_IN]	ALU.CS
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[Y_OUT --> ALU_A_IN]	ALU.CS
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #32 (50)
@@ -668,11 +722,12 @@ Instruction: DECY (Y := Y - 1 )
 Pattern    : DEC Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[Y_OUT --> ALU_A_IN]	ALU.CC
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[Y_OUT --> ALU_A_IN]	ALU.CC
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #33 (51)
@@ -680,11 +735,12 @@ Instruction: ADDYX (Y := Y ADD X)
 Pattern    : ADDY X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #34 (52)
@@ -692,11 +748,12 @@ Instruction: SUBYX (Y := Y SUB X)
 Pattern    : SUBY X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT, ALU.INVB
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, ALU.INVB
+6	INSTREG.CONT
 
 
 Instruction #35 (53)
@@ -704,11 +761,12 @@ Instruction: ANDYX (Y := Y AND X)
 Pattern    : ANDY X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #36 (54)
@@ -716,11 +774,12 @@ Instruction: ORYX (Y := Y OR X)
 Pattern    : ORY X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #37 (55)
@@ -728,11 +787,12 @@ Instruction: XORYX (Y := Y XOR X)
 Pattern    : XORY X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #38 (56)
@@ -740,11 +800,12 @@ Instruction: ADDYZ (Y := Y ADD Z)
 Pattern    : ADDY Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #39 (57)
@@ -752,11 +813,12 @@ Instruction: SUBYZ (Y := Y SUB Z)
 Pattern    : SUBY Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT, ALU.INVB
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, ALU.INVB
+6	INSTREG.CONT
 
 
 Instruction #3a (58)
@@ -764,11 +826,12 @@ Instruction: ANDYZ (Y := Y AND Z)
 Pattern    : ANDY Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #3b (59)
@@ -776,11 +839,12 @@ Instruction: ORYZ (Y := Y OR Z)
 Pattern    : ORY Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #3c (60)
@@ -788,11 +852,12 @@ Instruction: XORYZ (Y := Y XOR Z)
 Pattern    : XORY Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Y_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #3d (61)
@@ -800,9 +865,10 @@ Instruction: LDZ (Z := arg)
 Pattern    : LDZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> Z_IN]	PC.CNT, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> Z_IN]	PC.CNT
+4	INSTREG.CONT
 
 
 Instruction #3e (62)
@@ -810,11 +876,13 @@ Instruction: LDZ (Z := ram(arg))
 Pattern    : LDZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> Z_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> Z_IN]
+7	INSTREG.CONT
 
 
 Instruction #3f (63)
@@ -822,11 +890,13 @@ Instruction: STZ (Z -> ram(arg))
 Pattern    : STZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> RAM_IN]
+7	INSTREG.CONT
 
 
 Instruction #40 (64)
@@ -834,11 +904,12 @@ Instruction: ADDZ (Z := Z + arg)
 Pattern    : ADDZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #41 (65)
@@ -846,11 +917,12 @@ Instruction: SUBZ (Z := Z + arg)
 Pattern    : SUBZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	MAR.INC, PC.CNT
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #42 (66)
@@ -858,11 +930,12 @@ Instruction: CMPZ (flags := cmp(Z,arg))
 Pattern    : CMPZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS, MAR.INC, PC.CNT
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #43 (67)
@@ -870,14 +943,15 @@ Instruction: ADDZ (Z := Z + ram(arg))
 Pattern    : ADDZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #44 (68)
@@ -885,14 +959,15 @@ Instruction: SUBZ (Z := Z - ram(arg))
 Pattern    : SUBZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #45 (69)
@@ -900,14 +975,15 @@ Instruction: CMPZ (flags := cmp(Z,ram(arg)))
 Pattern    : CMPZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
-7	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]	ALU.CS
+8	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #46 (70)
@@ -915,11 +991,12 @@ Instruction: ANDZ (Z := Z AND arg)
 Pattern    : ANDZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #47 (71)
@@ -927,11 +1004,12 @@ Instruction: ORZ (Z := Z OR arg)
 Pattern    : ORZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Z_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Z_IN]	ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #48 (72)
@@ -939,11 +1017,12 @@ Instruction: XORZ (Z := Z XOR arg)
 Pattern    : XORZ #(..)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
-4	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[RAM_OUT --> ALU_B_IN]	PC.CNT
+5	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #49 (73)
@@ -951,14 +1030,15 @@ Instruction: ANDZ (Z := Z AND ram(arg))
 Pattern    : ANDZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #4a (74)
@@ -966,14 +1046,15 @@ Instruction: ORZ (Z := Z OR ram(arg))
 Pattern    : ORZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Z_IN]	ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Z_IN]	ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #4b (75)
@@ -981,14 +1062,15 @@ Instruction: XORZ (Z := Z XOR ram(arg))
 Pattern    : XORZ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[Z_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[Z_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> Z_IN]	ALU.OP1, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #4c (76)
@@ -996,11 +1078,12 @@ Instruction: ROLZ (Z := ROL(Z))
 Pattern    : ROLZ
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #4d (77)
@@ -1008,10 +1091,11 @@ Instruction: RORZ (Z := ROR(Z))
 Pattern    : RORZ
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_B_IN]
-3	BUS[ALU_OUT --> Z_IN]	ALU.FLAGW, INSTREG.CONT
-4	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_B_IN]
+4	BUS[ALU_OUT --> Z_IN]	ALU.FLAGW
+5	INSTREG.CONT
 
 
 Instruction #4e (78)
@@ -1019,11 +1103,12 @@ Instruction: NOTZ (Z := NOT(Z))
 Pattern    : NOTZ
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #4f (79)
@@ -1031,11 +1116,12 @@ Instruction: INCZ (Z := Z + 1 )
 Pattern    : INC Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[Z_OUT --> ALU_A_IN]	ALU.CS
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[Z_OUT --> ALU_A_IN]	ALU.CS
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #50 (80)
@@ -1043,11 +1129,12 @@ Instruction: DECZ (Z := Z - 1 )
 Pattern    : DEC Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> ALU_B_IN]
-3	BUS[Z_OUT --> ALU_A_IN]	ALU.CC
-4	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> ALU_B_IN]
+4	BUS[Z_OUT --> ALU_A_IN]	ALU.CC
+5	BUS[ALU_OUT --> Z_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #51 (81)
@@ -1055,11 +1142,12 @@ Instruction: CMPX (flags := cmp(X,Y))
 Pattern    : CMPX,Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #52 (82)
@@ -1067,11 +1155,12 @@ Instruction: CMPX (flags := cmp(X,Z))
 Pattern    : CMPX,Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #53 (83)
@@ -1079,11 +1168,12 @@ Instruction: CMPY (flags := cmp(Y,X))
 Pattern    : CMPY,X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #54 (84)
@@ -1091,11 +1181,12 @@ Instruction: CMPY (flags := cmp(Y,Z))
 Pattern    : CMPY,Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> ALU_A_IN]
-3	BUS[Z_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> ALU_A_IN]
+4	BUS[Z_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #55 (85)
@@ -1103,11 +1194,12 @@ Instruction: CMPZ (flags := cmp(Z,X))
 Pattern    : CMPZ,X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[X_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[X_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #56 (86)
@@ -1115,11 +1207,12 @@ Instruction: CMPZ (flags := cmp(Z,Y))
 Pattern    : CMPZ,Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Z_OUT --> ALU_A_IN]
-3	BUS[Y_OUT --> ALU_B_IN]	ALU.CS
-4	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Z_OUT --> ALU_A_IN]
+4	BUS[Y_OUT --> ALU_B_IN]	ALU.CS
+5	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+6	INSTREG.CONT
 
 
 Instruction #57 (87)
@@ -1127,14 +1220,15 @@ Instruction: ROL (ram(arg):=ROL(ram(arg)))
 Pattern    : ROL \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]
-7	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]
+8	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #58 (88)
@@ -1142,13 +1236,14 @@ Instruction: ROR (ram(arg):=ROR(ram(arg)))
 Pattern    : ROR \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> ALU_B_IN]
-6	BUS[ALU_OUT --> RAM_IN]	ALU.FLAGW, INSTREG.CONT
-7	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> ALU_B_IN]
+7	BUS[ALU_OUT --> RAM_IN]	ALU.FLAGW
+8	INSTREG.CONT
 
 
 Instruction #59 (89)
@@ -1156,14 +1251,15 @@ Instruction: NOT (ram(arg):=NOT(ram(arg)))
 Pattern    : NOT \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[ZEROS --> ALU_A_IN]
-6	BUS[RAM_OUT --> ALU_B_IN]	ALU.CC
-7	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[ZEROS --> ALU_A_IN]
+7	BUS[RAM_OUT --> ALU_B_IN]	ALU.CC
+8	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #5a (90)
@@ -1171,14 +1267,15 @@ Instruction: INC (ram(arg):=INC(ram(arg)))
 Pattern    : INC \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[ZEROS --> ALU_B_IN]
-6	BUS[RAM_OUT --> ALU_A_IN]	ALU.CS
-7	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[ZEROS --> ALU_B_IN]
+7	BUS[RAM_OUT --> ALU_A_IN]	ALU.CS
+8	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #5b (91)
@@ -1186,14 +1283,15 @@ Instruction: DEC (ram(arg):=DEC(ram(arg)))
 Pattern    : DEC \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[ZEROS --> ALU_B_IN]
-6	BUS[RAM_OUT --> ALU_A_IN]	ALU.CC
-7	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[ZEROS --> ALU_B_IN]
+7	BUS[RAM_OUT --> ALU_A_IN]	ALU.CC
+8	BUS[ALU_OUT --> RAM_IN]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.INVB, ALU.FLAGW
+9	INSTREG.CONT
 
 
 Instruction #5c (92)
@@ -1201,9 +1299,10 @@ Instruction: SEC (flags.c=true)
 Pattern    : SEC
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	ALU.CS, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	ALU.CS
+4	INSTREG.CONT
 
 
 Instruction #5d (93)
@@ -1211,9 +1310,10 @@ Instruction: CLC (flags.c=false)
 Pattern    : CLC
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	ALU.CC, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	ALU.CC
+4	INSTREG.CONT
 
 
 Instruction #5e (94)
@@ -1221,11 +1321,12 @@ Instruction: JMP (if (true) pc=arg)
 Pattern    : JMP \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #5f (95)
@@ -1233,11 +1334,12 @@ Instruction: BEQ (if (z==1) pc=arg)
 Pattern    : BEQ \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0
+6	INSTREG.CONT
 
 
 Instruction #60 (96)
@@ -1245,11 +1347,12 @@ Instruction: BNE (if (z==0) pc=arg)
 Pattern    : BNE \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.1, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.1
+6	INSTREG.CONT
 
 
 Instruction #61 (97)
@@ -1257,11 +1360,12 @@ Instruction: BCS (if (c==1) pc=arg)
 Pattern    : BCS \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.1, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.1
+6	INSTREG.CONT
 
 
 Instruction #62 (98)
@@ -1269,11 +1373,12 @@ Instruction: BCC (if (c==0) pc=arg)
 Pattern    : BCC \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.2, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.2
+6	INSTREG.CONT
 
 
 Instruction #63 (99)
@@ -1281,11 +1386,12 @@ Instruction: BMI (if (n==1) pc=arg)
 Pattern    : BMI \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.2, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.2
+6	INSTREG.CONT
 
 
 Instruction #64 (100)
@@ -1293,11 +1399,12 @@ Instruction: BPL (if (n==0) pc=arg)
 Pattern    : BPL \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.1, PC.JMP.COND.2, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.1, PC.JMP.COND.2
+6	INSTREG.CONT
 
 
 Instruction #65 (101)
@@ -1305,11 +1412,12 @@ Instruction: BVS (if (v==1) pc=arg)
 Pattern    : BVS \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2
+6	INSTREG.CONT
 
 
 Instruction #66 (102)
@@ -1317,11 +1425,12 @@ Instruction: BVC (if (v==0) pc=arg)
 Pattern    : BVC \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #67 (103)
@@ -1329,11 +1438,12 @@ Instruction: BHI (if (c==1 && z==0) pc=arg)
 Pattern    : BHI \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #68 (104)
@@ -1341,11 +1451,12 @@ Instruction: BLS (if (c==0 | z==1) pc=arg)
 Pattern    : BLS \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.1, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.1, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #69 (105)
@@ -1353,11 +1464,12 @@ Instruction: BGE (if (n==v) pc=arg)
 Pattern    : BGE \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #6a (106)
@@ -1365,11 +1477,12 @@ Instruction: BLT (if (n!=v) pc=arg)
 Pattern    : BLT \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.2, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #6b (107)
@@ -1377,11 +1490,12 @@ Instruction: BGT (if (z==0 && n==v) pc=arg)
 Pattern    : BGT \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.0, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.0, PC.JMP.COND.2, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #6c (108)
@@ -1389,11 +1503,12 @@ Instruction: BLE (if (z==1 | n!=v) pc=arg)
 Pattern    : BLE \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
-4	PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-5	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT
+5	PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+6	INSTREG.CONT
 
 
 Instruction #6d (109)
@@ -1401,14 +1516,15 @@ Instruction: JMP (pc=ram(arg))
 Pattern    : JMP \(\$(....)\)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> PC_JMP_H_IN]	MAR.INC
-6	BUS[RAM_OUT --> PC_JMP_L_IN]
-7	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> PC_JMP_H_IN]	MAR.INC
+7	BUS[RAM_OUT --> PC_JMP_L_IN]
+8	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+9	INSTREG.CONT
 
 
 Instruction #6e (110)
@@ -1416,14 +1532,15 @@ Instruction: JSR (if (cond) pc=address, push returnaddress)
 Pattern    : JSR \$(....)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC, SP.CNT, SP.DIRDOWN
-3	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT, SP.CNT, SP.DIRDOWN
-4	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-5	BUS[PC_OUT --> RAM_IN]	MAR.INC
-6	BUS[PC_OUT --> RAM_IN]	MUXHAT.PC_OUT_LOW
-7	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-8	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC, SP.CNT, SP.DIRDOWN
+4	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT, SP.CNT, SP.DIRDOWN
+5	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+6	BUS[PC_OUT --> RAM_IN]	MAR.INC
+7	BUS[PC_OUT --> RAM_IN]	MUXHAT.PC_OUT_LOW
+8	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+9	INSTREG.CONT
 
 
 Instruction #6f (111)
@@ -1431,17 +1548,18 @@ Instruction: JSR (if (cond) pc=ram($address), push returnaddress)
 Pattern    : JSR \(\$(....)\)
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
-3	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
-4	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
-5	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC, SP.CNT, SP.DIRDOWN
-6	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT, SP.CNT, SP.DIRDOWN
-7	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-8	BUS[PC_OUT --> RAM_IN]	MAR.INC
-9	BUS[PC_OUT --> RAM_IN]	MUXHAT.PC_OUT_LOW
-10	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-11	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[RAM_OUT --> TMP_IN]	MAR.INC, PC.CNT
+4	BUS[RAM_OUT --> NO_INPUT]	MAR.LOADLOW, PC.CNT
+5	BUS[TMP_OUT --> NO_INPUT]	MAR.LOADHIGH
+6	BUS[RAM_OUT --> PC_JMP_H_IN]	PC.CNT, MAR.INC, SP.CNT, SP.DIRDOWN
+7	BUS[RAM_OUT --> PC_JMP_L_IN]	PC.CNT, SP.CNT, SP.DIRDOWN
+8	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+9	BUS[PC_OUT --> RAM_IN]	MAR.INC
+10	BUS[PC_OUT --> RAM_IN]	MUXHAT.PC_OUT_LOW
+11	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+12	INSTREG.CONT
 
 
 Instruction #70 (112)
@@ -1449,12 +1567,13 @@ Instruction: RTS (pc=pop())
 Pattern    : RTS
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-3	BUS[RAM_OUT --> PC_JMP_H_IN]	MAR.INC, SP.CNT
-4	BUS[RAM_OUT --> PC_JMP_L_IN]	SP.CNT
-5	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3, INSTREG.CONT
-6	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+4	BUS[RAM_OUT --> PC_JMP_H_IN]	MAR.INC, SP.CNT
+5	BUS[RAM_OUT --> PC_JMP_L_IN]	SP.CNT
+6	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+7	INSTREG.CONT
 
 
 Instruction #71 (113)
@@ -1462,10 +1581,12 @@ Instruction: PUSHX (push(X))
 Pattern    : PUSH X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	SP.CNT, SP.DIRDOWN
-3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-4	BUS[X_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	SP.CNT, SP.DIRDOWN
+4	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+5	BUS[X_OUT --> RAM_IN]
+6	INSTREG.CONT
 
 
 Instruction #72 (114)
@@ -1473,9 +1594,11 @@ Instruction: POPX (X=pop())
 Pattern    : POP X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
-3	BUS[RAM_OUT --> X_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
+4	BUS[RAM_OUT --> X_IN]
+5	INSTREG.CONT
 
 
 Instruction #73 (115)
@@ -1483,10 +1606,12 @@ Instruction: PUSHY (push(Y))
 Pattern    : PUSH Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	SP.CNT, SP.DIRDOWN
-3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-4	BUS[Y_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	SP.CNT, SP.DIRDOWN
+4	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+5	BUS[Y_OUT --> RAM_IN]
+6	INSTREG.CONT
 
 
 Instruction #74 (116)
@@ -1494,9 +1619,11 @@ Instruction: POPY (Y=pop())
 Pattern    : POP Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
-3	BUS[RAM_OUT --> Y_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
+4	BUS[RAM_OUT --> Y_IN]
+5	INSTREG.CONT
 
 
 Instruction #75 (117)
@@ -1504,10 +1631,12 @@ Instruction: PUSHZ (push(Z))
 Pattern    : PUSH Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	SP.CNT, SP.DIRDOWN
-3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
-4	BUS[Z_OUT --> RAM_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	SP.CNT, SP.DIRDOWN
+4	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer
+5	BUS[Z_OUT --> RAM_IN]
+6	INSTREG.CONT
 
 
 Instruction #76 (118)
@@ -1515,9 +1644,11 @@ Instruction: POPZ (Z=pop())
 Pattern    : POP Z
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
-3	BUS[RAM_OUT --> Z_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	MAR.LOADHIGH, MAR.LOADLOW, MUX.selectStackPointer, SP.CNT
+4	BUS[RAM_OUT --> Z_IN]
+5	INSTREG.CONT
 
 
 Instruction #77 (119)
@@ -1525,9 +1656,10 @@ Instruction: HLT (halt)
 Pattern    : HLT
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	CLK.A.RESET, INSTREG.CONT
-3	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	CLK.A.RESET
+4	INSTREG.CONT
 
 
 Instruction #78 (120)
@@ -1535,8 +1667,10 @@ Instruction: OUT0 (out#0 := X)
 Pattern    : OUT0 X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> OUTPUT_0_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> OUTPUT_0_IN]
+4	INSTREG.CONT
 
 
 Instruction #79 (121)
@@ -1544,8 +1678,10 @@ Instruction: OUT1 (out#1 := X)
 Pattern    : OUT1 X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> OUTPUT_1_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> OUTPUT_1_IN]
+4	INSTREG.CONT
 
 
 Instruction #7a (122)
@@ -1553,8 +1689,10 @@ Instruction: OUT2 (out#2 := X)
 Pattern    : OUT2 X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[X_OUT --> OUTPUT_2_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[X_OUT --> OUTPUT_2_IN]
+4	INSTREG.CONT
 
 
 Instruction #7b (123)
@@ -1562,8 +1700,10 @@ Instruction: OUT0 (out#0 := Y)
 Pattern    : OUT0 Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> OUTPUT_0_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> OUTPUT_0_IN]
+4	INSTREG.CONT
 
 
 Instruction #7c (124)
@@ -1571,8 +1711,10 @@ Instruction: OUT1 (out#1 := Y)
 Pattern    : OUT1 Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> OUTPUT_1_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> OUTPUT_1_IN]
+4	INSTREG.CONT
 
 
 Instruction #7d (125)
@@ -1580,8 +1722,10 @@ Instruction: OUT2 (out#2 := Y)
 Pattern    : OUT2 Y
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[Y_OUT --> OUTPUT_2_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[Y_OUT --> OUTPUT_2_IN]
+4	INSTREG.CONT
 
 
 Instruction #7e (126)
@@ -1589,8 +1733,10 @@ Instruction: IN0 (X := in#0)
 Pattern    : IN0 X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[INPUT_0_OUT --> X_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[INPUT_0_OUT --> X_IN]
+4	INSTREG.CONT
 
 
 Instruction #7f (127)
@@ -1598,8 +1744,10 @@ Instruction: IN1 (X := in#1)
 Pattern    : IN1 X
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[INPUT_1_OUT --> X_IN]	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[INPUT_1_OUT --> X_IN]
+4	INSTREG.CONT
 
 
 Instruction #80 (128)
@@ -1607,13 +1755,15 @@ Instruction: RAMLOAD (RAMLOAD)
 Pattern    : RAMLOAD
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> NO_INPUT]	MAR.LOADHIGH
-3	BUS[ZEROS --> NO_INPUT]	MAR.LOADLOW
-4	MAR.INC
-5	BUS[ZEROS --> RAM_IN]
-6	SP.RESET
-7	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> MAR_OFFSET_IN]
+4	BUS[FLOATING --> NO_INPUT]	MAR.LOADHIGH
+5	BUS[FLOATING --> NO_INPUT]	MAR.LOADLOW
+6	BUS[FLOATING --> NO_INPUT]	MAR.INC
+7	BUS[FLOATING --> RAM_IN]
+8	BUS[FLOATING --> NO_INPUT]	SP.RESET
+9	INSTREG.CONT
 
 
 Instruction #81 (129)
@@ -1621,12 +1771,20 @@ Instruction: RESETPC (RESETPC)
 Pattern    : RESETPC
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	BUS[ZEROS --> TMP_IN]
-3	BUS[TMP_OUT --> PC_JMP_H_IN]
-4	BUS[TMP_OUT --> PC_JMP_L_IN]
-5	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
-6	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	BUS[ZEROS --> MAR_OFFSET_IN]	SP.RESET
+4	BUS[ZEROS --> X_IN]	MAR.LOADHIGH
+5	BUS[ZEROS --> Y_IN]	MAR.LOADLOW
+6	BUS[ZEROS --> Z_IN]
+7	BUS[ZEROS --> TMP_IN]
+8	BUS[ZEROS --> ALU_A_IN]
+9	BUS[ZEROS --> ALU_B_IN]	ALU.CC
+10	BUS[ZEROS --> NO_INPUT]	ALU.FLR, ALU.OP1, ALU.OP0, ALU.CC, ALU.FLR, ALU.FLAGW
+11	BUS[ZEROS --> PC_JMP_H_IN]
+12	BUS[ZEROS --> PC_JMP_L_IN]
+13	PC.JMP.COND.0, PC.JMP.COND.1, PC.JMP.COND.2, PC.JMP.COND.3
+14	INSTREG.CONT
 
 
 Instruction #82 (130)
@@ -1634,8 +1792,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #83 (131)
@@ -1643,8 +1802,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #84 (132)
@@ -1652,8 +1812,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #85 (133)
@@ -1661,8 +1822,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #86 (134)
@@ -1670,8 +1832,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #87 (135)
@@ -1679,8 +1842,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #88 (136)
@@ -1688,8 +1852,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #89 (137)
@@ -1697,8 +1862,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8a (138)
@@ -1706,8 +1872,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8b (139)
@@ -1715,8 +1882,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8c (140)
@@ -1724,8 +1892,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8d (141)
@@ -1733,8 +1902,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8e (142)
@@ -1742,8 +1912,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #8f (143)
@@ -1751,8 +1922,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #90 (144)
@@ -1760,8 +1932,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #91 (145)
@@ -1769,8 +1942,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #92 (146)
@@ -1778,8 +1952,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #93 (147)
@@ -1787,8 +1962,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #94 (148)
@@ -1796,8 +1972,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #95 (149)
@@ -1805,8 +1982,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #96 (150)
@@ -1814,8 +1992,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #97 (151)
@@ -1823,8 +2002,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #98 (152)
@@ -1832,8 +2012,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #99 (153)
@@ -1841,8 +2022,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9a (154)
@@ -1850,8 +2032,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9b (155)
@@ -1859,8 +2042,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9c (156)
@@ -1868,8 +2052,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9d (157)
@@ -1877,8 +2062,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9e (158)
@@ -1886,8 +2072,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #9f (159)
@@ -1895,8 +2082,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a0 (160)
@@ -1904,8 +2092,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a1 (161)
@@ -1913,8 +2102,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a2 (162)
@@ -1922,8 +2112,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a3 (163)
@@ -1931,8 +2122,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a4 (164)
@@ -1940,8 +2132,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a5 (165)
@@ -1949,8 +2142,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a6 (166)
@@ -1958,8 +2152,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a7 (167)
@@ -1967,8 +2162,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a8 (168)
@@ -1976,8 +2172,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #a9 (169)
@@ -1985,8 +2182,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #aa (170)
@@ -1994,8 +2192,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ab (171)
@@ -2003,8 +2202,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ac (172)
@@ -2012,8 +2212,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ad (173)
@@ -2021,8 +2222,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ae (174)
@@ -2030,8 +2232,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #af (175)
@@ -2039,8 +2242,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b0 (176)
@@ -2048,8 +2252,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b1 (177)
@@ -2057,8 +2262,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b2 (178)
@@ -2066,8 +2272,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b3 (179)
@@ -2075,8 +2282,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b4 (180)
@@ -2084,8 +2292,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b5 (181)
@@ -2093,8 +2302,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b6 (182)
@@ -2102,8 +2312,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b7 (183)
@@ -2111,8 +2322,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b8 (184)
@@ -2120,8 +2332,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #b9 (185)
@@ -2129,8 +2342,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ba (186)
@@ -2138,8 +2352,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #bb (187)
@@ -2147,8 +2362,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #bc (188)
@@ -2156,8 +2372,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #bd (189)
@@ -2165,8 +2382,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #be (190)
@@ -2174,8 +2392,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #bf (191)
@@ -2183,8 +2402,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c0 (192)
@@ -2192,8 +2412,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c1 (193)
@@ -2201,8 +2422,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c2 (194)
@@ -2210,8 +2432,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c3 (195)
@@ -2219,8 +2442,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c4 (196)
@@ -2228,8 +2452,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c5 (197)
@@ -2237,8 +2462,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c6 (198)
@@ -2246,8 +2472,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c7 (199)
@@ -2255,8 +2482,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c8 (200)
@@ -2264,8 +2492,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #c9 (201)
@@ -2273,8 +2502,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ca (202)
@@ -2282,8 +2512,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #cb (203)
@@ -2291,8 +2522,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #cc (204)
@@ -2300,8 +2532,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #cd (205)
@@ -2309,8 +2542,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ce (206)
@@ -2318,8 +2552,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #cf (207)
@@ -2327,8 +2562,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d0 (208)
@@ -2336,8 +2572,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d1 (209)
@@ -2345,8 +2582,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d2 (210)
@@ -2354,8 +2592,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d3 (211)
@@ -2363,8 +2602,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d4 (212)
@@ -2372,8 +2612,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d5 (213)
@@ -2381,8 +2622,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d6 (214)
@@ -2390,8 +2632,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d7 (215)
@@ -2399,8 +2642,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d8 (216)
@@ -2408,8 +2652,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #d9 (217)
@@ -2417,8 +2662,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #da (218)
@@ -2426,8 +2672,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #db (219)
@@ -2435,8 +2682,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #dc (220)
@@ -2444,8 +2692,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #dd (221)
@@ -2453,8 +2702,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #de (222)
@@ -2462,8 +2712,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #df (223)
@@ -2471,8 +2722,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e0 (224)
@@ -2480,8 +2732,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e1 (225)
@@ -2489,8 +2742,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e2 (226)
@@ -2498,8 +2752,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e3 (227)
@@ -2507,8 +2762,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e4 (228)
@@ -2516,8 +2772,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e5 (229)
@@ -2525,8 +2782,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e6 (230)
@@ -2534,8 +2792,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e7 (231)
@@ -2543,8 +2802,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e8 (232)
@@ -2552,8 +2812,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #e9 (233)
@@ -2561,8 +2822,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ea (234)
@@ -2570,8 +2832,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #eb (235)
@@ -2579,8 +2842,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ec (236)
@@ -2588,8 +2852,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ed (237)
@@ -2597,8 +2862,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ee (238)
@@ -2606,8 +2872,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ef (239)
@@ -2615,8 +2882,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f0 (240)
@@ -2624,8 +2892,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f1 (241)
@@ -2633,8 +2902,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f2 (242)
@@ -2642,8 +2912,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f3 (243)
@@ -2651,8 +2922,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f4 (244)
@@ -2660,8 +2932,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f5 (245)
@@ -2669,8 +2942,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f6 (246)
@@ -2678,8 +2952,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f7 (247)
@@ -2687,8 +2962,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f8 (248)
@@ -2696,8 +2972,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #f9 (249)
@@ -2705,8 +2982,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #fa (250)
@@ -2714,8 +2992,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #fb (251)
@@ -2723,8 +3002,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #fc (252)
@@ -2732,8 +3012,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #fd (253)
@@ -2741,8 +3022,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #fe (254)
@@ -2750,8 +3032,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 Instruction #ff (255)
@@ -2759,8 +3042,9 @@ Instruction: dummy (dummy)
 Pattern    : dummy
 Microcode steps:
 0	BUS[ZEROS --> MAR_OFFSET_IN]	MAR.LOADHIGH, MAR.LOADLOW
-1	BUS[RAM_OUT --> INSTREG_IN]	MAR.INC, PC.CNT
-2	INSTREG.CONT
+1	BUS[RAM_OUT --> INSTREG_IN]	PC.CNT
+2	BUS[ZEROS --> NO_INPUT]	MAR.INC
+3	INSTREG.CONT
 
 
 

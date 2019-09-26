@@ -9,19 +9,20 @@ void setMastered(boolean m);
 void loop();
 void serialEvent();
 void processCommand();
-void setMAR(int addr);
+void setMar(int addr);
 void initPC();
 void halt();
 void run();
 void writeBufferToRAM();
-void set(byte instr, byte step);
-void setData(byte data);
+void writeRamAndIncreaseMar(byte value);
+void setMicrocodeStep(byte instr, byte step);
+void setBusValue(byte value);
 void busWrite(bool doWrite);
-void execStep(int instruction, int step);
-void tick();
-void toggleCLK();
-void writeRAM(byte b);
-void incMAR();
+void tick(long delay);
+void toggleClock();
+void setMicrocodeStep(byte instr, byte step);
+
+
 boolean beginsWith(char *src, char pattern[]);
 long getHex(char* start, int length);
 void printHex(int num, int precision);

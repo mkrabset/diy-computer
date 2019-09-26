@@ -130,21 +130,21 @@ public class InstructionSet {
 
     private Instruction createLoadAbsolute(Register r) {
         Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " #(..)", r.name + " := arg");
-        addStep(i, RAM_OUT, r.busRead(), c.pc.incSignal, c.instreg.contSignal);
+        addStep(i, RAM_OUT, r.busRead(), c.pc.incSignal);
         return i;
     }
 
     private Instruction createLoadIndirect(Register r) {
         Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....)", r.name + " := ram(arg)");
         argsToMar(i);
-        addStep(i, RAM_OUT, r.busRead(), c.instreg.contSignal);
+        addStep(i, RAM_OUT, r.busRead());
         return i;
     }
 
     private Instruction createStoreIndirect(Computer c, Register r) {
         Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", r.name + " -> ram(arg)");
         argsToMar(i);
-        addStep(i, r.busWrite(), RAM_IN, c.instreg.contSignal);
+        addStep(i, r.busWrite(), RAM_IN);
         return i;
     }
 
@@ -152,7 +152,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "ADD" + r.name, "ADD" + r.name + " #(..)", r.name + " := " + r.name + " + arg");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.mar.incSignal, c.pc.incSignal);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -161,7 +161,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "SUB" + r.name, "SUB" + r.name + " #(..)", r.name + " := " + r.name + " + arg");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.mar.incSignal, c.pc.incSignal);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -169,7 +169,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " #(..)", "flags := " + "cmp(" + r.name + ",arg)");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal, c.mar.incSignal, c.pc.incSignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -177,13 +177,12 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r1.name, "CMP" + r1.name + "," + r2.name, "flags := " + "cmp(" + r1.name + "," + r2.name + ")");
         addStep(i, r1.busWrite(), ALU_A_IN);
         addStep(i, r2.busWrite(), ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
     private Instruction createNop() {
         Instruction i = new Instruction(c, "NOP", "NOP", "No operation");
-        i.steps.get(i.steps.size() - 1).activeSignals.add(c.instreg.contSignal); // Continue immediatly after instruction load
         return i;
     }
 
@@ -192,7 +191,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -202,7 +201,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -211,7 +210,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -225,7 +224,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, opName + r.name, opName + r.name + " #(..)", r.name + " := " + r.name + " " + opName + " arg");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.pc.incSignal);
-        addStep(i, ALU_OUT, r.busRead(), aluOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), aluOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -234,7 +233,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), aluOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), aluOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -242,14 +241,14 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "ROL" + r.name, "ROL" + r.name, r.name + " := ROL(" + r.name + ")");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, r.busWrite(), ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
     private Instruction createRor(Register r) {
         Instruction i = new Instruction(c, "ROR" + r.name, "ROR" + r.name, r.name + " := ROR(" + r.name + ")");
         addStep(i, r.busWrite(), ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.rorOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.rorOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -257,7 +256,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "NOT" + r.name, "NOT" + r.name, r.name + " := NOT(" + r.name + ")");
         addStep(i, ZEROS, ALU_A_IN);
         addStep(i, r.busWrite(), ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -265,7 +264,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "INC" + r.name, "INC " + r.name, r.name + " := " + r.name + " + 1 ");
         addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         addStep(i, r.busWrite(), ALU_A_IN, c.alu.setCarrySignal);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -273,7 +272,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "DEC" + r.name, "DEC " + r.name, r.name + " := " + r.name + " - 1 ");
         addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         addStep(i, r.busWrite(), ALU_A_IN, c.alu.clearCarrySignal);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -281,7 +280,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, opName + r.name + r2.name, opName + r.name + " " + r2.name, r.name + " := " + r.name + " " + opName + " " + r2.name);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, r2.busWrite(), ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), opSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, r.busRead(), opSignals, c.alu.updateFlagsSignal);
         if (subMode) {
             i.steps.get(i.steps.size() - 1).activeSignals.add(c.alu.invertBSignal);
         }
@@ -294,7 +293,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, RAM_OUT, ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN);
-        addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -302,7 +301,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "ROR", "ROR \\$(....)", "ram(arg):=ROR(ram(arg))");
         argsToMar(i);
         addStep(i, RAM_OUT, ALU_B_IN);
-        addStep(i, ALU_OUT, RAM_IN, c.alu.rorOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, RAM_IN, c.alu.rorOpSignals, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -311,7 +310,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, ZEROS, ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.clearCarrySignal);
-        addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+        addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -321,23 +320,23 @@ public class InstructionSet {
         addStep(i, BusWriter.ZEROS, BusReader.ALU_B_IN);
         if (inc) {
             addStep(i, RAM_OUT, ALU_A_IN, c.alu.setCarrySignal);
-            addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.updateFlagsSignal, c.instreg.contSignal);
+            addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.updateFlagsSignal);
         } else {
             addStep(i, RAM_OUT, ALU_A_IN, c.alu.clearCarrySignal);
-            addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal, c.instreg.contSignal);
+            addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         }
         return i;
     }
 
     private Instruction createSec() {
         Instruction i = new Instruction(c, "SEC", "SEC", "flags.c=true");
-        addStep(i, c.alu.setCarrySignal, c.instreg.contSignal);
+        addStep(i, c.alu.setCarrySignal);
         return i;
     }
 
     private Instruction createClc() {
         Instruction i = new Instruction(c, "CLC", "CLC", "flags.c=false");
-        addStep(i, c.alu.clearCarrySignal, c.instreg.contSignal);
+        addStep(i, c.alu.clearCarrySignal);
         return i;
     }
 
@@ -345,7 +344,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, opName, opName + " \\$(....)", "if (" + jumpCond.descr + ") pc=arg");
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.pc.incSignal, c.mar.incSignal);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.pc.incSignal);
-        addStep(i, jumpCond.getConditionSignals(c.pc).stream().toArray(Signal[]::new), c.instreg.contSignal);
+        addStep(i, jumpCond.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
 
@@ -354,7 +353,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_H_IN, c.mar.incSignal);
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN);
-        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new), c.instreg.contSignal);
+        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
 
@@ -376,7 +375,7 @@ public class InstructionSet {
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
 
         // Jump to subroutine
-        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new), c.instreg.contSignal);
+        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
 
@@ -391,7 +390,7 @@ public class InstructionSet {
         addStep(i, BusWriter.RAM_OUT, BusReader.PC_JMP_L_IN, c.sp.cntSignal);
 
         // Jump back from subroutine
-        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new), c.instreg.contSignal);
+        addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }
 
@@ -403,7 +402,7 @@ public class InstructionSet {
         addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
 
         // Copy value to stack
-        addStep(i, r.busWrite(), BusReader.RAM_IN, c.instreg.contSignal);
+        addStep(i, r.busWrite(), BusReader.RAM_IN);
         return i;
     }
 
@@ -414,53 +413,51 @@ public class InstructionSet {
         addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal);
 
         // Copy value from stack
-        addStep(i, BusWriter.RAM_OUT, r.busRead(), c.instreg.contSignal);
+        addStep(i, BusWriter.RAM_OUT, r.busRead());
         return i;
     }
 
     private Instruction createOut(Register r, int port, BusReader in) {
         Instruction i = new Instruction(c, "OUT" + port, "OUT" + port + " " + r.name, "out#" + port + " := " + r.name);
-        addStep(i, r.busWrite(), in, c.instreg.contSignal);
+        addStep(i, r.busWrite(), in);
         return i;
     }
 
     private Instruction createIn(Register r, int port, BusWriter out) {
         Instruction i = new Instruction(c, "IN" + port, "IN" + port + " " + r.name, r.name + " := in#" + port);
-        addStep(i, out, r.busRead(), c.instreg.contSignal);
+        addStep(i, out, r.busRead());
         return i;
     }
 
     private Instruction createHalt() {
         Instruction i = new Instruction(c, "HLT", "HLT", "halt");
-        addStep(i, c.clock.haltSignal, c.instreg.contSignal);
+        addStep(i, c.clock.haltSignal);
         return i;
     }
 
     private Instruction createRamLoad() {
         Instruction i = new Instruction(c, "RAMLOAD", "RAMLOAD", "RAMLOAD");
-
-        // Set initial address (step 2-3)
-        addStep(i, BusWriter.ZEROS, NO_INPUT, c.mar.loadHighSignal);
-        addStep(i, BusWriter.ZEROS, NO_INPUT, c.mar.loadLowSignal);
-
-        // Inc address (step 4)
-        addStep(i, c.mar.incSignal);
-
-        // Load ram (step 5)
-        addStep(i, BusWriter.ZEROS, BusReader.RAM_IN);
-
-        // Reset (step 6)
-        addStep(i, c.sp.resetSignal);
-
-
+        addStep(i, ZEROS, MAR_OFFSET_IN);                               // Clear mar offset
+        addStep(i, FLOATING, NO_INPUT, c.mar.loadHighSignal);           // Load MAR high from programmer
+        addStep(i, FLOATING, NO_INPUT, c.mar.loadLowSignal);            // Load MAR low from programmer
+        addStep(i, FLOATING, NO_INPUT, c.mar.incSignal);                // Increase MAR
+        addStep(i, FLOATING, BusReader.RAM_IN);                         // Write to RAM from programmer. Don't do twice in a row
+        addStep(i, FLOATING, NO_INPUT, c.sp.resetSignal);
         return i;
     }
 
     private Instruction createResetPc() {
         Instruction i = new Instruction(c, "RESETPC", "RESETPC", "RESETPC");
-        addStep(i, BusWriter.ZEROS, BusReader.TMP_IN);
-        addStep(i, BusWriter.TMP_OUT, BusReader.PC_JMP_H_IN);
-        addStep(i, BusWriter.TMP_OUT, BusReader.PC_JMP_L_IN);
+        addStep(i, ZEROS, MAR_OFFSET_IN, c.sp.resetSignal);
+        addStep(i, ZEROS, X_IN, c.mar.loadHighSignal);
+        addStep(i, ZEROS, Y_IN, c.mar.loadLowSignal);
+        addStep(i, ZEROS, Z_IN);
+        addStep(i, ZEROS, TMP_IN);
+        addStep(i, ZEROS, ALU_A_IN);
+        addStep(i, ZEROS, ALU_B_IN, c.alu.clearCarrySignal);
+        addStep(i, ZEROS, NO_INPUT, c.alu.addOpSignals, c.alu.clearCarrySignal, c.alu.flrSignal, c.alu.updateFlagsSignal);
+        addStep(i, ZEROS, PC_JMP_H_IN);
+        addStep(i, ZEROS, PC_JMP_L_IN);
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
         return i;
     }

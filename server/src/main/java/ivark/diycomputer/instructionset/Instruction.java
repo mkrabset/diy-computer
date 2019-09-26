@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static ivark.diycomputer.model.BUS.BusReader.*;
-import static ivark.diycomputer.model.BUS.BusWriter.PC_OUT;
-import static ivark.diycomputer.model.BUS.BusWriter.RAM_OUT;
+import static ivark.diycomputer.model.BUS.BusWriter.*;
 import static java.util.stream.Collectors.*;
 
 /**
@@ -37,7 +36,8 @@ public final class Instruction {
                     .withActive(c.mar.loadHighSignal, c.mar.loadLowSignal));
 
             // Put ram-value into instruction register, and increase pc and mar by 1
-            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.mar.incSignal, c.pc.incSignal));
+            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.pc.incSignal)); // Must wait with marinc to next step because instructions a loaded on clk falling edge
+            addStep(new Microcode().bus(ZEROS, NO_INPUT).withActive(c.mar.incSignal));
 
             // Instruction is loaded, offset is zero, and pc and mar points to first operand or next instruction.
         } catch (Exception e) {
