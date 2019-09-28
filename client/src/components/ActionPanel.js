@@ -25,7 +25,7 @@ class ActionPanel extends Component {
         this.state = {
             expanded: false,
             camOn: false,
-            runDelay: 500000
+            runDelay: 5000
         };
     }
 

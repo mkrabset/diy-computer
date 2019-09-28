@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class Api {
     private final Computer C = new Computer();
     private String code = "";
-    private int runDelay=500000;
+    private int runDelay=5000;
 
     private SerialWriter serialWriter;
 

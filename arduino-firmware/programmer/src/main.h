@@ -18,9 +18,10 @@ void writeRamAndIncreaseMar(byte value);
 void setMicrocodeStep(byte instr, byte step);
 void setBusValue(byte value);
 void busWrite(bool doWrite);
-void tick(long delay);
+void tick();
 void toggleClock();
 void setMicrocodeStep(byte instr, byte step);
+void sleep();
 
 
 boolean beginsWith(char *src, char pattern[]);

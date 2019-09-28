@@ -2,6 +2,7 @@
 #include <Arduino.h>
 #include "main.h"
 
+#define RAM2INSTR_STEP 1
 #define RAMLOAD_INSTR 0x80
 #define RAMLOAD_CLR_MAR_OFFSET_STEP 3
 #define RAMLOAD_LOAD_MAR_HIGH_STEP 4
@@ -30,9 +31,9 @@
 // Pin for ext_clk 
 #define EXT_CLK A3
 
-#define RUNDELAY 8000000
+#define RUNDELAY 5000
 #define MASTERING_DEBUG false
-#define MASTERING_DELAY 10000
+#define MASTERING_DELAY 5000
 
 #define CLK_LED 13
 
@@ -92,6 +93,11 @@ void setup() {
 }
 
 void clock(bool val) {
+  if (val) {
+    Serial.println("CLK UP");
+  } else {
+    Serial.println("CLK DOWN");
+  }
   digitalWrite(EXT_CLK,val);
   digitalWrite(CLK_LED,val);
 }
@@ -99,8 +105,11 @@ void clock(bool val) {
 void setMastered(boolean m) {
   mastered=m;
   if (mastered) {
+    Serial.println("Mastered=true");
     halted=true;
     Timer1.detachInterrupt();
+  } else {
+    Serial.println("Mastered=false");
   }
   digitalWrite(SRC_SEL,!mastered);
 }
@@ -129,6 +138,8 @@ void serialEvent() {
 }
 
 void processCommand() {
+  Serial.println();
+  Serial.println(buffer);
   halt();
   setMastered(true);
   if (beginsWith(buffer,"mar ")) {
@@ -159,17 +170,34 @@ void processCommand() {
     halt();
     setMastered(false);
     if (buffer[1]==0) {
-      tick(runDelay);
+      tick();
     } else {
       int num=atoi(&buffer[1]);
       for (int i=0;i<num;i++) {
-        tick(runDelay);
+        tick();
+      }
+    }
+  } else if (beginsWith(&buffer[0],"dm")) {
+    halt();
+    setMastered(true);
+    if (buffer[2]==0) {
+      Serial.println("dm");
+      setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
+      tick();
+      setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
+      tick();
+    } else {
+      int num=atoi(&buffer[1]);
+      for (int i=0;i<num;i++) {
+        setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
+        tick();
+        setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
+        tick();
       }
     }
   } else if (beginsWith(&buffer[0],"t")) {
     setMastered(false);
-    digitalWrite(EXT_CLK, !highCLK);
-    digitalWrite(CLK_LED, !highCLK);
+    clock(!highCLK);
     highCLK=!highCLK;
   } else if (beginsWith(&buffer[0],"w ")) {
     writeBufferToRAM();
@@ -185,10 +213,11 @@ void processCommand() {
 
 
 void initPC() {
-  for (int s=RESET_PC_START_STEP;s<=RESET_PC_END_STEP;s++) {
+  for (int s=RESET_PC_START_STEP;s<=RESET_PC_END_STEP+1;s++) {
     setMicrocodeStep(RESET_PC_INSTR, s);
-    tick(masteredDelay);
+    tick();
   }
+  setMastered(false);
 }
 
 void halt() {
@@ -241,6 +270,11 @@ void writeBufferToRAM() {
 
 
 void setMicrocodeStep(byte instr, byte step) {
+  Serial.print("SETINST: ");
+  Serial.print(instr,HEX);
+  Serial.print(",");
+  Serial.print(step);
+  Serial.println();
   long address=0;
   address|=instr;
   address<<=8;
@@ -261,19 +295,11 @@ void busWrite(bool doWrite) {
   digitalWrite(OE_DATA, !doWrite);
 }
 
-void tick(long delayMicros) {
-  if (delayMicros>15000) {
-    int msDelay=delayMicros/1000;
-    delay(msDelay);
+void tick() {
+    sleep();
     clock(HIGH);
-    delay(msDelay);
+    sleep();
     clock(LOW);
-  } else {
-    delayMicroseconds(delayMicros);
-    clock(HIGH);
-    delayMicroseconds(delayMicros);
-    clock(LOW);
-  }
 }
   
 
@@ -281,20 +307,20 @@ void tick(long delayMicros) {
 void setMar(int address) {
   // Clear MAR offset
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_CLR_MAR_OFFSET_STEP); // Clear MAR offset
-  tick(masteredDelay);
+  tick();
 
   // Load MAR high
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_LOAD_MAR_HIGH_STEP);
   setBusValue(address>>8);
   busWrite(true);
-  tick(masteredDelay);
+  tick();
   busWrite(false);
 
   // Load MAR low
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_LOAD_MAR_LOW_STEP);
   setBusValue(address & 0xff);
   busWrite(true);
-  tick(masteredDelay);
+  tick();
   busWrite(false);
 }
 
@@ -303,12 +329,12 @@ void writeRamAndIncreaseMar(byte value) {
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_RAMWRITE_STEP);
   setBusValue(value);
   busWrite(true);
-  tick(masteredDelay);
+  tick();
   busWrite(false);
 
   // Increase MAR
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_INC_MAR_STEP);
-  tick(masteredDelay);
+  tick();
 }
 
 
@@ -355,4 +381,14 @@ void printHex(int num, int precision) {
    sprintf(format, "%%.%dX", precision);
    sprintf(tmp, format, num);
    Serial.print(tmp);
+}
+
+void sleep() {
+  Serial.println("...");
+  long delayMicro=mastered ? masteredDelay : runDelay;
+  if (delayMicro>15000) {
+    delay(delayMicro/1000);
+  } else {
+    delayMicroseconds(delayMicro);
+  }
 }
