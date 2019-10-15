@@ -371,7 +371,8 @@ public class InstructionSet {
         addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);
 
         // Store return address on stack
-        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.mar.incSignal);
+        addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN);
+        addStep(i,c.mar.incSignal);
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
 
         // Jump to subroutine
@@ -485,6 +486,9 @@ public class InstructionSet {
             sb.append("Instruction #" + toHex(i, 2) + " (" + i + ")\n");
             sb.append(instructions.get(i).toString());
             sb.append("\n\n");
+            if (instructions.get(i).isDummy()) {
+                break;
+            }
         }
         return sb.toString();
     }
@@ -499,13 +503,20 @@ public class InstructionSet {
         for (int i = 0; i < instructions.size(); i++) {
             sb.append(i + "= #" + toHex(i, 2) + "\t\t" + instructions.get(i).pattern + "\t\t" + instructions.get(i).description + "\t\t" + instructions.get(i).steps.size());
             sb.append("\n");
+            if (instructions.get(i).isDummy()) {
+                break;
+            }
         }
         return sb.toString();
     }
 
     public void checkRamWrite() {
         for (Instruction i : instructions) {
-            i.checkRamWrite();
+            try {
+                i.checkRamWrite();
+            } catch (Exception e) {
+                throw new RuntimeException("Ram write check failed for instruction: \n"+i,e);
+            }
         }
     }
 }

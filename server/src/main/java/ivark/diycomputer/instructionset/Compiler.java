@@ -167,52 +167,56 @@ public class Compiler {
                     System.out.println();
                 } else {
                     Instruction i = findInstruction(is, line);
-                    address++;
-                    System.out.print(toHex(i.num, 2) + " ");
+                    try {
+                        address++;
+                        System.out.print(toHex(i.num, 2) + " ");
 
-                    result.add((byte) i.num);
-                    if (matchesDirectly(i, line)) {
-                        Matcher m = i.pattern.matcher(line);
-                        m.matches();
-                        if (m.groupCount() >= 1) {
-                            String[] argbytes = m.group(1).split("(?<=\\G.{2})");
+                        result.add((byte) i.num);
+                        if (matchesDirectly(i, line)) {
+                            Matcher m = i.pattern.matcher(line);
+                            m.matches();
+                            if (m.groupCount() >= 1) {
+                                String[] argbytes = m.group(1).split("(?<=\\G.{2})");
+                                for (String argbyte : argbytes) {
+                                    result.add(toByte(argbyte));
+                                }
+                                System.out.print(Stream.of(argbytes).collect(Collectors.joining(" ")));
+                                if (i.pattern.toString().contains("....")) {
+                                    address += 2;
+                                } else if (i.pattern.toString().contains("..")) {
+                                    address += 1;
+                                }
+                            }
+                            System.out.println();
+                        } else if (matchesWithLabel(i, line)) {
+                            Matcher m = getDirectLabelPattern(i).matcher(line);
+                            m.matches();
+                            Integer arg = lblMap.get(m.group(1));
+                            if (m.group(2) != null && !m.group(2).isEmpty()) {
+                                arg += Integer.valueOf(m.group(2));
+                            }
+                            String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
                             for (String argbyte : argbytes) {
                                 result.add(toByte(argbyte));
                             }
-                            System.out.print(Stream.of(argbytes).collect(Collectors.joining(" ")));
-                            if (i.pattern.toString().contains("....")) {
-                                address += 2;
-                            } else if (i.pattern.toString().contains("..")) {
-                                address += 1;
+                            System.out.println(toHex(arg, 4));
+                            address += 2;
+                        } else if (matchesWithIndirectLabel(i, line)) {
+                            Matcher m = getIndirectLabelPattern(i).matcher(line);
+                            m.matches();
+                            Integer arg = lblMap.get(m.group(1));
+                            if (arg == null) {
+                                throw new RuntimeException("Unknown label: " + m.group(1) + " in instruction " + line);
                             }
+                            String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
+                            for (String argbyte : argbytes) {
+                                result.add(toByte(argbyte));
+                            }
+                            System.out.println(toHex(arg, 4));
+                            address += 2;
                         }
-                        System.out.println();
-                    } else if (matchesWithLabel(i, line)) {
-                        Matcher m = getDirectLabelPattern(i).matcher(line);
-                        m.matches();
-                        Integer arg = lblMap.get(m.group(1));
-                        if (m.group(2) != null && !m.group(2).isEmpty()) {
-                            arg += Integer.valueOf(m.group(2));
-                        }
-                        String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
-                        for (String argbyte : argbytes) {
-                            result.add(toByte(argbyte));
-                        }
-                        System.out.println(toHex(arg, 4));
-                        address += 2;
-                    } else if (matchesWithIndirectLabel(i, line)) {
-                        Matcher m = getIndirectLabelPattern(i).matcher(line);
-                        m.matches();
-                        Integer arg = lblMap.get(m.group(1));
-                        if (arg == null) {
-                            throw new RuntimeException("Unknown label: " + m.group(1) + " in instruction " + line);
-                        }
-                        String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
-                        for (String argbyte : argbytes) {
-                            result.add(toByte(argbyte));
-                        }
-                        System.out.println(toHex(arg, 4));
-                        address += 2;
+                    } catch (Exception e) {
+                        throw new RuntimeException("Failed for instruction "+i+" at line : "+line,e);
                     }
                 }
             }

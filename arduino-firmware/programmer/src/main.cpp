@@ -140,8 +140,8 @@ void serialEvent() {
 void processCommand() {
   Serial.println();
   Serial.println(buffer);
-  halt();
-  setMastered(true);
+  //halt();
+  //setMastered(true);
   if (beginsWith(buffer,"mar ")) {
     int address=getHex(&buffer[4],4);
     setMar(address);
@@ -167,8 +167,8 @@ void processCommand() {
     Serial.print(masteredDelay);
     Serial.println(" microseconds");
   } else if (beginsWith(&buffer[0],"s")) {
-    halt();
-    setMastered(false);
+    //halt();
+    //setMastered(false);
     if (buffer[1]==0) {
       tick();
     } else {

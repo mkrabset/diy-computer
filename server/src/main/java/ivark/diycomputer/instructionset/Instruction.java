@@ -85,13 +85,20 @@ public final class Instruction {
         boolean lastRamIn=false;
         for (Microcode s:steps) {
             if (s.to==RAM_IN) {
+                if (s.activeSignals.stream().anyMatch(sig->sig==c.mar.incSignal)) {
+                    throw new RuntimeException("Ram write in combination with mar.inc");
+                }
                 if (lastRamIn) {
-                    System.out.println("Multiple ram writes: "+opcode+"@"+num);
+                    throw new RuntimeException("Multiple ram writes");
                 }
                 lastRamIn=true;
             } else {
                 lastRamIn = false;
             }
         }
+    }
+
+    public boolean isDummy() {
+        return "dummy".equals(opcode);
     }
 }
