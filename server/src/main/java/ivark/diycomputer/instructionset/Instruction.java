@@ -98,6 +98,16 @@ public final class Instruction {
         }
     }
 
+    public void checkFlagWrite() {
+        for (Microcode s:steps) {
+            if (s.activeSignals.contains(c.alu.updateFlagsSignal)) {
+                if (s.from!= ALU_OUT) {
+                    throw new RuntimeException("Flag write without alu out enabled");
+                }
+            }
+        }
+    }
+
     public boolean isDummy() {
         return "dummy".equals(opcode);
     }

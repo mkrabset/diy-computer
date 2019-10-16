@@ -109,8 +109,8 @@ public class InstructionSet {
         instructions.add(createRamLoad());
         instructions.add(createResetPc());
 
-        for (int i=instructions.size();i<256;i++) {
-            instructions.add(new Instruction(c,"dummy","dummy", "dummy"));
+        for (int i = instructions.size(); i < 256; i++) {
+            instructions.add(new Instruction(c, "dummy", "dummy", "dummy"));
         }
 
         for (Instruction ins : instructions) {
@@ -118,12 +118,12 @@ public class InstructionSet {
         }
 
 
-
         for (int i = 0; i < instructions.size(); i++) {
             instructions.get(i).num = i;
         }
         System.out.println("RAM Write check:");
         checkRamWrite();
+        flagWriteCheck();
 
     }
 
@@ -169,7 +169,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " #(..)", "flags := " + "cmp(" + r.name + ",arg)");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal, c.mar.incSignal, c.pc.incSignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        addStep(i, BusWriter.ALU_OUT, BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -177,7 +177,7 @@ public class InstructionSet {
         Instruction i = new Instruction(c, "CMP" + r1.name, "CMP" + r1.name + "," + r2.name, "flags := " + "cmp(" + r1.name + "," + r2.name + ")");
         addStep(i, r1.busWrite(), ALU_A_IN);
         addStep(i, r2.busWrite(), ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        addStep(i, BusWriter.ALU_OUT, BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -210,7 +210,7 @@ public class InstructionSet {
         argsToMar(i);
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal);
-        addStep(i, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        addStep(i, BusWriter.ALU_OUT, BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -372,7 +372,7 @@ public class InstructionSet {
 
         // Store return address on stack
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN);
-        addStep(i,c.mar.incSignal);
+        addStep(i, c.mar.incSignal);
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
 
         // Jump to subroutine
@@ -456,7 +456,7 @@ public class InstructionSet {
         addStep(i, ZEROS, TMP_IN);
         addStep(i, ZEROS, ALU_A_IN);
         addStep(i, ZEROS, ALU_B_IN, c.alu.clearCarrySignal);
-        addStep(i, ZEROS, NO_INPUT, c.alu.addOpSignals, c.alu.clearCarrySignal, c.alu.flrSignal, c.alu.updateFlagsSignal);
+        addStep(i, BusWriter.ALU_OUT, BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.clearCarrySignal, c.alu.flrSignal, c.alu.updateFlagsSignal);
         addStep(i, ZEROS, PC_JMP_H_IN);
         addStep(i, ZEROS, PC_JMP_L_IN);
         addStep(i, PC.JumpCondition.UNCOND.getConditionSignals(c.pc).stream().toArray(Signal[]::new));
@@ -510,12 +510,24 @@ public class InstructionSet {
         return sb.toString();
     }
 
+    // Ensure that we don't modify MAR during ram write, and not have 2 consecutive ramwrite-steps
     public void checkRamWrite() {
         for (Instruction i : instructions) {
             try {
                 i.checkRamWrite();
             } catch (Exception e) {
-                throw new RuntimeException("Ram write check failed for instruction: \n"+i,e);
+                throw new RuntimeException("Ram write check failed for instruction: \n" + i, e);
+            }
+        }
+    }
+
+    // Check that we always enables alu out when updating flags
+    public void flagWriteCheck() {
+        for (Instruction i : instructions) {
+            try {
+                i.checkFlagWrite();
+            } catch (Exception e) {
+                throw new RuntimeException("Ram write check failed for instruction: \n" + i, e);
             }
         }
     }
