@@ -3,14 +3,14 @@
 #include "main.h"
 
 #define RAM2INSTR_STEP 1
-#define RAMLOAD_INSTR 0x80
+#define RAMLOAD_INSTR 0xFE
 #define RAMLOAD_CLR_MAR_OFFSET_STEP 3
 #define RAMLOAD_LOAD_MAR_HIGH_STEP 4
 #define RAMLOAD_LOAD_MAR_LOW_STEP 5
 #define RAMLOAD_INC_MAR_STEP 6
 #define RAMLOAD_RAMWRITE_STEP 7
 
-#define RESET_PC_INSTR 0x81
+#define RESET_PC_INSTR 0xFF
 #define RESET_PC_START_STEP 3
 #define RESET_PC_END_STEP 14
 
@@ -140,8 +140,8 @@ void serialEvent() {
 void processCommand() {
   Serial.println();
   Serial.println(buffer);
-  //halt();
-  //setMastered(true);
+  halt();
+  setMastered(true);
   if (beginsWith(buffer,"mar ")) {
     int address=getHex(&buffer[4],4);
     setMar(address);
@@ -167,8 +167,8 @@ void processCommand() {
     Serial.print(masteredDelay);
     Serial.println(" microseconds");
   } else if (beginsWith(&buffer[0],"s")) {
-    //halt();
-    //setMastered(false);
+    halt();
+    setMastered(false);
     if (buffer[1]==0) {
       tick();
     } else {
