@@ -111,4 +111,13 @@ public final class Instruction {
     public boolean isDummy() {
         return "dummy".equals(opcode);
     }
+
+    public int numSteps() {
+        for (int s=0;s<steps.size();s++) {
+            if (steps.get(s).activeSignals.contains(c.instreg.contSignal)) {
+                return s+1;
+            }
+        }
+        return steps.size();
+    }
 }

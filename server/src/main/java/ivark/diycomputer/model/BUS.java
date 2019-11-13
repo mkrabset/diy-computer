@@ -32,7 +32,7 @@ public class BUS {
 
     public enum BusReader {
         NO_INPUT,
-        UNUSED_1,
+        OUTPUT_3_IN,
         OUTPUT_2_IN,
         OUTPUT_1_IN,
         OUTPUT_0_IN,

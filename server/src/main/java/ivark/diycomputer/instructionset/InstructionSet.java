@@ -10,6 +10,8 @@ import ivark.diycomputer.model.Signal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static ivark.diycomputer.model.BUS.BusReader.*;
 import static ivark.diycomputer.model.BUS.BusWriter.*;
@@ -20,113 +22,126 @@ public class InstructionSet {
 
     public InstructionSet(Computer c) {
         this.c = c;
+
+        final List<Register> regs = Arrays.asList(c.xreg, c.yreg, c.zreg);
+        final List<RegPair> regPairs = regs.stream()
+                .flatMap(r1 -> regs.stream().map(r2 -> new RegPair(r1, r2)))
+                .filter(rp -> rp.r1 != rp.r2)
+                .collect(Collectors.toList());
+
+        // Nop and halt
         instructions.add(createNop());
-        for (Register r : Arrays.asList(c.xreg, c.yreg, c.zreg)) {
-            instructions.add(createLoadAbsolute(r));
-            instructions.add(createLoadIndirect(r));
-            instructions.add(createStoreIndirect(c, r));
-            instructions.add(createAddAbsolute(r));
-            instructions.add(createSubAbsolute(r));
-            instructions.add(createCmpAbsolute(r));
+        instructions.add(createHalt());
 
-            instructions.add(createAddIndirect(r));
-            instructions.add(createSubIndirect(r));
-            instructions.add(createCmpIndirect(r));
+        // Single register instructions
+        instructions.addAll(genIns(regs, this::createLoadAbsolute));
+        instructions.addAll(genIns(regs, this::createLoadIndirect));
+        instructions.addAll(genIns(regs, this::createStoreIndirect));
+        instructions.addAll(genIns(regs, this::createAddAbsolute));
+        instructions.addAll(genIns(regs, this::createSubAbsolute));
+        instructions.addAll(genIns(regs, this::createCmpAbsolute));
 
-            instructions.add(createAndOrXorAbsolute(r, "AND", c.alu.andOpSignals));
-            instructions.add(createAndOrXorAbsolute(r, "OR", c.alu.orOpSignals));
-            instructions.add(createAndOrXorAbsolute(r, "XOR", c.alu.xorOpSignals));
+        instructions.addAll(genIns(regs, this::createAddIndirect));
+        instructions.addAll(genIns(regs, this::createSubIndirect));
+        instructions.addAll(genIns(regs, this::createCmpIndirect));
 
-            instructions.add(createAndOrXorIndirect(r, "AND", c.alu.andOpSignals));
-            instructions.add(createAndOrXorIndirect(r, "OR", c.alu.orOpSignals));
-            instructions.add(createAndOrXorIndirect(r, "XOR", c.alu.xorOpSignals));
+        instructions.addAll(genIns(regs, this::createRol));
+        instructions.addAll(genIns(regs, this::createRor));
+        instructions.addAll(genIns(regs, this::createNot));
+        instructions.addAll(genIns(regs, this::createInc));
+        instructions.addAll(genIns(regs, this::createDec));
 
-            instructions.add(createRol(r));
-            instructions.add(createRor(r));
-            instructions.add(createNot(r));
+        instructions.addAll(genIns(regs, r -> createAndOrXorAbsolute(r, "AND", c.alu.andOpSignals)));
+        instructions.addAll(genIns(regs, r -> createAndOrXorAbsolute(r, "OR", c.alu.orOpSignals)));
+        instructions.addAll(genIns(regs, r -> createAndOrXorAbsolute(r, "XOR", c.alu.xorOpSignals)));
 
-            instructions.add(createInc(r));
-            instructions.add(createDec(r));
+        instructions.addAll(genIns(regs, r -> createAndOrXorIndirect(r, "AND", c.alu.andOpSignals)));
+        instructions.addAll(genIns(regs, r -> createAndOrXorIndirect(r, "OR", c.alu.orOpSignals)));
+        instructions.addAll(genIns(regs, r -> createAndOrXorIndirect(r, "XOR", c.alu.xorOpSignals)));
 
-            for (Register r2 : Arrays.asList(c.xreg, c.yreg, c.zreg)) {
-                if (r != r2 && r != c.zreg) {
-                    instructions.add(createOp2regs("ADD", c.alu.addOpSignals, r, r2, false));
-                    instructions.add(createOp2regs("SUB", c.alu.addOpSignals, r, r2, true));
-                    instructions.add(createOp2regs("AND", c.alu.addOpSignals, r, r2, false));
-                    instructions.add(createOp2regs("OR", c.alu.addOpSignals, r, r2, false));
-                    instructions.add(createOp2regs("XOR", c.alu.addOpSignals, r, r2, false));
-                }
-            }
-        }
-        instructions.add(createCmpRegs(c.xreg, c.yreg));
-        instructions.add(createCmpRegs(c.xreg, c.zreg));
-        instructions.add(createCmpRegs(c.yreg, c.xreg));
-        instructions.add(createCmpRegs(c.yreg, c.zreg));
-        instructions.add(createCmpRegs(c.zreg, c.xreg));
-        instructions.add(createCmpRegs(c.zreg, c.yreg));
+        instructions.addAll(genIns(regs, this::createPush));
+        instructions.addAll(genIns(regs, this::createPop));
 
+        instructions.addAll(genIns(regs, r-> createOut(r, 0, BusReader.OUTPUT_0_IN)));
+        instructions.addAll(genIns(regs, r-> createOut(r, 1, BusReader.OUTPUT_1_IN)));
+        instructions.addAll(genIns(regs, r-> createOut(r, 2, BusReader.OUTPUT_2_IN)));
+        instructions.addAll(genIns(regs, r-> createOut(r, 3, BusReader.OUTPUT_3_IN)));
+
+        instructions.addAll(genIns(regs, r-> createIn(r, 0, BusWriter.INPUT_0_OUT)));
+        instructions.addAll(genIns(regs, r-> createIn(r, 1, BusWriter.INPUT_1_OUT)));
+        instructions.addAll(genIns(regs, r-> createIn(r, 2, BusWriter.INPUT_2_OUT)));
+        instructions.addAll(genIns(regs, r-> createIn(r, 3, BusWriter.INPUT_3_OUT)));
+
+
+        // Dual register instructions
+        instructions.addAll(genIns2(regPairs, rp -> createOp2regs("ADD", c.alu.addOpSignals, rp.r1, rp.r2, false)));
+        instructions.addAll(genIns2(regPairs, rp -> createOp2regs("SUB", c.alu.addOpSignals, rp.r1, rp.r2, true)));
+        instructions.addAll(genIns2(regPairs, rp -> createOp2regs("AND", c.alu.andOpSignals, rp.r1, rp.r2, false)));
+        instructions.addAll(genIns2(regPairs, rp -> createOp2regs("OR", c.alu.orOpSignals, rp.r1, rp.r2, false)));
+        instructions.addAll(genIns2(regPairs, rp -> createOp2regs("XOR", c.alu.xorOpSignals, rp.r1, rp.r2, false)));
+        instructions.addAll(genIns2(regPairs, rp -> createCmpRegs(rp.r1, rp.r2)));
+
+
+        // No register instructions
         instructions.add(createRolIndirect());
         instructions.add(createRorIndirect());
         instructions.add(createNotIndirect());
         instructions.add(createIncDecIndirect("INC", true));
         instructions.add(createIncDecIndirect("DEC", false));
 
+        // Carry set/clear
         instructions.add(createSec());
         instructions.add(createClc());
 
-
+        // Unconditional jumps
         instructions.add(createBranchDirect("JMP", PC.JumpCondition.UNCOND));
-        for (PC.JumpCondition cond : PC.JumpCondition.values()) {
-            if (cond != PC.JumpCondition.UNCOND && cond != PC.JumpCondition.NOJUMP) {
-                instructions.add(createBranchDirect("B" + cond.name(), cond));
-            }
-        }
-
         instructions.add(createJumpIndirect());
 
+        // Conditional jumps
+        instructions.addAll(
+                Arrays.stream(PC.JumpCondition.values())
+                        .filter(cond -> (cond != PC.JumpCondition.UNCOND && cond != PC.JumpCondition.NOJUMP))
+                        .map(cond -> createBranchDirect("B" + cond.name(), cond))
+                        .collect(Collectors.toList())
+        );
+
+        // Subroutine jump/return
         instructions.add(createJsr(false));
         instructions.add(createJsr(true));
         instructions.add(createRts());
 
-        for (Register r : Arrays.asList(c.xreg, c.yreg, c.zreg)) {
-            instructions.add(createPush(r));
-            instructions.add(createPop(r));
-        }
-
-        instructions.add(createHalt());
-
-        for (Register r : Arrays.asList(c.xreg, c.yreg)) {
-            instructions.add(createOut(r, 0, BusReader.OUTPUT_0_IN));
-            instructions.add(createOut(r, 1, BusReader.OUTPUT_1_IN));
-            instructions.add(createOut(r, 2, BusReader.OUTPUT_2_IN));
-        }
-
-        for (Register r : Arrays.asList(c.xreg)) {
-            instructions.add(createIn(r, 0, BusWriter.INPUT_0_OUT));
-            instructions.add(createIn(r, 1, BusWriter.INPUT_1_OUT));
-        }
-
-        instructions.add(createRamLoad());
-        instructions.add(createResetPc());
-
-        for (int i = instructions.size(); i < 256; i++) {
+        // Dummy fill the rest
+        for (int i = instructions.size(); i < 254; i++) {
             instructions.add(new Instruction(c, "dummy", "dummy", "dummy"));
         }
 
+        // Instructions for the programmer
+        instructions.add(createRamLoad());
+        instructions.add(createResetPc());
+
+        // Fill remaining steps with cont-signal
         for (Instruction ins : instructions) {
             ins.addContinueAfterCompletion();
         }
 
-
+        // Set index value on instructions
         for (int i = 0; i < instructions.size(); i++) {
             instructions.get(i).num = i;
         }
+
         System.out.println("RAM Write check:");
         checkRamWrite();
         flagWriteCheck();
 
     }
 
+    private List<Instruction> genIns(List<Register> regs, Function<Register, Instruction> generator) {
+        return regs.stream().map(r -> generator.apply(r)).collect(Collectors.toList());
+    }
+
+    private List<Instruction> genIns2(List<RegPair> regPairs, Function<RegPair, Instruction> generator) {
+        return regPairs.stream().map(r -> generator.apply(r)).collect(Collectors.toList());
+    }
 
     private Instruction createLoadAbsolute(Register r) {
         Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " #(..)", r.name + " := arg");
@@ -141,7 +156,7 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createStoreIndirect(Computer c, Register r) {
+    private Instruction createStoreIndirect(Register r) {
         Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", r.name + " -> ram(arg)");
         argsToMar(i);
         addStep(i, r.busWrite(), RAM_IN);
@@ -483,11 +498,10 @@ public class InstructionSet {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < instructions.size(); i++) {
-            sb.append("Instruction #" + toHex(i, 2) + " (" + i + ")\n");
-            sb.append(instructions.get(i).toString());
-            sb.append("\n\n");
-            if (instructions.get(i).isDummy()) {
-                break;
+            if (!instructions.get(i).isDummy()) {
+                sb.append("Instruction #" + toHex(i, 2) + " (" + i + ")\n");
+                sb.append(instructions.get(i).toString());
+                sb.append("\n\n");
             }
         }
         return sb.toString();
@@ -501,14 +515,18 @@ public class InstructionSet {
     public String summary() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < instructions.size(); i++) {
-            sb.append(i + "= #" + toHex(i, 2) + "\t\t" + instructions.get(i).pattern + "\t\t" + instructions.get(i).description + "\t\t" + instructions.get(i).steps.size());
-            sb.append("\n");
-            if (instructions.get(i).isDummy()) {
-                break;
+            if (!instructions.get(i).isDummy()) {
+                Instruction ins = instructions.get(i);
+                sb.append("#" + toHex(i, 2) + "\t\t"
+                        + ins.pattern + "\t\t"
+                        + ins.description
+                        + "\t\t" + ins.numSteps());
+                sb.append("\n");
             }
         }
         return sb.toString();
     }
+
 
     // Ensure that we don't modify MAR during ram write, and not have 2 consecutive ramwrite-steps
     public void checkRamWrite() {
@@ -529,6 +547,16 @@ public class InstructionSet {
             } catch (Exception e) {
                 throw new RuntimeException("Ram write check failed for instruction: \n" + i, e);
             }
+        }
+    }
+
+    private class RegPair {
+        final public Register r1;
+        final public Register r2;
+
+        public RegPair(Register r1, Register r2) {
+            this.r1 = r1;
+            this.r2 = r2;
         }
     }
 }
