@@ -74,6 +74,9 @@ public class InstructionSet {
 
 
         // Dual register instructions
+        instructions.addAll(genIns2(regPairs, rp -> createLoadIndirectIndexed(rp.r1, rp.r2)));
+        instructions.addAll(genIns2(regPairs, rp -> createStoreIndirectIndexed(rp.r1, rp.r2)));
+
         instructions.addAll(genIns2(regPairs, rp -> createOp2regs("ADD", c.alu.addOpSignals, rp.r1, rp.r2, false)));
         instructions.addAll(genIns2(regPairs, rp -> createOp2regs("SUB", c.alu.addOpSignals, rp.r1, rp.r2, true)));
         instructions.addAll(genIns2(regPairs, rp -> createOp2regs("AND", c.alu.andOpSignals, rp.r1, rp.r2, false)));
@@ -156,9 +159,25 @@ public class InstructionSet {
         return i;
     }
 
-    private Instruction createStoreIndirect(Register r) {
-        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", r.name + " -> ram(arg)");
+    private Instruction createLoadIndirectIndexed(Register r, Register ri) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....),"+ri.name, r.name + " := ram(arg+"+ri.name+")");
         argsToMar(i);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
+        addStep(i, RAM_OUT, r.busRead());
+        return i;
+    }
+
+    private Instruction createStoreIndirect(Register r) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", "ram(arg) := "+r.name);
+        argsToMar(i);
+        addStep(i, r.busWrite(), RAM_IN);
+        return i;
+    }
+
+    private Instruction createStoreIndirectIndexed(Register r, Register ri) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....),"+ri.name, "ram(arg+"+ri.name+") := "+r.name);
+        argsToMar(i);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
         addStep(i, r.busWrite(), RAM_IN);
         return i;
     }
