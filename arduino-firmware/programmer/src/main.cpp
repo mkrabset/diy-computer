@@ -76,18 +76,26 @@ void setup() {
 
   pinMode(SRC_SEL,OUTPUT);
   digitalWrite(SRC_SEL,LOW);
-
+  delay(100);
   Serial.begin(115200);
+  delay(100);
+  Serial.println();
   Serial.println("DIY Computer Programmer");
   Serial.println();
-  Serial.println("Usage examples:");
-  Serial.println("===============");
+  Serial.println("Programmer commands:");
+  Serial.println("====================");
   Serial.println("mar xxxx           // Set memory address register to xxxx");
   Serial.println("w 12 34 23 1a a0   // Writes the byte values 12 34 23... into memory, starting at current MAR address, increase MAR after each byte");
   Serial.println("initpc             // Set program counter to zero");
   Serial.println("run                // Execute program");
   Serial.println("hlt                // Halt execution");
   Serial.println("s                  // Execute single step");
+  Serial.println("rd xxxxx           // Set run delay (us)");
+  Serial.println("md xxxxx           // Set mastered delay (us)");
+  Serial.println("dm                 // Display memory pointed by MAR as INSTR and inc MAR");
+  Serial.println("dm xxx             // Display memory (repeat xxx times)");
+  Serial.println("t                  // toggle clock level (warning: don't keep high when using external clock!)");
+  Serial.println("mc iis             // Set mastered instruction/step to ii/s (for verifying decoder signals)");
   Serial.println(">");
   halted=true;
   busWrite(false);
@@ -191,14 +199,18 @@ void processCommand() {
       setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
       tick();
     } else {
-      int num=atoi(&buffer[1]);
+      int num=atoi(&buffer[2]);
       for (int i=0;i<num;i++) {
         setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
         tick();
+        setMastered(false);
+        delay(1000);
+        setMastered(true);
         setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
         tick();
       }
     }
+    setMastered(false);
   } else if (beginsWith(&buffer[0],"t")) {
     setMastered(false);
     clock(!highCLK);
@@ -210,6 +222,7 @@ void processCommand() {
     setMicrocodeStep(mcAddress>>4, mcAddress & 0x0f);
     Serial.print("Set mc to #");
     Serial.println(mcAddress, HEX);
+    setMastered(true);
   } 
   Serial.println(">");
 }
