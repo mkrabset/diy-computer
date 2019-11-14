@@ -2,6 +2,10 @@
 #include <Arduino.h>
 #include "main.h"
 
+#define DEBUG false
+
+#define DEBUGOUT if (DEBUG) Serial.println
+
 #define RAM2INSTR_STEP 1
 #define RAMLOAD_INSTR 0xFE
 #define RAMLOAD_CLR_MAR_OFFSET_STEP 3
@@ -33,7 +37,7 @@
 
 #define RUNDELAY 5000
 #define MASTERING_DEBUG false
-#define MASTERING_DELAY 5000
+#define MASTERING_DELAY 50
 
 #define CLK_LED 13
 
@@ -94,9 +98,9 @@ void setup() {
 
 void clock(bool val) {
   if (val) {
-    Serial.println("CLK UP");
+    DEBUGOUT("CLK UP");
   } else {
-    Serial.println("CLK DOWN");
+    DEBUGOUT("CLK DOWN");
   }
   digitalWrite(EXT_CLK,val);
   digitalWrite(CLK_LED,val);
@@ -105,11 +109,11 @@ void clock(bool val) {
 void setMastered(boolean m) {
   mastered=m;
   if (mastered) {
-    Serial.println("Mastered=true");
+    DEBUGOUT("Mastered=true");
     halted=true;
     Timer1.detachInterrupt();
   } else {
-    Serial.println("Mastered=false");
+    DEBUGOUT("Mastered=false");
   }
   digitalWrite(SRC_SEL,!mastered);
 }
@@ -138,8 +142,8 @@ void serialEvent() {
 }
 
 void processCommand() {
-  Serial.println();
-  Serial.println(buffer);
+  DEBUGOUT();
+  DEBUGOUT(buffer);
   halt();
   setMastered(true);
   if (beginsWith(buffer,"mar ")) {
@@ -181,7 +185,7 @@ void processCommand() {
     halt();
     setMastered(true);
     if (buffer[2]==0) {
-      Serial.println("dm");
+      DEBUGOUT("dm");
       setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
       tick();
       setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
@@ -223,7 +227,7 @@ void initPC() {
 void halt() {
   Timer1.detachInterrupt();
   halted=true;
-  Serial.println("Halted");
+  DEBUGOUT("Halted");
 }
 
 void run() {
@@ -258,23 +262,23 @@ void writeBufferToRAM() {
     writeRamAndIncreaseMar(data[i]);
   }
 
-  Serial.print("Wrote ");
-  Serial.print(dpos);
-  Serial.println(" bytes");
+  DEBUGOUT("Wrote ");
+  DEBUGOUT(dpos);
+  DEBUGOUT(" bytes");
   for (int i=0;i<dpos;i++) {
-    printHex(data[i],2);
-    Serial.print(" ");
+    if (DEBUG) printHex(data[i],2);
+    DEBUGOUT(" ");
   }
-  Serial.println();
+  DEBUGOUT();
 }
 
 
 void setMicrocodeStep(byte instr, byte step) {
-  Serial.print("SETINST: ");
-  Serial.print(instr,HEX);
-  Serial.print(",");
-  Serial.print(step);
-  Serial.println();
+  DEBUGOUT("SETINST: ");
+  DEBUGOUT(instr,HEX);
+  DEBUGOUT(",");
+  DEBUGOUT(step);
+  DEBUGOUT();
   long address=0;
   address|=instr;
   address<<=8;
@@ -384,7 +388,7 @@ void printHex(int num, int precision) {
 }
 
 void sleep() {
-  Serial.println("...");
+  DEBUGOUT("...");
   long delayMicro=mastered ? masteredDelay : runDelay;
   if (delayMicro>15000) {
     delay(delayMicro/1000);
