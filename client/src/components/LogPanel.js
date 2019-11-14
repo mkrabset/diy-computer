@@ -9,8 +9,8 @@ import "./LogPanel.css"
 const WAIT_INTERVAL = 3000;
 
 class LogPanel extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             log: "",
             next: 0
@@ -53,6 +53,7 @@ class LogPanel extends Component {
         return (
             <div id="logpanel">
                 <textarea id="log" editable={false} value={this.state.log}/>
+                <textarea id="mappedCode" editable={false} value={this.props.mappedCode}/>
             </div>
         );
     }

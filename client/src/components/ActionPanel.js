@@ -9,8 +9,8 @@ import "./ActionPanel.css"
 const WAIT_INTERVAL = 2000;
 
 class ActionPanel extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.toggleCamera = this.toggleCamera.bind(this);
         this.reload_img = this.reload_img.bind(this);
         this.sendCommand = this.sendCommand.bind(this);
@@ -98,6 +98,7 @@ class ActionPanel extends Component {
 
     installCode() {
         this.sendCommand("install")
+        this.props.onInstalled()
     }
 
     resetPc() {

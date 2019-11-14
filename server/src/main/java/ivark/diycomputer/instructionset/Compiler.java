@@ -122,7 +122,7 @@ public class Compiler {
         List<String> result = new ArrayList<>();
         //result.add("md 10000");  // Set max speed for programming (masterdelay=0)
         result.add("mar 0000");  // Set memory address register to zero
-        List<Byte> byteCode = getByteCode(lines, lblMap);
+        List<Byte> byteCode = getByteCode(lines, lblMap).getBytes();
         String instr="w ";
         for (byte b: byteCode) {
             instr+=toHex((int)b,2);
@@ -139,55 +139,46 @@ public class Compiler {
     }
 
 
-    public List<Byte> getByteCode(List<String> lines, Map<String, Integer> lblMap) {
-        List<Byte> result = new ArrayList<>();
+    public ByteCode getByteCode(List<String> lines, Map<String, Integer> lblMap) {
+        ByteCode result = new ByteCode();
         int address = 0;
         for (String line : lines) {
-            System.out.print((toHex(address, 4) + "  " + line + "                                                   ").substring(0, 40));
+            String currentAddress=toHex(address, 4);
+            String currentLine=line;
+            List<Byte> currentBytes=null;
+            LineType currentLineType=null;
 
             if (BYTELINEPATTERN.matcher(line).matches()) {
+                currentLineType=LineType.BYTES;
                 String[] bytes = getBytesFromByteline(line);
+                currentBytes=Arrays.stream(bytes).map(this::toByte).collect(Collectors.toList());
                 address += bytes.length;
-                for (String bytestring : bytes) {
-                    result.add(toByte(bytestring));
-                }
-                System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
-                System.out.println();
             } else if (STRINGLINEPATTERN.matcher(line).matches()) {
+                currentLineType=LineType.STRING;
                 String[] bytes = getBytesFromStringline(line);
+                currentBytes=Arrays.stream(bytes).map(this::toByte).collect(Collectors.toList());
                 address += bytes.length;
-                for (String bytestring : bytes) {
-                    result.add(toByte(bytestring));
-                }
-                System.out.print(Stream.of(bytes).collect(Collectors.joining(" ")));
-                System.out.println();
             } else {
                 Matcher matcher = LABELPATTERN.matcher(line.trim());
                 if (matcher.matches()) {
-                    System.out.println();
+                    currentLineType=LineType.LABEL;
+                    currentBytes=Collections.emptyList();
                 } else {
+                    currentLineType=LineType.INSTR;
                     Instruction i = findInstruction(is, line);
                     try {
                         address++;
-                        System.out.print(toHex(i.num, 2) + " ");
+                        currentBytes=new ArrayList<>();
+                        currentBytes.add((byte)i.num);
 
-                        result.add((byte) i.num);
                         if (matchesDirectly(i, line)) {
                             Matcher m = i.pattern.matcher(line);
                             m.matches();
                             if (m.groupCount() >= 1) {
                                 String[] argbytes = m.group(1).split("(?<=\\G.{2})");
-                                for (String argbyte : argbytes) {
-                                    result.add(toByte(argbyte));
-                                }
-                                System.out.print(Stream.of(argbytes).collect(Collectors.joining(" ")));
-                                if (i.pattern.toString().contains("....")) {
-                                    address += 2;
-                                } else if (i.pattern.toString().contains("..")) {
-                                    address += 1;
-                                }
+                                currentBytes.addAll(Arrays.stream(argbytes).map(this::toByte).collect(Collectors.toList()));
+                                address+=argbytes.length;
                             }
-                            System.out.println();
                         } else if (matchesWithLabel(i, line)) {
                             Matcher m = getDirectLabelPattern(i).matcher(line);
                             m.matches();
@@ -196,11 +187,8 @@ public class Compiler {
                                 arg += Integer.valueOf(m.group(2));
                             }
                             String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
-                            for (String argbyte : argbytes) {
-                                result.add(toByte(argbyte));
-                            }
-                            System.out.println(toHex(arg, 4));
-                            address += 2;
+                            currentBytes.addAll(Arrays.stream(argbytes).map(this::toByte).collect(Collectors.toList()));
+                            address += argbytes.length;
                         } else if (matchesWithIndirectLabel(i, line)) {
                             Matcher m = getIndirectLabelPattern(i).matcher(line);
                             m.matches();
@@ -209,19 +197,22 @@ public class Compiler {
                                 throw new RuntimeException("Unknown label: " + m.group(1) + " in instruction " + line);
                             }
                             String[] argbytes = toHex(arg, 4).split("(?<=\\G.{2})");
-                            for (String argbyte : argbytes) {
-                                result.add(toByte(argbyte));
-                            }
-                            System.out.println(toHex(arg, 4));
-                            address += 2;
+                            currentBytes.addAll(Arrays.stream(argbytes).map(this::toByte).collect(Collectors.toList()));
+                            address += argbytes.length;
                         }
+
                     } catch (Exception e) {
                         throw new RuntimeException("Failed for instruction "+i+" at line : "+line,e);
                     }
                 }
             }
+            result.mappedCode.add(new ByteCode.MappedLine(currentAddress, currentBytes, currentLine, currentLineType));
         }
         return result;
+    }
+
+    private String createMappedLine(String currentAddress, String currentBytes, String currentLine) {
+        return currentAddress+" "+currentBytes+" "+currentLine;
     }
 
     private Byte toByte(String s) {
@@ -293,6 +284,37 @@ public class Compiler {
     private static String toHex(Integer v, int length) {
         String padded = "0000000" + Integer.toHexString(v);
         return padded.substring(padded.length() - length);
+    }
+
+    public static class ByteCode {
+        public final List<MappedLine> mappedCode=new ArrayList<>();
+
+        public static class MappedLine {
+            final String address;
+            final List<Byte> bytes;
+            final String line;
+            final LineType lineType;
+
+            public MappedLine(String address, List<Byte> bytes, String line, LineType lineType) {
+                this.address = address;
+                this.bytes = bytes;
+                this.line = line;
+                this.lineType = lineType;
+            }
+        }
+
+        public List<Byte> getBytes() {
+            return mappedCode.stream().flatMap(line->line.bytes.stream()).collect(Collectors.toList());
+        }
+
+
+    }
+
+    enum LineType {
+        LABEL,
+        INSTR,
+        BYTES,
+        STRING
     }
 
 }

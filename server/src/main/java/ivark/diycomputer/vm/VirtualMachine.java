@@ -44,7 +44,7 @@ public class VirtualMachine {
     public void run(String programpath) throws Exception {
         List<String> lines = compiler.getLines(new FileReader(new File(programpath)));
         Map<String, Integer> labelMap = compiler.createLabelMap(lines);
-        List<Byte> byteCode = compiler.getByteCode(lines, labelMap);
+        List<Byte> byteCode = compiler.getByteCode(lines, labelMap).getBytes();
         for (int i=0;i<byteCode.size();i++) {
             ram.memory[i]=byteCode.get(i);
         }

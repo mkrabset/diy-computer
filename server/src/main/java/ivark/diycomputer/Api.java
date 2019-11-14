@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 public class Api {
     private final Computer C = new Computer();
     private String code = "";
+    private String mappedCode="";
     private int runDelay=5000;
 
     private SerialWriter serialWriter;
@@ -97,6 +98,13 @@ public class Api {
     @Produces(MediaType.TEXT_PLAIN)
     public Integer getRunDelay() throws Exception {
         return runDelay;
+    }
+
+    @GET
+    @Path("/mappedCode")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getMappedCode() {
+        return mappedCode;
     }
 
     @POST
