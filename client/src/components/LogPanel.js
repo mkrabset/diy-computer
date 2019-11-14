@@ -52,8 +52,10 @@ class LogPanel extends Component {
     render() {
         return (
             <div id="logpanel">
-                <textarea id="log" editable={false} value={this.state.log}/>
+                <span>Installed code:</span>
                 <textarea id="mappedCode" editable={false} value={this.props.mappedCode}/>
+                <span>Programmer log:</span>
+                <textarea id="log" editable={false} value={this.state.log}/>
             </div>
         );
     }

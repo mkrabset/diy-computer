@@ -10,7 +10,7 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            mappedCode: 'mapped code'
+            mappedCode: ''
         }
         this.setBatchLog = this.setBatchLog.bind(this)
         this.onInstalled = this.onInstalled.bind(this)
@@ -47,7 +47,6 @@ class App extends Component {
                         <ActionPanel onInstalled={this.onInstalled}/>
                     </div>
                     <div id="rightPanel">
-                        <div className="header">LOG</div>
                         <LogPanel mappedCode={this.state.mappedCode} batchLogSetter={this.setBatchLog}/>
                     </div>
                 </div>

@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
@@ -116,7 +117,10 @@ public class Api {
             case install: {
                 Compiler compiler = new Compiler(C);
                 List<String> lines = compiler.getLines(new StringReader(code));
-                List<String> installInstructions = compiler.generateInstallInstructions(lines);
+                Map<String, Integer> labelMap = compiler.createLabelMap(lines);
+                Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);
+                this.mappedCode=byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
+                List<String> installInstructions = compiler.genInstallInstructions(byteCode.getBytes());
                 serialWriter.writeToSerial(installInstructions);
                 break;
             }

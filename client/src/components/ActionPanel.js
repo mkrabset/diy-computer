@@ -29,12 +29,14 @@ class ActionPanel extends Component {
         };
     }
 
-    sendCommand(command) {
+    sendCommand(command, onResult) {
         fetch("http://" + config.host + ":" + config.apiPort + "/api/command", {
             method: "post",
             body: command
         }).then(result => {
-
+                if (onResult) {
+                    onResult(result)
+                }
             }
         );
     }
@@ -97,8 +99,7 @@ class ActionPanel extends Component {
     }
 
     installCode() {
-        this.sendCommand("install")
-        this.props.onInstalled()
+        this.sendCommand("install", this.props.onInstalled)
     }
 
     resetPc() {
