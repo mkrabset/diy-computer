@@ -37,7 +37,7 @@ ADDZ FTEMP
 RTS
 
 FTEMP:
-B
+B 0x00
 
 
 WAIT:
