@@ -5,13 +5,13 @@ test:
 
 done:
  LDX floatmultiply_res
- OUT2 X
+ OUT0 X
  LDX floatmultiply_res+1
- OUT2 X
+ OUT1 X
  LDX floatmultiply_res+2
  OUT2 X
  LDX floatmultiply_res+3
- OUT2 X
+ OUT3 X
  HLT
  JMP done
 
@@ -151,11 +151,12 @@ mul_exp_lsb_clear:
 
 
 floatmultiply_arg1:
-B 0x 40 49 0f db  // 01000000 01001001 00001111 11011011
+B 0x 40 49 0f db  // 01000000 01001001 00001111 11011011 = 3.14159265
 
 floatmultiply_arg2:
-B 0x 40 2d f8 54  // 01000000 00101101 11111000 01010100
+B 0x 40 2d f8 54  // 01000000 00101101 11111000 01010100 =  2.71828182846
 
+// Expected result: 0x4108A2C0 = 01000001 00001000 10100010 11000000 = 8.539734212918496
 
 
 floatmultiply_temp1:
