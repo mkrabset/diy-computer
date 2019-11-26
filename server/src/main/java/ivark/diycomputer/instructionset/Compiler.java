@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * Created by ivark on 22.10.17.
  */
 public class Compiler {
-    private InstructionSet is;
+    private DIYInstructionSet is;
 
     final static private Pattern LABELPATTERN = Pattern.compile("([a-zA-Z][a-zA-Z0-9_]*)\\:");
     final static private Pattern BYTELINEPATTERN = Pattern.compile("B *0x *([0-9a-fA-F ]*)");
@@ -26,7 +26,7 @@ public class Compiler {
     }
 
     public Compiler(Computer computer) {
-        this.is = new InstructionSet(computer);
+        this.is = new DIYInstructionSet(computer);
     }
 
     private void compile(File file) throws Exception {
@@ -209,7 +209,7 @@ public class Compiler {
         return (byte) Integer.parseInt(s, 16);
     }
 
-    private Instruction findInstruction(InstructionSet is, String line) {
+    private Instruction findInstruction(DIYInstructionSet is, String line) {
         for (Instruction i : is.instructions) {
             if (matchesDirectly(i, line)) {
                 return i;

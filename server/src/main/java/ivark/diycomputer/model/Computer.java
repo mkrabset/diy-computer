@@ -1,6 +1,6 @@
 package ivark.diycomputer.model;
 
-import ivark.diycomputer.instructionset.InstructionSet;
+import ivark.diycomputer.instructionset.DIYInstructionSet;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ public class Computer {
         System.out.println();
 
 
-        InstructionSet instructionSet = new InstructionSet(c);
+        DIYInstructionSet instructionSet = new DIYInstructionSet(c);
         System.out.println("Instruction set:");
         System.out.println("-----------------");
         System.out.println(instructionSet.toString());

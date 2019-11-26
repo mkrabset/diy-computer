@@ -1,7 +1,7 @@
 package ivark.diycomputer.instructionset.eeprom;
 
 import ivark.diycomputer.model.Computer;
-import ivark.diycomputer.instructionset.InstructionSet;
+import ivark.diycomputer.instructionset.DIYInstructionSet;
 import ivark.diycomputer.instructionset.Microcode;
 import ivark.diycomputer.model.Signal;
 import jssc.SerialPort;
@@ -14,7 +14,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class SignalTest {
     Computer c = new Computer();
-    InstructionSet s = new InstructionSet(c);
+    DIYInstructionSet s = new DIYInstructionSet(c);
 
     Signal signal = c.sp.dirDownSignal;
 

@@ -2,7 +2,7 @@ package ivark.diycomputer.vm;
 
 import ivark.diycomputer.instructionset.Compiler;
 import ivark.diycomputer.instructionset.Instruction;
-import ivark.diycomputer.instructionset.InstructionSet;
+import ivark.diycomputer.instructionset.DIYInstructionSet;
 import ivark.diycomputer.instructionset.Microcode;
 import ivark.diycomputer.model.BUS;
 import ivark.diycomputer.model.Computer;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 public class VirtualMachine {
     private Computer c = new Computer();
-    private InstructionSet is = new InstructionSet(c);
+    private DIYInstructionSet is = new DIYInstructionSet(c);
     private Compiler compiler = new Compiler(c);
     private InstReg instReg = new InstReg();
     private Mar mar = new Mar();

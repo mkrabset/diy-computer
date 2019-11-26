@@ -2,7 +2,7 @@ package ivark.diycomputer.instructionset.eeprom;
 
 import ivark.diycomputer.model.Computer;
 import ivark.diycomputer.instructionset.Instruction;
-import ivark.diycomputer.instructionset.InstructionSet;
+import ivark.diycomputer.instructionset.DIYInstructionSet;
 import ivark.diycomputer.instructionset.Microcode;
 
 import java.io.File;
@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 
 abstract class DecoderEEPromBase {
     Computer c = new Computer();
-    InstructionSet instructionSet=new InstructionSet(c);
+    DIYInstructionSet instructionSet=new DIYInstructionSet(c);
 
     DecoderEEPromBase() {}
 
