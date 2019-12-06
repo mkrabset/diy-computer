@@ -1,3 +1,15 @@
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+NOP
+
+
 
 START:
 LDX #00

@@ -85,7 +85,7 @@ public class PC extends Module {
                 case HI:
                     return c && !z;
                 case LS:
-                    return !c && z;
+                    return !c || z;
                 case GE:
                     return n==v;
                 case LT:
