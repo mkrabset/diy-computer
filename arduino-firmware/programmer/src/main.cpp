@@ -189,7 +189,7 @@ void processCommand() {
         tick();
       }
     }
-  } else if (beginsWith(&buffer[0],"dm")) {
+  } else if (beginsWith(&buffer[0],"dm")) {  // Display memory in instruction reg display
     halt();
     setMastered(true);
     if (buffer[2]==0) {
