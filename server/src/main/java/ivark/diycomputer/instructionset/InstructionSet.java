@@ -17,7 +17,6 @@ public abstract class InstructionSet {
         this.c = c;
         this.instructions=getInstructions();
 
-        System.out.println("RAM Write check:");
         checkRamWrite(instructions);
         flagWriteCheck(instructions);
     }

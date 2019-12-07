@@ -2,11 +2,11 @@ NOP
 NOP
 NOP
 start:
-  //JSR scramble3
+  JSR scramble3
   JSR scramble2
-  //JSR scramble1
+  JSR scramble1
 
-
+lcdloop:
   JSR lcdreset
   JSR lcdclear
   JSR lcdhome
@@ -15,7 +15,7 @@ start:
   JSR lcdinstr
 
   JSR writemessage
-  JMP start
+  JMP lcdloop
 
 scramble1:
   LDX #00
@@ -32,12 +32,19 @@ scramble2:
   LDX #00
   LDY #01
 scramble2_loop:
+  //OUT0 X
+  //OUT1 Y
   JSR swapletters
+  LDZ message
+  OUT2 Z
+  LDZ message+1
+  OUT3 Z
   INC X
   INC X
   INC Y
   INC Y
   CMPX #AE
+
   BLS scramble2_loop
   RTS
 
@@ -54,21 +61,21 @@ scramble3_loop:
   JSR swapletters
   SEC
   SUBY #05
+  INC X
   CMPX #56
   BLS scramble3_loop
+  OUT2 X
   RTS
 
 
 
 swapletters:
-  PUSH Z
   LDZ message,X
-  STZ tmp
+  PUSH Z
   LDZ message,Y
   STZ message,X
-  LDZ tmp
-  STZ message,Y
   POP Z
+  STZ message,Y
   RTS
 
 
@@ -156,10 +163,8 @@ LDX message
 
 // Luke5 input
 message:
-//S 'tMlsioaplnKlflgiruKanliaebeLlkslikkpnerikTasatamkDpsdakeraBeIdaegptnuaKtmteorpuTaTtbtse'
-//S 'sOHXxonibmksekaaoaKtrssegnveinRedlkkkroeekVtkekymmlooLnanoKtlstoepHrpeutdynfSneloietbol          \0'
-S '123456789------------------------------------------------------------------------------'
-S 'ABCDEFGHIJ.............................................................................          \0'
+S 'tMlsioaplnKlflgiruKanliaebeLlkslikkpnerikTasatamkDpsdakeraBeIdaegptnuaKtmteorpuTaTtbtse'
+S 'sOHXxonibmksekaaoaKtrssegnveinRedlkkkroeekVtkekymmlooLnanoKtlstoepHrpeutdynfSneloietbol          \0'
 tmp:
 B 0x00
 

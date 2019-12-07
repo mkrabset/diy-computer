@@ -120,6 +120,7 @@ public class Api {
                 Map<String, Integer> labelMap = compiler.createLabelMap(lines);
                 Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);
                 this.mappedCode=byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
+                this.mappedCode=this.mappedCode+"\n\nChecksum: "+ byteCode.checksum()+"\n";
                 List<String> installInstructions = compiler.genInstallInstructions(byteCode.getBytes());
                 serialWriter.writeToSerial(installInstructions);
                 break;

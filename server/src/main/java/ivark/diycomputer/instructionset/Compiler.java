@@ -276,6 +276,11 @@ public class Compiler {
         return padded.substring(padded.length() - length);
     }
 
+    private static String toHex(Byte v, int length) {
+        String padded = "0000000" + Integer.toHexString(v);
+        return padded.substring(padded.length() - length);
+    }
+
     public static class ByteCode {
         public static final String PADDING = "          ";
         public final List<MappedLine> mappedCode = new ArrayList<>();
@@ -309,6 +314,19 @@ public class Compiler {
 
         public List<Byte> getBytes() {
             return mappedCode.stream().flatMap(line -> line.bytes.stream()).collect(Collectors.toList());
+        }
+
+        public String checksum() {
+            byte result=0;
+            for (MappedLine ml:mappedCode) {
+                if (ml.lineType==LineType.LABEL && ml.line.trim().equals("cs_end:")) {
+                    break;
+                }
+                for (byte b: ml.bytes) {
+                    result+=b;
+                }
+            }
+            return "#"+toHex(result,2)+" = "+((result+256) % 256);
         }
 
 
