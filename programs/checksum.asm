@@ -14,6 +14,7 @@ checksum:
 
   LDZ #00
 checksum_loop:
+  CLC
 checksum_curr_ptr:
   ADDZ $0000
   INC checksum_curr_ptr+2
