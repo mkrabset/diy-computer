@@ -85,17 +85,33 @@ public final class Instruction {
         boolean lastRamIn=false;
         for (Microcode s:steps) {
             if (s.to==RAM_IN) {
-                if (s.activeSignals.stream().anyMatch(sig->sig==c.mar.incSignal)) {
+                if (s.activeSignals.stream().anyMatch(sig -> sig == c.mar.incSignal)) {
                     throw new RuntimeException("Ram write in combination with mar.inc");
                 }
                 if (lastRamIn) {
                     throw new RuntimeException("Multiple ram writes");
                 }
-                lastRamIn=true;
-            } else {
+                lastRamIn = true;
+            } else if (lastRamIn) {
+                if (s.activeSignals.stream().anyMatch(sig -> sig == c.mar.incSignal)) {
+                    fail("MAR change in step after RAM write, step "+steps.indexOf(s));
+                }
+                if (s.activeSignals.stream().anyMatch(sig -> sig == c.mar.loadHighSignal)) {
+                    fail("MAR change in step after RAM write, step "+steps.indexOf(s));
+                }
+                if (s.activeSignals.stream().anyMatch(sig -> sig == c.mar.loadLowSignal)) {
+                    fail("MAR change in step after RAM write, step "+steps.indexOf(s));
+                }
+                if (s.to==BUS.BusReader.MAR_OFFSET_IN) {
+                    fail("MAR change in step after RAM write, step "+steps.indexOf(s));
+                }
                 lastRamIn = false;
             }
         }
+    }
+
+    void fail(String message) {
+        throw new RuntimeException(message+" : \n"+this);
     }
 
     public void checkFlagWrite() {

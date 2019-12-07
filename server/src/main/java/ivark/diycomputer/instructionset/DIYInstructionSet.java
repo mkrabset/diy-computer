@@ -340,6 +340,7 @@ public class DIYInstructionSet extends InstructionSet {
 
         // Store return address on stack
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN);
+        addStep(i, FLOATING, NO_INPUT);   // Extra empty step after RAM write before modifying MAR
         addStep(i, c.mar.incSignal);
         addStep(i, BusWriter.PC_OUT, BusReader.RAM_IN, c.muxhat.pcOutLowSignal);
 
