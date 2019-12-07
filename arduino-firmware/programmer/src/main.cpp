@@ -13,6 +13,7 @@
 #define RAMLOAD_LOAD_MAR_LOW_STEP 5
 #define RAMLOAD_INC_MAR_STEP 6
 #define RAMLOAD_RAMWRITE_STEP 7
+#define RAMLOAD_CONT_STEP 9
 
 #define RESET_PC_INSTR 0xFF
 #define RESET_PC_START_STEP 3
@@ -348,6 +349,10 @@ void writeRamAndIncreaseMar(byte value) {
   busWrite(true);
   tick();
   busWrite(false);
+
+  // Extra empty step for RAM write
+  setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_CONT_STEP);
+  tick();
 
   // Increase MAR
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_INC_MAR_STEP);
