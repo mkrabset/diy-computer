@@ -45,7 +45,7 @@ public class MOS6502InstructionSet extends InstructionSet {
 
         for (int i=0;i<0xff;i++) {
             if (instructions[i]==null) {
-                instructions[i]=new Instruction(c, "dummy", "dummy", "dummy");
+                instructions[i]=new Instruction(c, "dummy", "dummy", "dummy","na");
             }
             instructions[i].num=i;
         }
@@ -54,7 +54,7 @@ public class MOS6502InstructionSet extends InstructionSet {
     }
 
     private Instruction ora() {
-        Instruction i = new Instruction(c, "ORA", "ORA \\(\\$..,X\\)", "A := A & mem(mem(arg+x))");
+        Instruction i = new Instruction(c, "ORA", "ORA \\(\\$..,X\\)", "A := A & mem(mem(arg+x))","indirect indexed");
         addXInd2MAR(i);
         addStep(i, BUS.BusWriter.RAM_OUT, BUS.BusReader.ALU_A_IN);
         addStep(i, BUS.BusWriter.Z_OUT, BUS.BusReader.ALU_B_IN);

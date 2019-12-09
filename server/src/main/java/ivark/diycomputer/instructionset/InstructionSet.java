@@ -1,8 +1,10 @@
 package ivark.diycomputer.instructionset;
 
+import ivark.diycomputer.instructionset.misc.TableFormatter;
 import ivark.diycomputer.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static ivark.diycomputer.model.BUS.BusReader.*;
@@ -15,7 +17,7 @@ public abstract class InstructionSet {
 
     public InstructionSet(Computer c) {
         this.c = c;
-        this.instructions=getInstructions();
+        this.instructions = getInstructions();
 
         checkRamWrite(instructions);
         flagWriteCheck(instructions);
@@ -33,44 +35,100 @@ public abstract class InstructionSet {
 
     abstract protected List<Instruction> getInstructions();
 
-    protected Instruction createLoadAbsolute(Register r) {
-        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " #(..)", r.name + " := arg");
+    protected Instruction createLoadImmediate(Register r) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " #(..)", r.name + " := arg", "immediate");
         addStep(i, RAM_OUT, r.busRead(), c.pc.incSignal);
         return i;
     }
 
-    protected Instruction createLoadIndirect(Register r) {
-        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....)", r.name + " := ram(arg)");
+    protected Instruction createLoadAbsolute(Register r) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....)", r.name + " := ram(arg)", "absolute");
         argsToMar(i);
+        addStep(i, RAM_OUT, r.busRead());
+        return i;
+    }
+
+    protected Instruction createLoadAbsoluteIndexed(Register r, Register ri) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....)," + ri.name, r.name + " := ram(arg+" + ri.name + ")", "absolute indexed");
+        argsToMar(i);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
+        addStep(i, RAM_OUT, r.busRead());
+        return i;
+    }
+
+    protected Instruction createLoadIndirect(Register r) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\(\\$(....)\\)", r.name + " := ram(ram(arg))", "indirect");
+        argsToMar(i);
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal);
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal);
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);
+        addStep(i, RAM_OUT, r.busRead());
+        return i;
+    }
+
+    protected Instruction createLoadIndexedIndirect(Register r, Register ri) {
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\(\\$(....)," + ri.name + "\\)", r.name + " := ram(ram(arg+"+ri.name+"))", "indexed indirect");
+        argsToMar(i);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal);
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal);
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);
+        addStep(i, ZEROS, MAR_OFFSET_IN);
         addStep(i, RAM_OUT, r.busRead());
         return i;
     }
 
     protected Instruction createLoadIndirectIndexed(Register r, Register ri) {
-        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\$(....),"+ri.name, r.name + " := ram(arg+"+ri.name+")");
+        Instruction i = new Instruction(c, "LD" + r.name, "LD" + r.name + " \\(\\$(....)\\)," + ri.name, r.name + " := ram(ram(arg)+"+ri.name+")", "indirect indexed");
         argsToMar(i);
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal);
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal);
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);
         addStep(i, ri.busWrite(), MAR_OFFSET_IN);
         addStep(i, RAM_OUT, r.busRead());
         return i;
     }
 
-    protected Instruction createStoreIndirect(Register r) {
-        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", "ram(arg) := "+r.name);
+    protected Instruction createStoreAbsolute(Register r) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)", "ram(arg) := " + r.name, "absolute");
         argsToMar(i);
         addStep(i, r.busWrite(), RAM_IN);
         return i;
     }
 
-    protected Instruction createStoreIndirectIndexed(Register r, Register ri) {
-        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....),"+ri.name, "ram(arg+"+ri.name+") := "+r.name);
+    protected Instruction createStoreAbsoluteIndexed(Register r, Register ri) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\$(....)," + ri.name, "ram(arg+" + ri.name + ") := " + r.name, "absolute indexed");
         argsToMar(i);
         addStep(i, ri.busWrite(), MAR_OFFSET_IN);
         addStep(i, r.busWrite(), RAM_IN);
         return i;
     }
 
-    protected Instruction createAddAbsolute(Register r) {
-        Instruction i = new Instruction(c, "ADD" + r.name, "ADD" + r.name + " #(..)", r.name + " := " + r.name + " + arg");
+    protected Instruction createStoreIndexedIndirect(Register r, Register ri) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\(\\$(....)," + ri.name + "\\)", "ram(ram(arg+"+ri.name+")) := "+r.name, "indexed indirect");
+        argsToMar(i);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal);
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal);
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);
+        addStep(i, ZEROS, MAR_OFFSET_IN);
+        addStep(i, r.busWrite(), RAM_IN);
+        return i;
+    }
+
+    protected Instruction createStoreIndirectIndexed(Register r, Register ri) {
+        Instruction i = new Instruction(c, "ST" + r.name, "ST" + r.name + " \\(\\$(....)\\)," + ri.name, "ram(ram(arg)+"+ri.name+") := "+r.name, "indirect indexed");
+        argsToMar(i);
+        addStep(i, RAM_OUT, TMP_IN, c.mar.incSignal);
+        addStep(i, RAM_OUT, NO_INPUT, c.mar.loadLowSignal);
+        addStep(i, TMP_OUT, NO_INPUT, c.mar.loadHighSignal);
+        addStep(i, ri.busWrite(), MAR_OFFSET_IN);
+        addStep(i, r.busWrite(), RAM_IN);
+        return i;
+    }
+
+    protected Instruction createAddImmediate(Register r) {
+        Instruction i = new Instruction(c, "ADD" + r.name, "ADD" + r.name + " #(..)", r.name + " := " + r.name + " + arg", "immediate");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.mar.incSignal, c.pc.incSignal);
         addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.updateFlagsSignal);
@@ -78,16 +136,16 @@ public abstract class InstructionSet {
     }
 
     // User needs to use SEC/SLC depending on borrow/noborrow (SEC for noborrow)
-    protected Instruction createSubAbsolute(Register r) {
-        Instruction i = new Instruction(c, "SUB" + r.name, "SUB" + r.name + " #(..)", r.name + " := " + r.name + " + arg");
+    protected Instruction createSubImmediate(Register r) {
+        Instruction i = new Instruction(c, "SUB" + r.name, "SUB" + r.name + " #(..)", r.name + " := " + r.name + " + arg", "immediate");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.mar.incSignal, c.pc.incSignal);
         addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
-    protected Instruction createCmpAbsolute(Register r) {
-        Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " #(..)", "flags := " + "cmp(" + r.name + ",arg)");
+    protected Instruction createCmpImmeditate(Register r) {
+        Instruction i = new Instruction(c, "CMP" + r.name, "CMP" + r.name + " #(..)", "flags := " + "cmp(" + r.name + ",arg)", "immediate");
         addStep(i, r.busWrite(), ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.setCarrySignal, c.mar.incSignal, c.pc.incSignal);
         addStep(i, BUS.BusWriter.ALU_OUT, BUS.BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
@@ -101,18 +159,19 @@ public abstract class InstructionSet {
     }
 
     protected Instruction createRamLoad() {
-        Instruction i = new Instruction(c, "RAMLOAD", "RAMLOAD", "RAMLOAD");
+        Instruction i = new Instruction(c, "RAMLOAD", "RAMLOAD", "RAMLOAD", "na");
         addStep(i, ZEROS, MAR_OFFSET_IN);                               // Clear mar offset
         addStep(i, FLOATING, NO_INPUT, c.mar.loadHighSignal);           // Load MAR high from programmer
         addStep(i, FLOATING, NO_INPUT, c.mar.loadLowSignal);            // Load MAR low from programmer
         addStep(i, FLOATING, NO_INPUT, c.mar.incSignal);                // Increase MAR
-        addStep(i, FLOATING, BUS.BusReader.RAM_IN);                         // Write to RAM from programmer. Don't do twice in a row
-        addStep(i, FLOATING, NO_INPUT, c.sp.resetSignal);
+        addStep(i, FLOATING, BUS.BusReader.RAM_IN);                     // Write to RAM from programmer. Don't do twice in a row
+        addStep(i, FLOATING, NO_INPUT);                                 // NOP-step to use after ram-write
+        //addStep(i, FLOATING, NO_INPUT, c.sp.resetSignal);
         return i;
     }
 
     protected Instruction createResetPc() {
-        Instruction i = new Instruction(c, "RESETPC", "RESETPC", "RESETPC");
+        Instruction i = new Instruction(c, "RESETPC", "RESETPC", "RESETPC", "na");
         addStep(i, ZEROS, MAR_OFFSET_IN, c.sp.resetSignal);
         addStep(i, ZEROS, X_IN, c.mar.loadHighSignal);
         addStep(i, ZEROS, Y_IN, c.mar.loadLowSignal);
@@ -146,18 +205,20 @@ public abstract class InstructionSet {
     }
 
     public String summary() {
-        StringBuilder sb = new StringBuilder();
+        TableFormatter tf = new TableFormatter(5, TableFormatter.ANSI_BLACK, TableFormatter.ANSI_BGBLUE, "  ");
         for (int i = 0; i < instructions.size(); i++) {
             if (!instructions.get(i).isDummy()) {
                 Instruction ins = instructions.get(i);
-                sb.append("#" + toHex(i, 2) + "\t\t"
-                        + ins.pattern + "\t\t"
-                        + ins.description
-                        + "\t\t" + ins.numSteps());
-                sb.append("\n");
+                tf.addRow(Arrays.asList(
+                        "#" + toHex(i, 2),
+                        "" + ins.pattern,
+                        ins.description,
+                        ins.addressMode,
+                        "" + ins.numSteps()
+                ));
             }
         }
-        return sb.toString();
+        return tf.toString();
     }
 
     // Ensure that we don't modify MAR during ram write, and not have 2 consecutive ramwrite-steps

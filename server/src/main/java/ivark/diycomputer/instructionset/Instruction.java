@@ -20,14 +20,16 @@ public final class Instruction {
     public final String opcode;
     public Pattern pattern;
     public String description;
+    public final String addressMode;
     public final List<Microcode> steps = new ArrayList<Microcode>();
 
-    public Instruction(Computer c, String opcode, String pattern, String description) {
+    public Instruction(Computer c, String opcode, String pattern, String description, String addressMode) {
         try {
             this.c=c;
             this.opcode = opcode;
             this.pattern = Pattern.compile(pattern);
             this.description = description;
+            this.addressMode=addressMode;
 
             // Load new instruction cycle:
             // Load both high and low from pc to mar, and set mar offset to zero
@@ -36,7 +38,9 @@ public final class Instruction {
                     .withActive(c.mar.loadHighSignal, c.mar.loadLowSignal));
 
             // Put ram-value into instruction register, and increase pc and mar by 1
-            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.pc.incSignal)); // Must wait with marinc to next step because instructions a loaded on clk falling edge
+            addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.pc.incSignal));
+
+            // Must wait with marinc to next step because instructions a loaded on clk falling edge
             addStep(new Microcode().bus(ZEROS, NO_INPUT).withActive(c.mar.incSignal));
 
             // Instruction is loaded, offset is zero, and pc and mar points to first operand or next instruction.

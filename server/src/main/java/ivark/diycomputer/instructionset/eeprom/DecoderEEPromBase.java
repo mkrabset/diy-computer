@@ -21,7 +21,7 @@ abstract class DecoderEEPromBase {
         for (int i=0;i<256;i++) {
             sb.append("w "+toHex((i*16)*2,4)+" ");  // Multiply by 2 because of flip and unused a12
             Instruction instr=(i>=instructionSet.instructions.size())
-                    ? new Instruction(c,"DUMMY","DUMMY","DUMMY")
+                    ? new Instruction(c,"DUMMY","DUMMY","DUMMY", "na")
                     : instructionSet.instructions.get(i);
             for (int s=0;s<16;s++) {
                 int value= getDefaultValue();

@@ -8,7 +8,7 @@ import ivark.diycomputer.model.Signal;
 public class Level2EEPROM extends SignalEEpromBase {
 
     private Signal.ActiveLowSignal[] signals = {
-            Signal.DUMMY_ACTIVE_LOW,
+            c.clock.haltSignal,
             c.mar.loadHighSignal,
             c.mar.loadLowSignal,
             c.mux.selectStackPointerSignal,

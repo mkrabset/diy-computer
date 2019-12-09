@@ -6,6 +6,7 @@ import java.util.List;
 public class TableFormatter {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_BGBLUE = "\u001B[47;5;15m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_YELLOW = "\u001B[33m";
@@ -20,7 +21,7 @@ public class TableFormatter {
     private String sep;
     private List<List<String>> rows=new ArrayList<>();
 
-    private TableFormatter(int cols, String evenRowColor, String oddRowColor, String sep) {
+    public TableFormatter(int cols, String evenRowColor, String oddRowColor, String sep) {
         this.cols=cols;
         this.evenRowColor=evenRowColor;
         this.oddRowColor=oddRowColor;
@@ -48,10 +49,10 @@ public class TableFormatter {
             List<String> row=rows.get(r);
             for (int c=0;c<cols;c++) {
                 String col=row.get(c);
-                sb.append(col+String.format("%1$"+(maxWidths[c]-col.length())+ "s", " "));
+                sb.append(col+String.format("%1$"+(maxWidths[c]-col.length()+1)+ "s", " "));
                 sb.append(sep);
             }
-            sb.append("\n");
+            sb.append(" \u001b[0m\n");
         }
         return sb.toString();
     }
