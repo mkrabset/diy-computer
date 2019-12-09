@@ -63,6 +63,8 @@ public class DIYInstructionSet extends InstructionSet {
 
         instructions.addAll(genIns(regs, this::createPush));
         instructions.addAll(genIns(regs, this::createPop));
+        instructions.add(createPushXYZ());
+        instructions.add(createPopZYX());
 
         instructions.addAll(genIns(regs, r-> createOut(r, 0, BusReader.OUTPUT_0_IN)));
         instructions.addAll(genIns(regs, r-> createOut(r, 1, BusReader.OUTPUT_1_IN)));
@@ -85,7 +87,7 @@ public class DIYInstructionSet extends InstructionSet {
         instructions.addAll(genIns2(regPairs, rp -> createOp2regs("OR", c.alu.orOpSignals, rp.r1, rp.r2, false)));
         instructions.addAll(genIns2(regPairs, rp -> createOp2regs("XOR", c.alu.xorOpSignals, rp.r1, rp.r2, false)));
         instructions.addAll(genIns2(regPairs, rp -> createCmpRegs(rp.r1, rp.r2)));
-
+        instructions.addAll(genIns2(regPairs, rp -> createTransferRegs(rp.r1, rp.r2)));
 
         // No register instructions
         instructions.add(createRolIndirect());
@@ -151,6 +153,12 @@ public class DIYInstructionSet extends InstructionSet {
         addStep(i, r1.busWrite(), ALU_A_IN);
         addStep(i, r2.busWrite(), ALU_B_IN, c.alu.setCarrySignal);
         addStep(i, BusWriter.ALU_OUT, BusReader.NO_INPUT, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        return i;
+    }
+
+    private Instruction createTransferRegs(Register r1, Register r2) {
+        Instruction i = new Instruction(c, "T" + r1.name+r2.name, "T" + r1.name + r2.name, r2.name+" := " + r1.name);
+        addStep(i, r1.busWrite(), r2.busRead());
         return i;
     }
 
@@ -376,14 +384,37 @@ public class DIYInstructionSet extends InstructionSet {
         return i;
     }
 
+    private Instruction createPushXYZ() {
+        Instruction i = new Instruction(c, "PUSHXYZ", "PUSHXYZ", "push([x,y,z])");
+        addStep(i, c.sp.cntSignal, c.sp.dirDownSignal); // decrease sp
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);  // sp->mar
+        addStep(i, c.xreg.busWrite(), BusReader.RAM_IN);  // copy x to stack
+        addStep(i, c.sp.cntSignal, c.sp.dirDownSignal); // decrease sp
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);  // sp->mar
+        addStep(i, c.yreg.busWrite(), BusReader.RAM_IN);  // copy x to stack
+        addStep(i, c.sp.cntSignal, c.sp.dirDownSignal); // decrease sp
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal);  // sp->mar
+        addStep(i, c.zreg.busWrite(), BusReader.RAM_IN);  // copy x to stack
+        return i;
+    }
+
     private Instruction createPop(Register r) {
         Instruction i = new Instruction(c, "POP" + r.name, "POP " + r.name, r.name + "=pop()");
-
         // Move stack pointer to mar and increase sp
         addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal);
-
         // Copy value from stack
         addStep(i, BusWriter.RAM_OUT, r.busRead());
+        return i;
+    }
+
+    private Instruction createPopZYX() {
+        Instruction i = new Instruction(c, "POPZYX", "POPZYX", "[y,z,x] = [pop(),pop(),pop()]");
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal); // sp->mar, sp++
+        addStep(i, BusWriter.RAM_OUT, c.zreg.busRead()); // ram to z
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal); // sp->mar, sp++
+        addStep(i, BusWriter.RAM_OUT, c.yreg.busRead()); // ram to y
+        addStep(i, c.mar.loadHighSignal, c.mar.loadLowSignal, c.mux.selectStackPointerSignal, c.sp.cntSignal); // sp->mar, sp++
+        addStep(i, BusWriter.RAM_OUT, c.xreg.busRead()); // ram to x
         return i;
     }
 
