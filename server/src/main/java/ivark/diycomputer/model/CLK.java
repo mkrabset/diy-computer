@@ -7,7 +7,7 @@ import java.util.List;
  * Created by ivark on 24.06.17.
  */
 public class CLK extends Module {
-    public final Signal.ActiveLowSignal haltSignal = new Signal.ActiveLowSignal("A.RESET");
+    public final Signal.ActiveLowSignal haltSignal = new Signal.ActiveLowSignal("HALT");
 
     public CLK(String name) {
         super(name);
