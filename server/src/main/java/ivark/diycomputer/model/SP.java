@@ -11,12 +11,17 @@ public class SP extends Module {
     public final Signal.ActiveLowSignal cntSignal = new Signal.ActiveLowSignal("CNT");
     public final Signal.ActiveLowSignal dirDownSignal = new Signal.ActiveLowSignal("DIRDOWN");
 
-    public SP(String name) {
-        super(name);
+    public SP(Computer c, String name) {
+        super(c, name);
     }
 
     @Override
     public List<Signal> signals() {
         return Arrays.asList(cntSignal, dirDownSignal, resetSignal);
+    }
+
+    @Override
+    public VMPart getVMPart() {
+        return null; // TODO:
     }
 }

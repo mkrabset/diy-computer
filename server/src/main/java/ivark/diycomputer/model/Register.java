@@ -10,8 +10,8 @@ public class Register extends Module {
     private final BusReader busReader;
     private final BusWriter busWriter;
 
-    public Register(String name, BusReader busReader, BusWriter busWriter) {
-        super(name);
+    public Register(Computer c, String name, BusReader busReader, BusWriter busWriter) {
+        super(c, name);
         this.busReader=busReader;
         this.busWriter=busWriter;
     }
@@ -26,5 +26,10 @@ public class Register extends Module {
 
     public BusWriter busWrite() {
         return busWriter;
+    }
+
+    @Override
+    public VMPart getVMPart() {
+        return null; // TODO:
     }
 }

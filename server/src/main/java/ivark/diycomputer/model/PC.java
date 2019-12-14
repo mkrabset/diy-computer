@@ -10,10 +10,10 @@ public class PC extends Module {
     public final Signal.ActiveLowSignal jumpCond1Signal = new Signal.ActiveLowSignal("JMP.COND.1");
     public final Signal.ActiveLowSignal jumpCond2Signal = new Signal.ActiveLowSignal("JMP.COND.2");
     public final Signal.ActiveLowSignal jumpCond3Signal = new Signal.ActiveLowSignal("JMP.COND.3");
-    public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET"); // Note: this as async on 74ls161
+    public final Signal.ActiveLowSignal resetSignal = new Signal.ActiveLowSignal("RESET"); // Note: this as async on 74ls161
 
-    public PC(String name) {
-        super(name);
+    public PC(Computer c, String name) {
+        super(c, name);
     }
 
     public List<Signal> signals() {
@@ -41,12 +41,12 @@ public class PC extends Module {
         public final String descr;
 
         JumpCondition(String descr) {
-            this.descr=descr;
+            this.descr = descr;
         }
 
         public List<Signal> getConditionSignals(PC pc) {
-            List<Signal> result=new ArrayList<>();
-            byte o=(byte)ordinal();
+            List<Signal> result = new ArrayList<>();
+            byte o = (byte) ordinal();
             if ((o & 0x01) == 0x01) {
                 result.add(pc.jumpCond0Signal);
             }
@@ -87,18 +87,83 @@ public class PC extends Module {
                 case LS:
                     return !c || z;
                 case GE:
-                    return n==v;
+                    return n == v;
                 case LT:
-                    return n!=v;
+                    return n != v;
                 case GT:
-                    return !z && n==v;
+                    return !z && n == v;
                 case LE:
-                    return z | n!=v;
+                    return z | n != v;
                 case UNCOND:
                     return true;
                 default:
                     throw new RuntimeException("No such element");
             }
         }
+    }
+
+    @Override
+    public VMPart getVMPart() {
+        return new VMPart() {
+            private byte jump_h;
+            private byte jump_l;
+
+            private byte newjump_h;
+            private byte newjump_l;
+
+            private byte pc_h;
+            private byte pc_l;
+
+            private byte newpc_h;
+            private byte newpc_l;
+
+            void onCLKRising() {
+                newjump_h = c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_H_IN ? getValueFromBus() : jump_h;
+                newjump_l = c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_L_IN ? getValueFromBus() : jump_l;
+
+                newpc_h = isJump() ? jump_h : pc_h;
+                newpc_l = isJump() ? jump_l : pc_l;
+
+                if (isActive(c.pc.incSignal)) {
+                    newpc_l++;
+                    if (newpc_l == 0) {
+                        newpc_h++;
+                    }
+                }
+            }
+
+            void onCLKRisingDone() {
+                jump_h = newjump_h;
+                jump_l = newjump_l;
+                pc_h = newpc_h;
+                pc_l = newpc_l;
+            }
+
+            void onCLKFalling() {
+            }
+
+            void onCLKFallingDone() {
+            }
+
+            @Override
+            BUS.BusWriter getWriter() {
+                return BUS.BusWriter.PC_OUT;
+            }
+
+            @Override
+            byte getBusOutput() {
+                return isActive(c.muxhat.pcOutLowSignal) ? pc_l : pc_h;
+            }
+
+            boolean isJump() {
+                int condOrdinal = 0;
+                if (isActive(c.pc.jumpCond0Signal)) condOrdinal |= 0x01;
+                if (isActive(c.pc.jumpCond1Signal)) condOrdinal |= 0x02;
+                if (isActive(c.pc.jumpCond2Signal)) condOrdinal |= 0x04;
+                if (isActive(c.pc.jumpCond3Signal)) condOrdinal |= 0x08;
+                PC.JumpCondition cond = PC.JumpCondition.values()[condOrdinal];
+                return cond.eval(c.alu.getVMPart().getZ(), c.alu.getVMPart().getN(), c.alu.getVMPart().getC(), c.alu.getVMPart().getV());
+            }
+        };
     }
 }

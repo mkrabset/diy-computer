@@ -1,5 +1,6 @@
 package ivark.diycomputer.test;
 
+import ivark.diycomputer.model.Computer;
 import ivark.diycomputer.model.PC;
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ public class TestJumpConditions {
 
     @Test
     public void testSignals() {
-        PC pc = new PC("PC");
+        PC pc = new Computer().pc;
         for (PC.JumpCondition jmpCond:PC.JumpCondition.values()) {
             System.out.println(jmpCond.name()+" "+jmpCond.getConditionSignals(pc));
         }

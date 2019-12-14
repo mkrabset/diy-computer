@@ -1,7 +1,9 @@
 package ivark.diycomputer.model;
 
 import ivark.diycomputer.instructionset.DIYInstructionSet;
+import ivark.diycomputer.instructionset.InstructionSet;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,29 +11,50 @@ import java.util.List;
  * Created by ivark on 13.05.17.
  */
 public class Computer {
-    public final PC pc = new PC("PC");
-    public final MUXHAT muxhat = new MUXHAT("MUXHAT");
-    public final MUX mux = new MUX("MUX");
-    public final MAR mar = new MAR("MAR");
-    public final RAM ram = new RAM("RAM");
-    public final INSTREG instreg = new INSTREG("INSTREG");
-    public final ALU alu = new ALU("ALU");
-    public final Register xreg = new Register("X", BUS.BusReader.X_IN, BUS.BusWriter.X_OUT);
-    public final Register yreg = new Register("Y", BUS.BusReader.Y_IN, BUS.BusWriter.Y_OUT);
-    public final Register zreg = new Register("Z", BUS.BusReader.Z_IN, BUS.BusWriter.Z_OUT);
-    public final Register tmp = new Register("TMP", BUS.BusReader.TMP_IN, BUS.BusWriter.TMP_OUT);
-    public final SP sp = new SP("SP");
-    public final CLK clock = new CLK("CLK");
-    public final List<Module> modules = Arrays.asList(pc, muxhat, mux, mar, ram, instreg, alu, xreg, yreg, zreg, tmp, sp, clock);
-
+    public final PC pc;;
+    public final MUXHAT muxhat;
+    public final MUX mux;
+    public final MAR mar;
+    public final RAM ram;
+    public final INSTREG instreg;
+    public final ALU alu;
+    public final Register xreg;
+    public final Register yreg;
+    public final Register zreg;
+    public final Register tmp;
+    public final SP sp;
+    public final CLK clock;
+    public final List<Module> modules = new ArrayList<>();
+    public final InstructionSet is;
 
     public Computer() {
-        for (Module m : modules) {
-            for (Signal s : m.signals()) {
-                s.owner = m;
-            }
-        }
+        this.pc=new PC(this,"PC");
+        this.muxhat = new MUXHAT(this,"MUXHAT");
+        this.mux = new MUX(this,"MUX");
+        this.mar = new MAR(this,"MAR");
+        this.ram = new RAM(this,"RAM");
+        this.instreg = new INSTREG(this,"INSTREG");
+        this.alu = new ALU(this,"ALU");
+        this.xreg = new Register(this,"X", BUS.BusReader.X_IN, BUS.BusWriter.X_OUT);
+        this.yreg = new Register(this,"Y", BUS.BusReader.Y_IN, BUS.BusWriter.Y_OUT);
+        this.zreg = new Register(this,"Z", BUS.BusReader.Z_IN, BUS.BusWriter.Z_OUT);
+        this.tmp = new Register(this,"TMP", BUS.BusReader.TMP_IN, BUS.BusWriter.TMP_OUT);
+        this.sp = new SP(this,"SP");
+        this.clock = new CLK(this,"CLK");
+
+        modules.forEach(module-> {
+            module.signals().forEach(signal->{
+                signal.owner=module;
+            });
+        });
+
+        this.is = new DIYInstructionSet(this);
     }
+
+    public void registerModule(Module module) {
+        modules.add(module);
+    }
+
 
     public static void main(String... args) {
         Computer c = new Computer();
@@ -41,15 +64,13 @@ public class Computer {
         c.printNonBusIOSignals();
         System.out.println();
 
-
-        DIYInstructionSet instructionSet = new DIYInstructionSet(c);
         System.out.println("Instruction set:");
         System.out.println("-----------------");
-        System.out.println(instructionSet.toString());
+        System.out.println(c.is.toString());
         System.out.println("\n\n");
         System.out.println("Instruction set summary:");
         System.out.println("-------------------------");
-        System.out.println(instructionSet.summary());
+        System.out.println(c.is.summary());
     }
 
     private void printNonBusIOSignals() {
@@ -70,8 +91,5 @@ public class Computer {
             });
         });
         System.out.println();
-
     }
-
-
 }
