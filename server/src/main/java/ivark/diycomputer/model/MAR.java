@@ -7,9 +7,11 @@ public class MAR extends Module {
     public final Signal.ActiveHighSignal incSignal = new Signal.ActiveHighSignal("INC");
     public final Signal.ActiveLowSignal loadHighSignal = new Signal.ActiveLowSignal("LOADHIGH");
     public final Signal.ActiveLowSignal loadLowSignal = new Signal.ActiveLowSignal("LOADLOW");
+    private final ExtendedVMPart vmPart;
 
     public MAR(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     public List<Signal> signals() {
@@ -18,6 +20,10 @@ public class MAR extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte addr_h;
             private byte addr_l;

@@ -7,10 +7,12 @@ import java.util.List;
 
 public class OutReg extends Module {
     private final BusReader busReader;
+    private final ExtendedVMPart vmPart;
 
     public OutReg(Computer c, String name, BusReader busReader) {
         super(c, name);
         this.busReader = busReader;
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -20,6 +22,10 @@ public class OutReg extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte value;
             private byte newValue;

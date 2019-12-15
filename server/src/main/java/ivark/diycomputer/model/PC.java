@@ -11,9 +11,11 @@ public class PC extends Module {
     public final Signal.ActiveLowSignal jumpCond2Signal = new Signal.ActiveLowSignal("JMP.COND.2");
     public final Signal.ActiveLowSignal jumpCond3Signal = new Signal.ActiveLowSignal("JMP.COND.3");
     public final Signal.ActiveLowSignal resetSignal = new Signal.ActiveLowSignal("RESET"); // Note: this as async on 74ls161
+    private final ExtendedVMPart vmPart;
 
     public PC(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     public List<Signal> signals() {
@@ -104,6 +106,10 @@ public class PC extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte jump_h;
             private byte jump_l;

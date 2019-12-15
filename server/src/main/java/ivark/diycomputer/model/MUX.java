@@ -5,9 +5,11 @@ import java.util.List;
 
 public class MUX extends Module {
     public final Signal.ActiveLowSignal selectStackPointerSignal=new Signal.ActiveLowSignal("selectStackPointer");
+    private final VMPart vmPart;
 
     public MUX(Computer c, String name) {
         super(c,name);
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -17,6 +19,10 @@ public class MUX extends Module {
 
     @Override
     public VMPart getVMPart() {
+        return vmPart;
+    }
+
+    private VMPart createVMPart() {
         return new VMPart() {
             @Override
             BUS.BusWriter getWriter() {

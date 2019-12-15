@@ -5,9 +5,11 @@ import java.util.List;
 
 public class MUXHAT extends Module {
     public final Signal.ActiveHighSignal pcOutLowSignal=new Signal.ActiveHighSignal("PC_OUT_LOW");
+    private final VMPart vmPart;
 
     public MUXHAT(Computer c, String name) {
         super(c,name);
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -17,6 +19,10 @@ public class MUXHAT extends Module {
 
     @Override
     public VMPart getVMPart() {
+        return vmPart;
+    }
+
+    private VMPart createVMPart() {
         return new VMPart() {
             @Override
             BUS.BusWriter getWriter() {

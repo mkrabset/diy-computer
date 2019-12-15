@@ -10,9 +10,11 @@ public class SP extends Module {
     public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET");
     public final Signal.ActiveLowSignal cntSignal = new Signal.ActiveLowSignal("CNT");
     public final Signal.ActiveLowSignal dirDownSignal = new Signal.ActiveLowSignal("DIRDOWN");
+    private final ExtendedVMPart vmPart;
 
     public SP(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -22,6 +24,10 @@ public class SP extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte val_h;
             private byte val_l;

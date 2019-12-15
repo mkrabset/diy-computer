@@ -21,9 +21,11 @@ public class ALU extends Module {
     public final Signal[] orOpSignals=  opSignals(true, false, true);
     public final Signal[] xorOpSignals =opSignals(true, true, false);
     public final Signal[] rorOpSignals =opSignals(true, true, true);
+    private final ExtendedVMPart vmPart;
 
     public ALU(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     public List<Signal> signals() {
@@ -47,6 +49,10 @@ public class ALU extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte a;
             private byte b;
@@ -58,6 +64,16 @@ public class ALU extends Module {
             private boolean fn;  // bit7 one
             private boolean fc;  // carry
             private boolean fv;  // overflow
+
+
+            private boolean signalMatch(Signal[] opSignals) {
+                List<Signal> sigList = Arrays.asList(opSignals);
+                if (isActive(flrSignal) != sigList.contains(flrSignal)) return false;
+                if (isActive(op0Signal) != sigList.contains(op0Signal)) return false;
+                if (isActive(op1Signal) != sigList.contains(op1Signal)) return false;
+                return true;
+            }
+
 
             @Override
             public void onCLKRising() {
@@ -94,53 +110,30 @@ public class ALU extends Module {
                 if (isActive(c.alu.invertBSignal)) {
                     b = (byte) (~b);
                 }
-                boolean op0 = !isActive(c.alu.op0Signal);
-                boolean op1 = !isActive(c.alu.op1Signal);
-                boolean op2 = !isActive(c.alu.flrSignal);
-                if (op2) {
-                    if (op1) {
-                        if (!op0) {
-                            // xor
-                            return new Result(a, b, (byte) (a ^ b), false);
-                        }
-                    } else {
-                        if (op0) {
-                            // ror
-                            byte outval = (byte) ((b & 0xff) >>> 1);
-                            if (fc) {
-                                outval |= 0x80;
-                            }
-                            return new Result(a, b, outval, (b & 0x01) == 0x01);
-                        } else {
-                            // and
-                            return new Result(a, b, (byte) (a & b), false);
-                        }
+
+                if (signalMatch(c.alu.xorOpSignals)) {
+                    // XOR
+                    return new Result(a, b, (byte) (a ^ b), false);
+                } else if (signalMatch(c.alu.rorOpSignals)) {
+                    // ROR
+                    byte outval = (byte) ((b & 0xff) >>> 1);
+                    if (fc) {
+                        outval |= 0x80;
                     }
+                    return new Result(a, b, outval, (b & 0x01) == 0x01);
+                } else if (signalMatch(c.alu.andOpSignals)) {
+                    // AND
+                    return new Result(a, b, (byte) (a & b), false);
+                } else if (signalMatch(c.alu.orOpSignals)) {
+                    // OR
+                    return new Result(a, b, (byte) (a | b), false);
+                } else if (signalMatch(c.alu.addOpSignals)) {
+                    // ADD
+                    int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
+                    return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
                 } else {
-                    if (op1) {
-                        if (op0) {
-                            // not
-                            return new Result(a, b, (byte) (~b), false);
-                        } else {
-                            // or
-                            return new Result(a, b, (byte) (a | b), false);
-                        }
-                    } else {
-                        if (op0) {
-                            // rol
-                            byte outval = (byte) ((a & 0xff) << 1);
-                            if (fc) {
-                                outval |= 0x01;
-                            }
-                            return new Result(a, b, outval, (a & 0x80) == 0x80);
-                        } else {
-                            // add
-                            int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
-                            return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
-                        }
-                    }
+                    throw new RuntimeException("No such op");
                 }
-                throw new RuntimeException("No such op");
             }
 
             @Override

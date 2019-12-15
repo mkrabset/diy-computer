@@ -11,9 +11,11 @@ import java.util.List;
  */
 public class INSTREG extends Module {
     public final Signal.ActiveLowSignal contSignal = new Signal.ActiveLowSignal("CONT");
+    private final SignalProvidingVMPart vmPart;
 
     public INSTREG(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -23,6 +25,10 @@ public class INSTREG extends Module {
 
     @Override
     public SignalProvidingVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private SignalProvidingVMPart createVMPart() {
         return new SignalProvidingVMPart() {
             private byte instr = 0;
             private byte step = 0;
@@ -67,7 +73,7 @@ public class INSTREG extends Module {
 
             @Override
             public final Instruction getCurrentInstruction() {
-                return c.is.instructions.get(instr);
+                return c.is.instructions.get(((int)instr) & 0xff);
             }
 
             @Override

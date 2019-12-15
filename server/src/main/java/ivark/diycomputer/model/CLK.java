@@ -8,9 +8,11 @@ import java.util.List;
  */
 public class CLK extends Module {
     public final Signal.ActiveLowSignal haltSignal = new Signal.ActiveLowSignal("HALT");
+    private final VMPart vmPart;
 
     public CLK(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     @Override
@@ -20,6 +22,10 @@ public class CLK extends Module {
 
     @Override
     public VMPart getVMPart() {
+        return vmPart;
+    }
+
+    private VMPart createVMPart() {
         // TODO: Put more of the clock stuff in here maybe?
 
 

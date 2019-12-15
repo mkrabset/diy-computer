@@ -38,13 +38,19 @@ public class VirtualMachine {
         pc.reset();
         instReg.reset();
 
-        int d = 1;
+        int d = 0;
 
         while (!clock.isActive(c.clock.haltSignal)) {
             if (instReg.getCurrentStep() >= 3) {
                 BUS.BusWriter w = instReg.getCurrentBusWriter();
                 BUS.BusReader r = instReg.getCurrentBusReader();
-                log(1, instReg.getCurrentInstruction().opcode + ", step " + instReg.getCurrentStep() + " " + bustraffic(w, r) + ", " + signals() + ", status: " + statusflags());
+                log(1, instReg.getCurrentInstruction().opcode + ", step " + instReg.getCurrentStep() + " " + bustraffic(w, r) +
+                        ", " + signals() + ", status: " + statusflags() +
+                        ", out0="+c.out0.getVMPart().getValue()+
+                        ", out1="+c.out1.getVMPart().getValue()+
+                        ", out2="+c.out2.getVMPart().getValue()+
+                        ", out3="+c.out3.getVMPart().getValue()
+                        );
             }
             c.modules.stream().map(Module::getVMPart).forEach(p -> p.onCLKRising());
             sleep(d);

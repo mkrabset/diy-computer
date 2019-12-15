@@ -5,8 +5,11 @@ import java.util.List;
 
 public class RAM extends Module {
 
+    private final ExtendedVMPart vmPart;
+
     public RAM(Computer c, String name) {
         super(c, name);
+        this.vmPart=createVMPart();
     }
 
     public List<Signal> signals() {
@@ -15,6 +18,10 @@ public class RAM extends Module {
 
     @Override
     public ExtendedVMPart getVMPart() {
+        return vmPart;
+    }
+
+    private ExtendedVMPart createVMPart() {
         return new ExtendedVMPart() {
             private byte[] memory = new byte[65536];
 

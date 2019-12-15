@@ -9,11 +9,13 @@ import java.util.List;
 public class Register extends Module {
     private final BusReader busReader;
     private final BusWriter busWriter;
+    private final VMPart vmPart;
 
     public Register(Computer c, String name, BusReader busReader, BusWriter busWriter) {
         super(c, name);
         this.busReader=busReader;
         this.busWriter=busWriter;
+        this.vmPart=createVMPart();
     }
 
     public List<Signal> signals() {
@@ -30,6 +32,10 @@ public class Register extends Module {
 
     @Override
     public VMPart getVMPart() {
+        return vmPart;
+    }
+
+    private VMPart createVMPart() {
         return new VMPart() {
             private byte value;
             private byte newValue;
