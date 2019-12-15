@@ -17,8 +17,8 @@ public class MAR extends Module {
     }
 
     @Override
-    public VMPart getVMPart() {
-        return new VMPart() {
+    public ExtendedVMPart getVMPart() {
+        return new ExtendedVMPart() {
             private byte addr_h;
             private byte addr_l;
 
@@ -26,14 +26,14 @@ public class MAR extends Module {
             private byte newAddr_l;
 
             @Override
-            void onCLKRising() {
+            public void onCLKRising() {
                 if (isActive(loadHighSignal) && isActive(loadLowSignal)) {
                     if (isActive(c.mux.selectStackPointerSignal)) {
-                        newAddr_h=c.sp.getVMPart().val_h;
-                        newAddr_l=c.sp.getVMPart().val_l;
+                        newAddr_h=c.sp.getVMPart().getHighValue();
+                        newAddr_l=c.sp.getVMPart().getLowValue();
                     } else {
-                        newAddr_h=c.pc.getVMPart().pc_h;
-                        newAddr_l=c.pc.getVMPart().pc_l;
+                        newAddr_h=c.pc.getVMPart().getHighValue();
+                        newAddr_l=c.pc.getVMPart().getLowValue();
                     }
                 } else if (isActive(c.mar.loadLowSignal)) {
                     newAddr_h=addr_h;
@@ -53,23 +53,19 @@ public class MAR extends Module {
             }
 
             @Override
-            void onCLKRisingDone() {
+            public void onCLKRisingDone() {
                 addr_h = newAddr_h;
                 addr_l = newAddr_l;
             }
 
             @Override
-            void onCLKFalling() {
+            public void onCLKFalling() {
                 super.onCLKFalling();
             }
 
             @Override
-            void onCLKFallingDone() {
+            public void onCLKFallingDone() {
                 super.onCLKFallingDone();
-            }
-
-            int getAddress() {
-                return (int)(addr_h & 0xff) * 256 + (int)(addr_l & 0xff);
             }
 
             @Override
@@ -81,6 +77,21 @@ public class MAR extends Module {
             byte getBusOutput() {
                 return 0;
             }
+
+            @Override
+            public byte getHighValue() {
+                return addr_h;
+            }
+
+            @Override
+            public byte getLowValue() {
+                return addr_l;
+            }
         };
+    }
+
+    abstract class ExtendedVMPart extends VMPart {
+        public abstract byte getHighValue();
+        public abstract byte getLowValue();
     }
 }

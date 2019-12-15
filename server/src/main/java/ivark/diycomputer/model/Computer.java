@@ -4,7 +4,6 @@ import ivark.diycomputer.instructionset.DIYInstructionSet;
 import ivark.diycomputer.instructionset.InstructionSet;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,13 +15,17 @@ public class Computer {
     public final MUX mux;
     public final MAR mar;
     public final RAM ram;
-    public final INSTREG instreg;
+    public final INSTREG instReg;
     public final ALU alu;
     public final Register xreg;
     public final Register yreg;
     public final Register zreg;
     public final Register tmp;
     public final SP sp;
+    public final OutReg out0;
+    public final OutReg out1;
+    public final OutReg out2;
+    public final OutReg out3;
     public final CLK clock;
     public final List<Module> modules = new ArrayList<>();
     public final InstructionSet is;
@@ -33,13 +36,17 @@ public class Computer {
         this.mux = new MUX(this,"MUX");
         this.mar = new MAR(this,"MAR");
         this.ram = new RAM(this,"RAM");
-        this.instreg = new INSTREG(this,"INSTREG");
+        this.instReg = new INSTREG(this,"INSTREG");
         this.alu = new ALU(this,"ALU");
         this.xreg = new Register(this,"X", BUS.BusReader.X_IN, BUS.BusWriter.X_OUT);
         this.yreg = new Register(this,"Y", BUS.BusReader.Y_IN, BUS.BusWriter.Y_OUT);
         this.zreg = new Register(this,"Z", BUS.BusReader.Z_IN, BUS.BusWriter.Z_OUT);
         this.tmp = new Register(this,"TMP", BUS.BusReader.TMP_IN, BUS.BusWriter.TMP_OUT);
         this.sp = new SP(this,"SP");
+        this.out0= new OutReg(this,"OUT0", BUS.BusReader.OUTPUT_0_IN);
+        this.out1= new OutReg(this,"OUT1", BUS.BusReader.OUTPUT_1_IN);
+        this.out2= new OutReg(this,"OUT2", BUS.BusReader.OUTPUT_2_IN);
+        this.out3= new OutReg(this,"OUT3", BUS.BusReader.OUTPUT_3_IN);
         this.clock = new CLK(this,"CLK");
 
         modules.forEach(module-> {

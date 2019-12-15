@@ -14,29 +14,29 @@ public class RAM extends Module {
     }
 
     @Override
-    public VMPart getVMPart() {
-        return new VMPart() {
+    public ExtendedVMPart getVMPart() {
+        return new ExtendedVMPart() {
             private byte[] memory = new byte[65536];
 
             private byte newVal;
 
-            void onCLKRising() {
-                newVal = c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.RAM_IN ? getValueFromBus() : newVal;
+            public void onCLKRising() {
+                newVal = c.instReg.getVMPart().getCurrentBusReader() == BUS.BusReader.RAM_IN ? getValueFromBus() : newVal;
             }
 
             @Override
-            void onCLKRisingDone() {
+            public void onCLKRisingDone() {
             }
 
             @Override
-            void onCLKFalling() {
-                if (c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.RAM_IN) {
-                    memory[c.mar.getVMPart().getAddress()] = newVal;
+            public void onCLKFalling() {
+                if (c.instReg.getVMPart().getCurrentBusReader() == BUS.BusReader.RAM_IN) {
+                    memory[getMARAddress()] = newVal;
                 }
             }
 
             @Override
-            void onCLKFallingDone() {
+            public void onCLKFallingDone() {
             }
 
             @Override
@@ -46,8 +46,28 @@ public class RAM extends Module {
 
             @Override
             public byte getBusOutput() {
-                return memory[c.mar.getVMPart().getAddress()];
+                int address = getMARAddress();
+                return memory[address];
+            }
+
+            @Override
+            public byte read(int address) {
+                return memory[address];
+            }
+
+            @Override
+            public void write(int address, byte value) {
+                memory[address]=value;
+            }
+
+            private int getMARAddress() {
+                return (c.mar.getVMPart().getHighValue() & 0xff) * 256 + (c.mar.getVMPart().getLowValue() & 0xff);
             }
         };
+    }
+
+    public abstract class ExtendedVMPart extends VMPart {
+        public abstract byte read(int address);
+        public abstract void write(int address, byte value);
     }
 }

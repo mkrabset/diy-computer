@@ -17,8 +17,6 @@ public class ALU extends Module {
 
     // Signals to be LOW for each ALU-operations
     public final Signal[] addOpSignals= opSignals(false, false, false);
-    public final Signal[] rolOpSignals= opSignals(false, false, false);
-    public final Signal[] notOpSignals =opSignals(false, false, false);
     public final Signal[] andOpSignals= opSignals(true, false, false);
     public final Signal[] orOpSignals=  opSignals(true, false, true);
     public final Signal[] xorOpSignals =opSignals(true, true, false);
@@ -48,8 +46,8 @@ public class ALU extends Module {
     }
 
     @Override
-    public VMPart getVMPart() {
-        return new VMPart() {
+    public ExtendedVMPart getVMPart() {
+        return new ExtendedVMPart() {
             private byte a;
             private byte b;
 
@@ -59,22 +57,22 @@ public class ALU extends Module {
             private boolean fz;  // all bits zero
             private boolean fn;  // bit7 one
             private boolean fc;  // carry
-            private boolean fv;
+            private boolean fv;  // overflow
 
             @Override
-            void onCLKRising() {
-                newa = instReg.getBusReader() == BUS.BusReader.ALU_A_IN ? getValueFromBus() : a;
-                newb = instReg.getBusReader() == BUS.BusReader.ALU_B_IN ? getValueFromBus() : b;
+            public void onCLKRising() {
+                newa = getCurrentBusReader() == BUS.BusReader.ALU_A_IN ? getValueFromBus() : a;
+                newb = getCurrentBusReader() == BUS.BusReader.ALU_B_IN ? getValueFromBus() : b;
             }
 
             @Override
-            void onCLKRisingDone() {
+            public void onCLKRisingDone() {
                 a = newa;
                 b = newb;
-                if (instReg.isActive(c.alu.clearCarrySignal)) fc = false;
-                if (instReg.isActive(c.alu.setCarrySignal)) fc = true;
-                if (instReg.isActive(c.alu.updateFlagsSignal)) {
-                    VirtualMachine.Alu.Result result = calcResult(a, b);
+                if (isActive(c.alu.clearCarrySignal)) fc = false;
+                if (isActive(c.alu.setCarrySignal)) fc = true;
+                if (isActive(c.alu.updateFlagsSignal)) {
+                    Result result = calcResult(a, b);
                     fz = result.fz;
                     fn = result.fn;
                     fc = result.fc;
@@ -83,27 +81,27 @@ public class ALU extends Module {
             }
 
             @Override
-            void onCLKFalling() {
+            public void onCLKFalling() {
                 super.onCLKFalling();
             }
 
             @Override
-            void onCLKFallingDone() {
+            public void onCLKFallingDone() {
                 super.onCLKFallingDone();
             }
 
-            VirtualMachine.Alu.Result calcResult(byte a, byte b) {
-                if (instReg.isActive(c.alu.invertBSignal)) {
+            Result calcResult(byte a, byte b) {
+                if (isActive(c.alu.invertBSignal)) {
                     b = (byte) (~b);
                 }
-                boolean op0 = !instReg.isActive(c.alu.op0Signal);
-                boolean op1 = !instReg.isActive(c.alu.op1Signal);
-                boolean op2 = !instReg.isActive(c.alu.flrSignal);
+                boolean op0 = !isActive(c.alu.op0Signal);
+                boolean op1 = !isActive(c.alu.op1Signal);
+                boolean op2 = !isActive(c.alu.flrSignal);
                 if (op2) {
                     if (op1) {
                         if (!op0) {
                             // xor
-                            return new VirtualMachine.Alu.Result(a, b, (byte) (a ^ b), false);
+                            return new Result(a, b, (byte) (a ^ b), false);
                         }
                     } else {
                         if (op0) {
@@ -112,20 +110,20 @@ public class ALU extends Module {
                             if (fc) {
                                 outval |= 0x80;
                             }
-                            return new VirtualMachine.Alu.Result(a, b, outval, (b & 0x01) == 0x01);
+                            return new Result(a, b, outval, (b & 0x01) == 0x01);
                         } else {
                             // and
-                            return new VirtualMachine.Alu.Result(a, b, (byte) (a & b), false);
+                            return new Result(a, b, (byte) (a & b), false);
                         }
                     }
                 } else {
                     if (op1) {
                         if (op0) {
                             // not
-                            return new VirtualMachine.Alu.Result(a, b, (byte) (~b), false);
+                            return new Result(a, b, (byte) (~b), false);
                         } else {
                             // or
-                            return new VirtualMachine.Alu.Result(a, b, (byte) (a | b), false);
+                            return new Result(a, b, (byte) (a | b), false);
                         }
                     } else {
                         if (op0) {
@@ -134,31 +132,34 @@ public class ALU extends Module {
                             if (fc) {
                                 outval |= 0x01;
                             }
-                            return new VirtualMachine.Alu.Result(a, b, outval, (a & 0x80) == 0x80);
+                            return new Result(a, b, outval, (a & 0x80) == 0x80);
                         } else {
                             // add
                             int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
-                            return new VirtualMachine.Alu.Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
+                            return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
                         }
                     }
                 }
                 throw new RuntimeException("No such op");
             }
 
-
-            boolean getZ() {
+            @Override
+            public boolean getZ() {
                 return fz;
             }
 
-            boolean getN() {
+            @Override
+            public boolean getN() {
                 return fn;
             }
 
-            boolean getC() {
+            @Override
+            public boolean getC() {
                 return fc;
             }
 
-            boolean getV() {
+            @Override
+            public boolean getV() {
                 return fv;
             }
 
@@ -194,5 +195,12 @@ public class ALU extends Module {
                 return calcResult(a, b).outval;
             }
         };
+    }
+
+    public abstract class ExtendedVMPart extends VMPart {
+        public abstract boolean getZ();
+        public abstract boolean getN();
+        public abstract boolean getC();
+        public abstract boolean getV();
     }
 }

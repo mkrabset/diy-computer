@@ -17,6 +17,16 @@ public class MUXHAT extends Module {
 
     @Override
     public VMPart getVMPart() {
-        return null; // TODO:
+        return new VMPart() {
+            @Override
+            BUS.BusWriter getWriter() {
+                return null;
+            }
+
+            @Override
+            byte getBusOutput() {
+                return 0;
+            }
+        };
     }
 }

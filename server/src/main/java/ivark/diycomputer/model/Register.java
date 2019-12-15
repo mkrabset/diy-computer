@@ -30,6 +30,33 @@ public class Register extends Module {
 
     @Override
     public VMPart getVMPart() {
-        return null; // TODO:
+        return new VMPart() {
+            private byte value;
+            private byte newValue;
+
+            @Override
+            BusWriter getWriter() {
+                return busWriter;
+            }
+
+            @Override
+            byte getBusOutput() {
+                return value;
+            }
+
+            public void onCLKRising() {
+                newValue = getCurrentBusReader() == busReader ? getValueFromBus() : value;
+            }
+
+            public void onCLKRisingDone() {
+                value = newValue;
+            }
+
+            public void onCLKFalling() {
+            }
+
+            public void onCLKFallingDone() {
+            }
+        };
     }
 }

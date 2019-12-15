@@ -15,7 +15,7 @@ public class Level2EEPROM extends SignalEEpromBase {
             c.sp.resetSignal,
             c.sp.cntSignal,
             c.sp.dirDownSignal,
-            c.instreg.contSignal
+            c.instReg.contSignal
     };
 
 

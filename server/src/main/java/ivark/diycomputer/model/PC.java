@@ -103,8 +103,8 @@ public class PC extends Module {
     }
 
     @Override
-    public VMPart getVMPart() {
-        return new VMPart() {
+    public ExtendedVMPart getVMPart() {
+        return new ExtendedVMPart() {
             private byte jump_h;
             private byte jump_l;
 
@@ -117,9 +117,9 @@ public class PC extends Module {
             private byte newpc_h;
             private byte newpc_l;
 
-            void onCLKRising() {
-                newjump_h = c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_H_IN ? getValueFromBus() : jump_h;
-                newjump_l = c.instreg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_L_IN ? getValueFromBus() : jump_l;
+            public void onCLKRising() {
+                newjump_h = c.instReg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_H_IN ? getValueFromBus() : jump_h;
+                newjump_l = c.instReg.getVMPart().getCurrentBusReader() == BUS.BusReader.PC_JMP_L_IN ? getValueFromBus() : jump_l;
 
                 newpc_h = isJump() ? jump_h : pc_h;
                 newpc_l = isJump() ? jump_l : pc_l;
@@ -132,17 +132,17 @@ public class PC extends Module {
                 }
             }
 
-            void onCLKRisingDone() {
+            public void onCLKRisingDone() {
                 jump_h = newjump_h;
                 jump_l = newjump_l;
                 pc_h = newpc_h;
                 pc_l = newpc_l;
             }
 
-            void onCLKFalling() {
+            public void onCLKFalling() {
             }
 
-            void onCLKFallingDone() {
+            public void onCLKFallingDone() {
             }
 
             @Override
@@ -164,6 +164,30 @@ public class PC extends Module {
                 PC.JumpCondition cond = PC.JumpCondition.values()[condOrdinal];
                 return cond.eval(c.alu.getVMPart().getZ(), c.alu.getVMPart().getN(), c.alu.getVMPart().getC(), c.alu.getVMPart().getV());
             }
+
+            @Override
+            public byte getHighValue() {
+                return pc_h;
+            }
+
+            @Override
+            public byte getLowValue() {
+                return pc_l;
+            }
+
+            @Override
+            public void reset() {
+                pc_h=0;
+                pc_l=0;
+                jump_h=0;
+                jump_l=0;
+            }
         };
+    }
+
+    public abstract class ExtendedVMPart extends VMPart {
+        public abstract byte getHighValue();
+        public abstract byte getLowValue();
+        public abstract void reset();
     }
 }

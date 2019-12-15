@@ -2,7 +2,6 @@ package ivark.diycomputer.model;
 
 import ivark.diycomputer.instructionset.Instruction;
 import ivark.diycomputer.instructionset.Microcode;
-import ivark.diycomputer.vm.VirtualMachine;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,19 +29,19 @@ public class INSTREG extends Module {
             private byte newInst = 0;
 
             @Override
-            void onCLKRising() {
+            public void onCLKRising() {
                 newInst = getCurrentBusReader() == BUS.BusReader.INSTREG_IN ? getValueFromBus() : instr;
             }
 
             @Override
-            void onCLKRisingDone() {
+            public void onCLKRisingDone() {
                 instr = newInst;
 
             }
 
             @Override
-            protected void onCLKFallingDone() {
-                if (isActive(c.instreg.contSignal)) {
+            public void onCLKFallingDone() {
+                if (isActive(c.instReg.contSignal)) {
                     step = 0;
                 } else {
                     step++;
@@ -60,30 +59,47 @@ public class INSTREG extends Module {
                 throw new RuntimeException("Why ask for this!");
             }
 
-            private Instruction getCurrentInstruction() {
+            @Override
+            public final void reset() {
+                instr = 0;
+                step = 0;
+            }
+
+            @Override
+            public final Instruction getCurrentInstruction() {
                 return c.is.instructions.get(instr);
             }
 
             @Override
-            Microcode getMicrocode() {
-                Instruction currentInstruction = getCurrentInstruction();
-                return currentInstruction.steps.get(step);
+            public byte getCurrentStep() {
+                return step;
             }
         };
     }
 
-    abstract class SignalProvidingVMPart extends VMPart {
-        abstract Microcode getMicrocode();
+    public abstract class SignalProvidingVMPart extends VMPart {
+        public abstract void reset();
+
+        public abstract Instruction getCurrentInstruction();
+
+        public abstract byte getCurrentStep();
+
+        public final Microcode getMicrocode() {
+            Instruction currentInstruction = getCurrentInstruction();
+            return currentInstruction.steps.get(getCurrentStep());
+        }
 
         @Override
-        protected final boolean isActive(Signal signal) {
+        public final boolean isActive(Signal signal) {
             return getMicrocode().activeSignals.contains(signal);
         }
 
+        @Override
         final public BUS.BusWriter getCurrentBusWriter() {
             return getMicrocode().from;
         }
 
+        @Override
         final public BUS.BusReader getCurrentBusReader() {
             return getMicrocode().to;
         }

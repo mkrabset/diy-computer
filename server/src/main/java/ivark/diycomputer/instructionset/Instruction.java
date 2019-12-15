@@ -69,7 +69,7 @@ public final class Instruction {
                 }
             }
             sb.append(step.activeSignals.stream().map(s -> s.fullName()).collect(joining(", ")) + "\n");
-            if (step.activeSignals.size()==1 && step.activeSignals.get(0).equals(c.instreg.contSignal)) {
+            if (step.activeSignals.size()==1 && step.activeSignals.get(0).equals(c.instReg.contSignal)) {
                 break;
             }
         }
@@ -81,7 +81,7 @@ public final class Instruction {
             throw new RuntimeException("Too many steps for instruction: +n"+toString());
         }
         for (int i=steps.size();i<16;i++) {
-            steps.add(new Microcode().withActive(c.instreg.contSignal));
+            steps.add(new Microcode().withActive(c.instReg.contSignal));
         }
     }
 
@@ -134,7 +134,7 @@ public final class Instruction {
 
     public int numSteps() {
         for (int s=0;s<steps.size();s++) {
-            if (steps.get(s).activeSignals.contains(c.instreg.contSignal)) {
+            if (steps.get(s).activeSignals.contains(c.instReg.contSignal)) {
                 return s+1;
             }
         }

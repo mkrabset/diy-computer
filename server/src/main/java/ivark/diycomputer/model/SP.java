@@ -21,7 +21,62 @@ public class SP extends Module {
     }
 
     @Override
-    public VMPart getVMPart() {
-        return null; // TODO:
+    public ExtendedVMPart getVMPart() {
+        return new ExtendedVMPart() {
+            private byte val_h;
+            private byte val_l;
+
+            private byte newval_h;
+            private byte newval_l;
+
+            public void onCLKRising() {
+                if (isActive(c.sp.resetSignal)) {
+                    newval_h = 0;
+                    newval_l = 0;
+                } else if (isActive(c.sp.cntSignal)) {
+                    if (isActive(c.sp.dirDownSignal)) {
+                        newval_l++;
+                        if (newval_l == 0) {
+                            newval_h++;
+                        }
+                    } else {
+                        if (newval_l == 0) {
+                            newval_h--;
+                        }
+                        newval_l--;
+                    }
+                }
+            }
+
+            public void onCLKRisingDone() {
+                val_h = newval_h;
+                val_l = newval_l;
+            }
+
+            @Override
+            BUS.BusWriter getWriter() {
+                return null;
+            }
+
+            @Override
+            byte getBusOutput() {
+                return 0;
+            }
+
+            @Override
+            public byte getHighValue() {
+                return val_h;
+            }
+
+            @Override
+            public byte getLowValue() {
+                return val_l;
+            }
+        };
+    }
+
+    abstract class ExtendedVMPart extends VMPart {
+        public abstract byte getHighValue();
+        public abstract byte getLowValue();
     }
 }
