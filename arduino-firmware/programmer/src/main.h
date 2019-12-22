@@ -5,7 +5,7 @@
 
 void setup();
 void test();
-void setMastered(boolean m);
+void setSource(boolean src);
 void loop();
 void serialEvent();
 void processCommand();
@@ -16,8 +16,7 @@ void run();
 void writeBufferToRAM();
 void writeRamAndIncreaseMar(byte value);
 void setMicrocodeStep(byte instr, byte step);
-void setBusValue(byte value);
-void busWrite(bool doWrite);
+
 void tick();
 void toggleClock();
 void setMicrocodeStep(byte instr, byte step);

@@ -2,6 +2,8 @@
 #include <Arduino.h>
 #include "main.h"
 
+#include "bus.h"
+
 #define DEBUG false
 
 #define DEBUGOUT if (DEBUG) Serial.println
@@ -19,12 +21,6 @@
 #define RESET_PC_START_STEP 3
 #define RESET_PC_END_STEP 14
 
-// Shift-register pins for bus write
-#define OE_DATA 5
-#define SHIFT_DATA 4
-#define LATCH_DATA 3
-#define DS_DATA 6
-
 // Shift-register pins for instruction register mastering
 #define LATCH A1
 #define SHIFT_CL A2
@@ -32,15 +28,16 @@
 
 // Pin for src selection    Mastered / Freerunning
 #define SRC_SEL A4
+#define SRC_PROGRAMMER LOW
+#define SRC_SELF HIGH
 
 // Pin for ext_clk 
-#define EXT_CLK A3
+#define CLK A3
 
 #define RUNDELAY 5000
 #define MASTERING_DEBUG false
 #define MASTERING_DELAY 50
 
-#define CLK_LED 13
 
 long masteredDelay=MASTERING_DELAY;
 long runDelay=RUNDELAY;
@@ -54,29 +51,27 @@ byte data[MAX_BUF/2];
 bool commandComplete=false;
 
 // Execution control
-boolean mastered=true;
+boolean source=SRC_SELF;
 boolean halted=true;
 
 volatile boolean highCLK=false; 
 
 void setup() {
-  digitalWrite(OE_DATA,HIGH);
-  pinMode(OE_DATA,OUTPUT);        // Set to input if controlled by decoder
-  pinMode(DS_DATA,OUTPUT);
-  pinMode(SHIFT_DATA,OUTPUT);
-  pinMode(LATCH_DATA,OUTPUT);
+  busInit();
   
+  // Output for shift-register control pins
   pinMode(DS,OUTPUT);
   pinMode(SHIFT_CL,OUTPUT);
   pinMode(LATCH,OUTPUT);
 
-  pinMode(EXT_CLK,OUTPUT);
-  pinMode(CLK_LED,OUTPUT);
-  digitalWrite(EXT_CLK,LOW);
-  digitalWrite(CLK_LED,LOW);
+  // Clock to low
+  pinMode(CLK,OUTPUT);
+  digitalWrite(CLK,LOW);
 
+  // Source  select to low
   pinMode(SRC_SEL,OUTPUT);
   digitalWrite(SRC_SEL,LOW);
+
   delay(100);
   Serial.begin(115200);
   delay(100);
@@ -99,8 +94,8 @@ void setup() {
   Serial.println("mc iis             // Set mastered instruction/step to ii/s (for verifying decoder signals)");
   Serial.println(">");
   halted=true;
-  busWrite(false);
-  setMastered(true);
+  busDisable();
+  setSource(SRC_PROGRAMMER);
   initPC();
   Timer1.initialize(runDelay);
 }
@@ -111,20 +106,19 @@ void clock(bool val) {
   } else {
     DEBUGOUT("CLK DOWN");
   }
-  digitalWrite(EXT_CLK,val);
-  digitalWrite(CLK_LED,val);
+  digitalWrite(CLK,val);
 }
 
-void setMastered(boolean m) {
-  mastered=m;
-  if (mastered) {
-    DEBUGOUT("Mastered=true");
+void setSource(boolean src) {
+  source=src;
+  if (source==SRC_PROGRAMMER) {
+    DEBUGOUT("src(programmer)");
     halted=true;
     Timer1.detachInterrupt();
   } else {
-    DEBUGOUT("Mastered=false");
+    DEBUGOUT("src(self)");
   }
-  digitalWrite(SRC_SEL,!mastered);
+  digitalWrite(SRC_SEL,source);
 }
 
 void loop() {
@@ -154,7 +148,7 @@ void processCommand() {
   DEBUGOUT();
   DEBUGOUT(buffer);
   halt();
-  setMastered(true);
+  setSource(SRC_PROGRAMMER);
   if (beginsWith(buffer,"mar ")) {
     int address=getHex(&buffer[4],4);
     setMar(address);
@@ -181,7 +175,7 @@ void processCommand() {
     Serial.println(" microseconds");
   } else if (beginsWith(&buffer[0],"s")) {
     halt();
-    setMastered(false);
+    setSource(SRC_SELF);
     if (buffer[1]==0) {
       tick();
     } else {
@@ -192,7 +186,7 @@ void processCommand() {
     }
   } else if (beginsWith(&buffer[0],"dm")) {  // Display memory in instruction reg display
     halt();
-    setMastered(true);
+    setSource(SRC_PROGRAMMER);
     if (buffer[2]==0) {
       DEBUGOUT("dm");
       setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
@@ -204,16 +198,16 @@ void processCommand() {
       for (int i=0;i<num;i++) {
         setMicrocodeStep(RAMLOAD_INSTR, RAM2INSTR_STEP);
         tick();
-        setMastered(false);
+        setSource(SRC_SELF);
         delay(1000);
-        setMastered(true);
+        setSource(SRC_PROGRAMMER);
         setMicrocodeStep(RAMLOAD_INSTR, RAMLOAD_INC_MAR_STEP);
         tick();
       }
     }
-    setMastered(false);
+    setSource(SRC_SELF);
   } else if (beginsWith(&buffer[0],"t")) {
-    setMastered(false);
+    setSource(SRC_SELF);
     clock(!highCLK);
     highCLK=!highCLK;
   } else if (beginsWith(&buffer[0],"w ")) {
@@ -223,7 +217,7 @@ void processCommand() {
     setMicrocodeStep(mcAddress>>4, mcAddress & 0x0f);
     Serial.print("Set mc to #");
     Serial.println(mcAddress, HEX);
-    setMastered(true);
+    setSource(SRC_PROGRAMMER);
   } 
   Serial.println(">");
 }
@@ -235,7 +229,7 @@ void initPC() {
     setMicrocodeStep(RESET_PC_INSTR, s);
     tick();
   }
-  setMastered(false);
+  setSource(SRC_SELF);
 }
 
 void halt() {
@@ -245,7 +239,7 @@ void halt() {
 }
 
 void run() {
-  setMastered(false);
+  setSource(SRC_SELF);
   halted=false;
   Timer1.attachInterrupt(toggleClock);
   Serial.println("Running program");
@@ -303,15 +297,7 @@ void setMicrocodeStep(byte instr, byte step) {
   digitalWrite(LATCH,LOW);
 }
 
-void setBusValue(byte value) {
-  shiftOut(DS_DATA, SHIFT_DATA, MSBFIRST, value);
-  digitalWrite(LATCH_DATA,HIGH);
-  digitalWrite(LATCH_DATA,LOW);
-}
 
-void busWrite(bool doWrite) {
-  digitalWrite(OE_DATA, !doWrite);
-}
 
 void tick() {
     sleep();
@@ -330,25 +316,25 @@ void setMar(int address) {
   // Load MAR high
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_LOAD_MAR_HIGH_STEP);
   setBusValue(address>>8);
-  busWrite(true);
+  busEnable();
   tick();
-  busWrite(false);
+  busDisable();
 
   // Load MAR low
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_LOAD_MAR_LOW_STEP);
   setBusValue(address & 0xff);
-  busWrite(true);
+  busEnable();
   tick();
-  busWrite(false);
+  busDisable();
 }
 
 void writeRamAndIncreaseMar(byte value) {
   // Write value to RAM
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_RAMWRITE_STEP);
   setBusValue(value);
-  busWrite(true);
+  busEnable();
   tick();
-  busWrite(false);
+  busDisable();
 
   // Extra empty step for RAM write
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_NOP_STEP);
@@ -407,7 +393,7 @@ void printHex(int num, int precision) {
 
 void sleep() {
   DEBUGOUT("...");
-  long delayMicro=mastered ? masteredDelay : runDelay;
+  long delayMicro=(source==SRC_PROGRAMMER) ? masteredDelay : runDelay;
   if (delayMicro>15000) {
     delay(delayMicro/1000);
   } else {
