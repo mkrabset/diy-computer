@@ -3,6 +3,7 @@
 #include "main.h"
 
 #include "bus.h"
+#include "clock.h"
 
 #define DEBUG false
 
@@ -31,9 +32,6 @@
 #define SRC_PROGRAMMER LOW
 #define SRC_SELF HIGH
 
-// Pin for ext_clk 
-#define CLK A3
-
 #define RUNDELAY 5000
 #define MASTERING_DEBUG false
 #define MASTERING_DELAY 50
@@ -54,8 +52,6 @@ bool commandComplete=false;
 boolean source=SRC_SELF;
 boolean halted=true;
 
-volatile boolean highCLK=false; 
-
 void setup() {
   busInit();
   
@@ -65,8 +61,7 @@ void setup() {
   pinMode(LATCH,OUTPUT);
 
   // Clock to low
-  pinMode(CLK,OUTPUT);
-  digitalWrite(CLK,LOW);
+  clockInit();
 
   // Source  select to low
   pinMode(SRC_SEL,OUTPUT);
@@ -100,14 +95,7 @@ void setup() {
   Timer1.initialize(runDelay);
 }
 
-void clock(bool val) {
-  if (val) {
-    DEBUGOUT("CLK UP");
-  } else {
-    DEBUGOUT("CLK DOWN");
-  }
-  digitalWrite(CLK,val);
-}
+
 
 void setSource(boolean src) {
   source=src;
@@ -208,8 +196,7 @@ void processCommand() {
     setSource(SRC_SELF);
   } else if (beginsWith(&buffer[0],"t")) {
     setSource(SRC_SELF);
-    clock(!highCLK);
-    highCLK=!highCLK;
+    toggleClock();
   } else if (beginsWith(&buffer[0],"w ")) {
     writeBufferToRAM();
   } else if (beginsWith(&buffer[0],"mc ")) {
@@ -346,14 +333,7 @@ void writeRamAndIncreaseMar(byte value) {
 }
 
 
-void toggleClock() {
-  if (highCLK) {
-    PORTC&=B11110111;
-  } else {
-    PORTC|=B00001000;
-  }
-  highCLK=!highCLK;
-}
+
 
 boolean beginsWith(char *src, char pattern[]) {
   for (int i=0;i<256;i++) {

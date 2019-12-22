@@ -1,20 +1,19 @@
 #include "bus.h"
 
 // BUS pins
-#define BUS0 3
-#define BUS1 4
-#define BUS2 5
-#define BUS3 6
-#define BUS4 11
-#define BUS5 10
-#define BUS6 9
-#define BUS7 8
+#define BUS7 3
+#define BUS6 4
+#define BUS5 5
+#define BUS4 6
+#define BUS3 11
+#define BUS2 10
+#define BUS1 9
+#define BUS0 8
 #define BUS_ENABLE 7
 #define BUS_DIR 12
 
 #define BUS_DIR_READ HIGH
 #define BUS_DIR_WRITE LOW
-
 
 void busInit() {
   pinMode(BUS_ENABLE, OUTPUT);
@@ -24,6 +23,7 @@ void busInit() {
 }
 
 void setBusValue(byte value) {
+  busDir(BUS_DIR_WRITE);
   digitalWrite(BUS0, ((value >> 0) & 0x01)==1);
   digitalWrite(BUS1, ((value >> 1) & 0x01)==1);
   digitalWrite(BUS2, ((value >> 2) & 0x01)==1);
