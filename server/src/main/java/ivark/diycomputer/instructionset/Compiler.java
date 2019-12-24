@@ -231,8 +231,10 @@ public class Compiler {
 
     private boolean matchesWithLabel(Instruction i, String line) {
         if (i.pattern.toString().contains("\\$(....)")) {
-            if (getDirectLabelPattern(i).matcher(line).matches()) {
-                return true;
+            Matcher matcher = getDirectLabelPattern(i).matcher(line);
+            if (matcher.matches()) {
+                String label=matcher.group(1);
+                return !(label.equals("X") || label.equals("Y") || label.equals("Z"));
             }
         }
         return false;
