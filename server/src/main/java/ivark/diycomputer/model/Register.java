@@ -6,7 +6,7 @@ import ivark.diycomputer.model.BUS.BusWriter;
 import java.util.Arrays;
 import java.util.List;
 
-public class Register extends Module {
+public class Register extends Part {
     private final BusReader busReader;
     private final BusWriter busWriter;
     private final VMPart vmPart;

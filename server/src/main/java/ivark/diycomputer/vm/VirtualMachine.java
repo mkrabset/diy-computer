@@ -34,7 +34,7 @@ public class VirtualMachine {
 
         PC.ExtendedVMPart pc = c.pc.getVMPart();
         INSTREG.SignalProvidingVMPart instReg = c.instReg.getVMPart();
-        Module.VMPart clock = c.clock.getVMPart();
+        Part.VMPart clock = c.clock.getVMPart();
         pc.reset();
         instReg.reset();
 
@@ -52,16 +52,16 @@ public class VirtualMachine {
                         ", out3="+c.out3.getVMPart().getValue()
                         );
             }
-            c.modules.stream().map(Module::getVMPart).forEach(p -> p.onCLKRising());
+            c.parts.stream().map(Part::getVMPart).forEach(p -> p.onCLKRising());
             sleep(d);
-            c.modules.stream().map(Module::getVMPart).forEach(p -> p.onCLKRisingDone());
+            c.parts.stream().map(Part::getVMPart).forEach(p -> p.onCLKRisingDone());
             sleep(d);
             if (instReg.getCurrentStep() == 0) {
                 log(1, "\n" + toHex((pc.getHighValue() & 0xff) * 256 + (pc.getLowValue() & 0xff), 4) + ": ");
             }
-            c.modules.stream().map(Module::getVMPart).forEach(p -> p.onCLKFalling());
+            c.parts.stream().map(Part::getVMPart).forEach(p -> p.onCLKFalling());
             sleep(d);
-            c.modules.stream().map(Module::getVMPart).forEach(p -> p.onCLKFallingDone());
+            c.parts.stream().map(Part::getVMPart).forEach(p -> p.onCLKFallingDone());
             sleep(d);
         }
     }

@@ -3,7 +3,7 @@ package ivark.diycomputer.model;
 import java.util.Arrays;
 import java.util.List;
 
-public class MUXHAT extends Module {
+public class MUXHAT extends Part {
     public final Signal.ActiveHighSignal pcOutLowSignal=new Signal.ActiveHighSignal("PC_OUT_LOW");
     private final VMPart vmPart;
 

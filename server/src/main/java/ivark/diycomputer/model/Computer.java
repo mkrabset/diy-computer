@@ -27,7 +27,7 @@ public class Computer {
     public final OutReg out2;
     public final OutReg out3;
     public final CLK clock;
-    public final List<Module> modules = new ArrayList<>();
+    public final List<Part> parts = new ArrayList<>();
     public final InstructionSet is;
 
     public Computer() {
@@ -49,17 +49,17 @@ public class Computer {
         this.out3= new OutReg(this,"OUT3", BUS.BusReader.OUTPUT_3_IN);
         this.clock = new CLK(this,"CLK");
 
-        modules.forEach(module-> {
-            module.signals().forEach(signal->{
-                signal.owner=module;
+        parts.forEach(part-> {
+            part.signals().forEach(signal->{
+                signal.owner=part;
             });
         });
 
         this.is = new DIYInstructionSet(this);
     }
 
-    public void registerModule(Module module) {
-        modules.add(module);
+    public void registerModule(Part module) {
+        parts.add(module);
     }
 
 
@@ -83,7 +83,7 @@ public class Computer {
     private void printNonBusIOSignals() {
         System.out.println("Active LOW:");
         System.out.println("===========");
-        modules.forEach(m->{
+        parts.forEach(m->{
             m.signals().stream().filter(s->s.activeValue==false).forEach(s->{
                 System.out.println(s.descr());
             });
@@ -92,7 +92,7 @@ public class Computer {
 
         System.out.println("Active HIGH:");
         System.out.println("===========");
-        modules.forEach(m->{
+        parts.forEach(m->{
             m.signals().stream().filter(s->s.activeValue==true).forEach(s->{
                 System.out.println(s.descr());
             });

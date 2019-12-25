@@ -5,7 +5,7 @@ import ivark.diycomputer.model.BUS.BusReader;
 import java.util.Arrays;
 import java.util.List;
 
-public class OutReg extends Module {
+public class OutReg extends Part {
     private final BusReader busReader;
     private final ExtendedVMPart vmPart;
 

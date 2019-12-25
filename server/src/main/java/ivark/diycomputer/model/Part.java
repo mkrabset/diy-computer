@@ -3,11 +3,11 @@ package ivark.diycomputer.model;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Module {
+public abstract class Part {
     public final Computer c;
     public final String name;
 
-    public Module(Computer c, String name) {
+    public Part(Computer c, String name) {
         this.c=c ;
         this.name=name;
         c.registerModule(this);
@@ -45,8 +45,8 @@ public abstract class Module {
         public final byte getValueFromBus() {
             BUS.BusWriter currentBusWriter = c.instReg.getVMPart().getCurrentBusWriter();
 
-            List<VMPart> busWriters = c.modules.stream()
-                    .map(Module::getVMPart)
+            List<VMPart> busWriters = c.parts.stream()
+                    .map(Part::getVMPart)
                     .filter(vmpart -> vmpart.getWriter() == currentBusWriter)
                     .collect(Collectors.toList());
 

@@ -3,7 +3,7 @@ package ivark.diycomputer.model;
 import java.util.Arrays;
 import java.util.List;
 
-public class MUX extends Module {
+public class MUX extends Part {
     public final Signal.ActiveLowSignal selectStackPointerSignal=new Signal.ActiveLowSignal("selectStackPointer");
     private final VMPart vmPart;
 

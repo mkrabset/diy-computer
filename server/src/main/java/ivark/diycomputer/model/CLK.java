@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by ivark on 24.06.17.
  */
-public class CLK extends Module {
+public class CLK extends Part {
     public final Signal.ActiveLowSignal haltSignal = new Signal.ActiveLowSignal("HALT");
     private final VMPart vmPart;
 

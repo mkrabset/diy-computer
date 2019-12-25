@@ -11,7 +11,7 @@ public abstract class Signal {
     public static final ActiveHighSignal DUMMY_ACTIVE_HIGH=new ActiveHighSignal("DUMMY_AH");
 
 
-    public Module owner;
+    public Part owner;
     public final String name;
     public final boolean activeValue;
 

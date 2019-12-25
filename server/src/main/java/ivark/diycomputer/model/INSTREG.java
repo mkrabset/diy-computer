@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by ivark on 13.05.17.
  */
-public class INSTREG extends Module {
+public class INSTREG extends Part {
     public final Signal.ActiveLowSignal contSignal = new Signal.ActiveLowSignal("CONT");
     private final SignalProvidingVMPart vmPart;
 

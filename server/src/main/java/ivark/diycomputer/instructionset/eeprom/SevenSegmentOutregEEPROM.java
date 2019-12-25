@@ -1,6 +1,5 @@
 package ivark.diycomputer.instructionset.eeprom;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -32,7 +31,6 @@ public class SevenSegmentOutregEEPROM {
         writeSpec(script.toString());
     }
 
-    @NotNull
     private static String genScript(int modulo, boolean signed, int offset) {
         StringBuilder pw = new StringBuilder();
         //Digit #0

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PC extends Module {
+public class PC extends Part {
     public final Signal.ActiveHighSignal incSignal = new Signal.ActiveHighSignal("CNT");
     public final Signal.ActiveLowSignal jumpCond0Signal = new Signal.ActiveLowSignal("JMP.COND.0");
     public final Signal.ActiveLowSignal jumpCond1Signal = new Signal.ActiveLowSignal("JMP.COND.1");

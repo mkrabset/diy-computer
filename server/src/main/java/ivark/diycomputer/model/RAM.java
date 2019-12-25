@@ -3,7 +3,7 @@ package ivark.diycomputer.model;
 import java.util.Arrays;
 import java.util.List;
 
-public class RAM extends Module {
+public class RAM extends Part {
 
     private final ExtendedVMPart vmPart;
 

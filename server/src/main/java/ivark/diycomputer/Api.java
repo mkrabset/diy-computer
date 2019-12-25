@@ -6,11 +6,9 @@ import ivark.diycomputer.instructionset.Compiler;
 import ivark.diycomputer.instructionset.eeprom.SerialWriter;
 import ivark.diycomputer.model.Computer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
@@ -18,15 +16,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Component
-@Path("/")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:8080")
 public class Api {
     private final Computer C = new Computer();
     private String code = "";
-    private String mappedCode="";
-    private int runDelay=5000;
+    private String mappedCode = "";
+    private int runDelay = 5000;
 
     private SerialWriter serialWriter;
 
@@ -46,81 +44,64 @@ public class Api {
             };
         } catch (Exception e) {
             System.out.println("Failed to connect");
+            e.printStackTrace();
         }
     }
 
     @Autowired
     private BatchLog batchLog;
 
-    @POST
-    @Path("/compiler")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String compile(InputStream program) throws Exception {
+    @PostMapping("/compiler")
+    public String compile(@RequestBody InputStream program) throws Exception {
         Compiler compiler = new Compiler(C);
         List<String> lines = compiler.getLines(new InputStreamReader(program));
         List<String> installInstructions = compiler.generateInstallInstructions(lines);
         return installInstructions.stream().collect(Collectors.joining("\n"));
     }
 
-    @POST
-    @Path("/code")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public void setCode(String code) throws Exception {
-        this.code=code;
+    @PostMapping("/code")
+    public void setCode(@RequestBody String code) throws Exception {
+        this.code = code;
     }
 
-    @GET
-    @Path("/code")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
+    @GetMapping("/code")
     public String getCode() throws Exception {
         return code;
     }
 
-    @GET
-    @Path("/batchlog")
-    public JsonNode getBatchLog(@QueryParam("from") int from) {
+    @GetMapping("/batchlog")
+    public JsonNode getBatchLog(@RequestParam("from") Integer from) {
         return batchLog.getLog(from);
     }
 
 
-    @POST
-    @Path("/runDelay")
-    @Consumes(MediaType.TEXT_PLAIN)
+    @PostMapping("/runDelay")
     public void setRunDelay(String runDelay) throws Exception {
         this.runDelay = Math.max(Integer.valueOf(runDelay), 10);
-        serialWriter.writeToSerial("rd "+ this.runDelay);
+        serialWriter.writeToSerial("rd " + this.runDelay);
     }
 
-    @GET
-    @Path("/runDelay")
-    @Produces(MediaType.TEXT_PLAIN)
+    @GetMapping("/runDelay")
     public Integer getRunDelay() throws Exception {
         return runDelay;
     }
 
-    @GET
-    @Path("/mappedCode")
-    @Produces(MediaType.TEXT_PLAIN)
+    @GetMapping("/mappedCode")
     public String getMappedCode() {
         return mappedCode;
     }
 
-    @POST
-    @Path("/command")
-    @Consumes(MediaType.TEXT_PLAIN)
-    public void execute(String com) throws Exception {
-        Command command=Command.valueOf(com);
+    @PostMapping("/command")
+    public void execute(@RequestBody String com) throws Exception {
+        Command command = Command.valueOf(com);
         switch (command) {
             case install: {
                 Compiler compiler = new Compiler(C);
                 List<String> lines = compiler.getLines(new StringReader(code));
                 Map<String, Integer> labelMap = compiler.createLabelMap(lines);
                 Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);
-                this.mappedCode=byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
-                this.mappedCode=this.mappedCode+"\n\nChecksum: "+ byteCode.checksum()+"\n";
+                this.mappedCode = byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
+                this.mappedCode = this.mappedCode + "\n\nChecksum: " + byteCode.checksum() + "\n";
                 List<String> installInstructions = compiler.genInstallInstructions(byteCode.getBytes());
                 serialWriter.writeToSerial(installInstructions);
                 break;
@@ -147,7 +128,7 @@ public class Api {
                 } catch (Exception e) {
 
                 }
-                serialWriter=null;
+                serialWriter = null;
                 init();
             }
         }
@@ -158,4 +139,3 @@ public class Api {
         install, initPc, run, halt, step, reconnect
     }
 }
-

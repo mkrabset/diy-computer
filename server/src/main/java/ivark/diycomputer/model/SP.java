@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by ivark on 24.06.17.
  */
-public class SP extends Module {
+public class SP extends Part {
     public final Signal.ActiveLowSignal resetSignal=new Signal.ActiveLowSignal("RESET");
     public final Signal.ActiveLowSignal cntSignal = new Signal.ActiveLowSignal("CNT");
     public final Signal.ActiveLowSignal dirDownSignal = new Signal.ActiveLowSignal("DIRDOWN");
