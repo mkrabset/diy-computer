@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import config from '../config'
-import SVG from 'react-inlinesvg';
-import svgimg from '../svg/diycomputer.svg'
-import App from "../App";
+import { SvgLoader, SvgProxy } from 'react-svgmt';
+import diycomputer from './VirtualMachine.svg'
 
 class VirtualMachineDisplay extends Component {
     constructor(props) {
         super(props)
-        var doc=<SVG id="virtmachinesvg" src={svgimg}/>
     }
     
     render() {
+        console.log(diycomputer)
         return (
             <div id="disp">
-                <SVG id="virtmachinesvg" src={svgimg}/>
+                <SvgLoader path={diycomputer}>
+                    <SvgProxy selector="#disp_out3">heisann</SvgProxy>
+                </SvgLoader>
             </div>
         )
     }
