@@ -9,7 +9,7 @@ import java.util.List;
 public class Register extends Part {
     private final BusReader busReader;
     private final BusWriter busWriter;
-    private final VMPart vmPart;
+    private final ExtendedVMPart vmPart;
 
     public Register(Computer c, String name, BusReader busReader, BusWriter busWriter) {
         super(c, name);
@@ -31,12 +31,13 @@ public class Register extends Part {
     }
 
     @Override
-    public VMPart getVMPart() {
+    public ExtendedVMPart getVMPart() {
         return vmPart;
     }
 
-    private VMPart createVMPart() {
-        return new VMPart() {
+    private ExtendedVMPart createVMPart() {
+        return new ExtendedVMPart() {
+
             private byte value;
             private byte newValue;
 
@@ -63,6 +64,15 @@ public class Register extends Part {
 
             public void onCLKFallingDone() {
             }
+
+            @Override
+            public byte getValue() {
+                return value;
+            }
         };
+    }
+
+    public abstract class ExtendedVMPart extends VMPart {
+        public abstract byte getValue();
     }
 }

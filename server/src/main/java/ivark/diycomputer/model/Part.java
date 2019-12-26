@@ -44,6 +44,7 @@ public abstract class Part {
 
         public final byte getValueFromBus() {
             BUS.BusWriter currentBusWriter = c.instReg.getVMPart().getCurrentBusWriter();
+            if (currentBusWriter==null) return 0;
 
             List<VMPart> busWriters = c.parts.stream()
                     .map(Part::getVMPart)

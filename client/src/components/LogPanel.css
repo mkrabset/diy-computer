@@ -1,16 +1,24 @@
 #logpanel {
     flex-direction: column;
     display: flex;
-    height: 86vh;
+    height: 83vh;
 }
 
 #log {
     width: 100%;
-    height: 50%;
+    height: 100%;
     box-sizing: border-box;
 }
 #mappedCode {
     width: 100%;
-    height: 50%;
+    height: 100%;
     box-sizing: border-box;
+}
+
+div.react-tabs {
+    height: 100%;
+}
+
+div.react-tabs__tab-panel {
+    height: 100%;
 }

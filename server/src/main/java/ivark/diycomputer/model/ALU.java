@@ -72,6 +72,21 @@ public class ALU extends Part {
                 return true;
             }
 
+            public OPS getOperation() {
+                if (signalMatch(c.alu.xorOpSignals)) {
+                    return OPS.XOR;
+                } else if (signalMatch(c.alu.rorOpSignals)) {
+                    return OPS.ROR;
+                } else if (signalMatch(c.alu.andOpSignals)) {
+                    return OPS.AND;
+                } else if (signalMatch(c.alu.orOpSignals)) {
+                    return OPS.OR;
+                } else if (signalMatch(c.alu.addOpSignals)) {
+                    return OPS.ADD;
+                } else {
+                    return OPS.INVALID;
+                }
+            }
 
             @Override
             public void onCLKRising() {
@@ -109,28 +124,24 @@ public class ALU extends Part {
                     b = (byte) (~b);
                 }
 
-                if (signalMatch(c.alu.xorOpSignals)) {
-                    // XOR
-                    return new Result(a, b, (byte) (a ^ b), false);
-                } else if (signalMatch(c.alu.rorOpSignals)) {
-                    // ROR
-                    byte outval = (byte) ((b & 0xff) >>> 1);
-                    if (fc) {
-                        outval |= 0x80;
-                    }
-                    return new Result(a, b, outval, (b & 0x01) == 0x01);
-                } else if (signalMatch(c.alu.andOpSignals)) {
-                    // AND
-                    return new Result(a, b, (byte) (a & b), false);
-                } else if (signalMatch(c.alu.orOpSignals)) {
-                    // OR
-                    return new Result(a, b, (byte) (a | b), false);
-                } else if (signalMatch(c.alu.addOpSignals)) {
-                    // ADD
-                    int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
-                    return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
-                } else {
-                    throw new RuntimeException("No such op");
+                switch (getOperation()) {
+                    case XOR:
+                        return new Result(a, b, (byte) (a ^ b), false);
+                    case ROR:
+                        byte outval = (byte) ((b & 0xff) >>> 1);
+                        if (fc) {
+                            outval |= 0x80;
+                        }
+                        return new Result(a, b, outval, (b & 0x01) == 0x01);
+                    case AND:
+                        return new Result(a, b, (byte) (a & b), false);
+                    case OR:
+                        return new Result(a, b, (byte) (a | b), false);
+                    case ADD:
+                        int sum = (a & 0xff) + (b & 0xff) + (fc ? 1 : 0);
+                        return new Result(a, b, (byte) (sum & 0xff), (sum & 0x100) == 0x100);
+                    default:
+                        throw new RuntimeException("No such op");
                 }
             }
 
@@ -154,26 +165,19 @@ public class ALU extends Part {
                 return fv;
             }
 
-            class Result {
-                private byte outval;
-                private boolean fc;
-                private boolean fn;
-                private boolean fz;
-                private boolean fv;
+            @Override
+            public byte getA() {
+                return a;
+            }
 
-                Result(byte a, byte b, byte outval, boolean carryout) {
-                    this.outval = outval;
-                    this.fc = carryout;
-                    this.fn = bit7set(outval);
-                    this.fz = outval == 0;
-                    this.fv = (bit7set(a) && bit7set(b) && !bit7set(outval)) ||
-                            (!bit7set(a) && !bit7set(b) && bit7set(outval));
+            @Override
+            public byte getB() {
+                return b;
+            }
 
-                }
-
-                private boolean bit7set(byte b) {
-                    return (b & 0x80) == 0x80;
-                }
+            @Override
+            public Result getResult() {
+                return calcResult(a,b);
             }
 
             @Override
@@ -190,11 +194,38 @@ public class ALU extends Part {
 
     public abstract class ExtendedVMPart extends VMPart {
         public abstract boolean getZ();
-
         public abstract boolean getN();
-
         public abstract boolean getC();
-
         public abstract boolean getV();
+        public abstract byte getA();
+        public abstract byte getB();
+        public abstract Result getResult();
+        public abstract OPS getOperation();
+    }
+
+    public static class Result {
+        public final byte outval;
+        public final boolean fc;
+        public final boolean fn;
+        public final boolean fz;
+        public final boolean fv;
+
+        Result(byte a, byte b, byte outval, boolean carryout) {
+            this.outval = outval;
+            this.fc = carryout;
+            this.fn = bit7set(outval);
+            this.fz = outval == 0;
+            this.fv = (bit7set(a) && bit7set(b) && !bit7set(outval)) ||
+                    (!bit7set(a) && !bit7set(b) && bit7set(outval));
+
+        }
+
+        private boolean bit7set(byte b) {
+            return (b & 0x80) == 0x80;
+        }
+    }
+
+    public enum OPS {
+        XOR,ROR,AND,OR,ADD,INVALID
     }
 }

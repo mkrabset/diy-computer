@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import ivark.diycomputer.instructionset.Compiler;
 import ivark.diycomputer.instructionset.eeprom.SerialWriter;
 import ivark.diycomputer.model.Computer;
+import ivark.diycomputer.vm.VirtualMachine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,9 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:8080")
 public class Api {
-    private final Computer C = new Computer();
+    private final Computer c =new Computer();
+    private final Compiler compiler=new Compiler(c);
+    private final VirtualMachine vm = new VirtualMachine(c,compiler);
     private String code = "";
     private String mappedCode = "";
     private int runDelay = 5000;
@@ -53,7 +56,7 @@ public class Api {
 
     @PostMapping("/compiler")
     public String compile(@RequestBody InputStream program) throws Exception {
-        Compiler compiler = new Compiler(C);
+        Compiler compiler = new Compiler(c);
         List<String> lines = compiler.getLines(new InputStreamReader(program));
         List<String> installInstructions = compiler.generateInstallInstructions(lines);
         return installInstructions.stream().collect(Collectors.joining("\n"));
@@ -91,15 +94,23 @@ public class Api {
         return mappedCode;
     }
 
+    @GetMapping(value = "/vmState", produces = "application/json")
+    public JsonNode getVMState() {
+        return vm.getState();
+    }
+
     @PostMapping("/command")
     public void execute(@RequestBody String com) throws Exception {
         Command command = Command.valueOf(com);
         switch (command) {
             case install: {
-                Compiler compiler = new Compiler(C);
                 List<String> lines = compiler.getLines(new StringReader(code));
                 Map<String, Integer> labelMap = compiler.createLabelMap(lines);
                 Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);
+                List<Byte> bytes = byteCode.getBytes();
+                for (int i=0;i<bytes.size();i++) {
+                    vm.c.ram.getVMPart().write(i,bytes.get(i));
+                }
                 this.mappedCode = byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
                 this.mappedCode = this.mappedCode + "\n\nChecksum: " + byteCode.checksum() + "\n";
                 List<String> installInstructions = compiler.genInstallInstructions(byteCode.getBytes());
@@ -120,6 +131,7 @@ public class Api {
             }
             case step: {
                 serialWriter.writeToSerial("s");
+                vm.step();
                 break;
             }
             case reconnect: {

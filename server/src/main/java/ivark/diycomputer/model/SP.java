@@ -81,7 +81,7 @@ public class SP extends Part {
         };
     }
 
-    abstract class ExtendedVMPart extends VMPart {
+    public abstract class ExtendedVMPart extends VMPart {
         public abstract byte getHighValue();
         public abstract byte getLowValue();
     }

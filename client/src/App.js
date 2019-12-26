@@ -3,7 +3,6 @@ import './App.css'
 import LogPanel from "./components/LogPanel"
 import CodeEdit from "./components/CodeEdit"
 import ActionPanel from "./components/ActionPanel"
-import VirtualMachineDisplay from "./components/VirtualMachineDisplay"
 import config from "./config"
 
 class App extends Component {
@@ -38,11 +37,10 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-
                 <div id="appContainer">
                     <div id="leftPanel">
                         <div className="header">MACHINE CODE</div>
-                        <VirtualMachineDisplay/>
+
                         <CodeEdit/>
                     </div>
                     <div id="middlePanel">

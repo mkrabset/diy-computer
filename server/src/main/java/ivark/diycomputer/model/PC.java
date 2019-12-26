@@ -182,6 +182,16 @@ public class PC extends Part {
             }
 
             @Override
+            public byte getJump_h() {
+                return jump_h;
+            }
+
+            @Override
+            public byte getJump_l() {
+                return jump_l;
+            }
+
+            @Override
             public void reset() {
                 pc_h=0;
                 pc_l=0;
@@ -195,5 +205,7 @@ public class PC extends Part {
         public abstract byte getHighValue();
         public abstract byte getLowValue();
         public abstract void reset();
+        public abstract byte getJump_h();
+        public abstract byte getJump_l();
     }
 }
