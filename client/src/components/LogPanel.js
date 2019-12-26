@@ -14,63 +14,15 @@ class LogPanel extends Component {
         super(props);
         this.state = {
             log: "",
-            next: 0,
-            vmState: {
-                out: {
-                    reg0: "out0",
-                    reg1: "out1",
-                    reg2: "out2",
-                    reg3: "out3"
-                },
-                instreg: {
-                  instr: 'IN',
-                  step: 'ST'
-                },
-                bus: {
-                    value: 'BU'
-                },
-                pc: {
-                    jumptarget: 'trg',
-                    current: 'cur'
-                },
-                mar: {
-                    address: 'mar'
-                },
-                reg: {
-                    x: 'xx',
-                    y: 'yy',
-                    z: 'zz',
-                    t: 'tt',
-                },
-                sp: {
-                    address: 'sp'
-                },
-                alu: {
-                    a: 'aa',
-                    b: 'bb',
-                    flags: {
-                        c: 'c',
-                        v: 'v',
-                        z: 'z',
-                        n: 'n'
-                    },
-                    operation: 'OP',
-                    result: {
-                        value: 'res',
-                        co: 'co'
-                    }
-                }
-            }
+            next: 0
         }
         this.runLogCycle = this.runLogCycle.bind(this);
         this.updateLog = this.updateLog.bind(this);
-        this.updateVMState = this.updateVMState.bind(this);
         this.runLogCycle();
     }
 
     runLogCycle() {
         this.updateLog();
-        this.updateVMState();  // TODO: replace this
         setTimeout(this.runLogCycle, WAIT_INTERVAL);
     }
 
@@ -93,16 +45,6 @@ class LogPanel extends Component {
             );
     }
 
-    updateVMState() {
-        fetch("http://" + config.host + ":" + config.apiPort + "/api/vmState")
-            .then(result => {
-                result.json().then(newVmState => {
-                    this.setState( {
-                        vmState: newVmState
-                    })
-                })
-            })
-    }
 
     componentDidMount() {
         this.props.batchLogSetter(this);
@@ -125,7 +67,7 @@ class LogPanel extends Component {
                         <textarea id="log" editable={false} value={this.state.log}/>
                     </TabPanel>
                     <TabPanel>
-                        <VirtualMachineDisplay vmModel={this.state.vmState}/>
+                        <VirtualMachineDisplay vmModel={this.props.vmState}/>
                     </TabPanel>
                 </Tabs>
             </div>
