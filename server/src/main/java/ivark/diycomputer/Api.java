@@ -104,6 +104,7 @@ public class Api {
         Command command = Command.valueOf(com);
         switch (command) {
             case install: {
+                vm.init();
                 List<String> lines = compiler.getLines(new StringReader(code));
                 Map<String, Integer> labelMap = compiler.createLabelMap(lines);
                 Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);

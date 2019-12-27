@@ -2,6 +2,7 @@ package ivark.diycomputer.vm;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.IntNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
@@ -12,7 +13,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class VirtualMachine {
@@ -144,17 +147,21 @@ public class VirtualMachine {
         ObjectNode alu = objectMapper.createObjectNode();
 
         // Output registers
-        out.set("reg0",new IntNode(c.out0.getVMPart().getValue()));
-        out.set("reg1",new IntNode(c.out1.getVMPart().getValue()));
-        out.set("reg2",new IntNode(c.out2.getVMPart().getValue()));
-        out.set("reg3",new IntNode(c.out3.getVMPart().getValue()));
+        out.set("reg0",new TextNode(""+c.out0.getVMPart().getValue()));
+        out.set("reg1",new TextNode(""+c.out1.getVMPart().getValue()));
+        out.set("reg2",new TextNode(""+c.out2.getVMPart().getValue()));
+        out.set("reg3",new TextNode(""+c.out3.getVMPart().getValue()));
 
         // Instruction register
         instreg.set("instr", new TextNode(toHex(c.instReg.getVMPart().getCurrentInstruction().num,2)));
         instreg.set("step", new TextNode(toHex(c.instReg.getVMPart().getCurrentStep(),2)));
 
         // bus
+        BUS.BusWriter from = c.instReg.getVMPart().getCurrentBusWriter();
+        BUS.BusReader to = c.instReg.getVMPart().getCurrentBusReader();
         bus.set("value", new TextNode(toHex(c.instReg.getVMPart().getValueFromBus(),2)));
+        bus.set("from", new TextNode(from==null ? "" : from.name()));
+        bus.set("to", new TextNode(to==null ? "" : to.name()));
 
         // pc
         pc.set("jumptarget",new TextNode(toHex(c.pc.getVMPart().getJump_h(),2)+toHex(c.pc.getVMPart().getJump_l(),2)));
@@ -190,6 +197,12 @@ public class VirtualMachine {
         aluResult.set("value", new TextNode(toHex(res.outval,2)));
         aluResult.set("co", new TextNode(res.fc ? "x" : " "));
         alu.set("result", aluResult);
+
+        // Signals
+        Set<Signal> activeSignals = c.parts.stream().flatMap(p -> p.signals().stream().filter(c.instReg.getVMPart()::isActive)).collect(Collectors.toSet());
+        ArrayNode signals = objectMapper.createArrayNode();
+        activeSignals.forEach(s->signals.add(s.fullName()));
+        result.set("signals",signals);
 
         result.set("out",out);
         result.set("instreg",instreg);

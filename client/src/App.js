@@ -13,17 +13,19 @@ class App extends Component {
             mappedCode: '',
             vmState: {
                 out: {
-                    reg0: "out0",
-                    reg1: "out1",
-                    reg2: "out2",
-                    reg3: "out3"
+                    reg0: 'out0',
+                    reg1: 'out1',
+                    reg2: 'out2',
+                    reg3: 'out3'
                 },
                 instreg: {
                     instr: 'IN',
                     step: 'ST'
                 },
                 bus: {
-                    value: 'BU'
+                    value: 'BU',
+                    from: '',
+                    to: ''
                 },
                 pc: {
                     jumptarget: 'trg',
@@ -60,7 +62,7 @@ class App extends Component {
         }
         this.setBatchLog = this.setBatchLog.bind(this)
         this.onInstalled = this.onInstalled.bind(this)
-        this.onStepped = this.onStepped.bind(this)
+        this.updateVMState = this.updateVMState.bind(this)
         this.batchLog = null
     }
 
@@ -81,7 +83,7 @@ class App extends Component {
 
     }
 
-    onStepped() {
+    updateVMState() {
         fetch("http://" + config.host + ":" + config.apiPort + "/api/vmState")
             .then(result => {
                 result.json().then(newVmState => {
@@ -103,7 +105,7 @@ class App extends Component {
                     </div>
                     <div id="middlePanel">
                         <div className="header">ACTION</div>
-                        <ActionPanel onInstalled={this.onInstalled} onStepped={this.onStepped}/>
+                        <ActionPanel onInstalled={this.onInstalled} updateVMState={this.updateVMState}/>
                     </div>
                     <div id="rightPanel">
                         <LogPanel mappedCode={this.state.mappedCode} batchLogSetter={this.setBatchLog} vmState={this.state.vmState}/>

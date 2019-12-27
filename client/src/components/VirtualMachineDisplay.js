@@ -17,6 +17,7 @@ class VirtualMachineDisplay extends Component {
                     <SvgProxy selector="#disp_out1">{this.props.vmModel['out']['reg1']}</SvgProxy>
                     <SvgProxy selector="#disp_out2">{this.props.vmModel['out']['reg2']}</SvgProxy>
                     <SvgProxy selector="#disp_out3">{this.props.vmModel['out']['reg3']}</SvgProxy>
+
                     <SvgProxy selector="#disp_bus">{this.props.vmModel['bus']['value']}</SvgProxy>
                     <SvgProxy selector="#disp_pc_jumptarget">{this.props.vmModel['pc']['jumptarget']}</SvgProxy>
                     <SvgProxy selector="#disp_pc_current">{this.props.vmModel['pc']['current']}</SvgProxy>

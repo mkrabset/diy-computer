@@ -99,7 +99,7 @@ class ActionPanel extends Component {
     }
 
     installCode() {
-        this.sendCommand("install", () => {this.props.onInstalled(); this.props.onStepped()})
+        this.sendCommand("install", () => {this.props.onInstalled(); this.props.updateVMState()})
     }
 
     resetPc() {
@@ -115,7 +115,7 @@ class ActionPanel extends Component {
     }
 
     step() {
-        this.sendCommand("step", this.props.onStepped)
+        this.sendCommand("step", this.props.updateVMState)
     }
 
     render() {
