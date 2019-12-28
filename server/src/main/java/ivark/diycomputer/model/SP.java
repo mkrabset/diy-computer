@@ -40,16 +40,18 @@ public class SP extends Part {
                     newval_h = 0;
                     newval_l = 0;
                 } else if (isActive(c.sp.cntSignal)) {
+                    newval_h=val_h;
+                    newval_l=val_l;
                     if (isActive(c.sp.dirDownSignal)) {
-                        newval_l++;
-                        if (newval_l == 0) {
-                            newval_h++;
-                        }
-                    } else {
                         if (newval_l == 0) {
                             newval_h--;
                         }
                         newval_l--;
+                    } else {
+                        newval_l++;
+                        if (newval_l == 0) {
+                            newval_h++;
+                        }
                     }
                 }
             }

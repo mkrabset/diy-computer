@@ -169,6 +169,8 @@ public class VirtualMachine {
 
         // mar
         mar.set("address", new TextNode(toHex(c.mar.getVMPart().getHighValue(),2)+toHex(c.mar.getVMPart().getLowValue(),2)));
+        mar.set("offset", new TextNode(toHex(c.mar.getVMPart().getOffset(),2)));
+        mar.set("value", new TextNode(toHex(c.mar.getVMPart().getValue(),4)));
 
         // reg
         reg.set("x", new TextNode(toHex(c.xreg.getVMPart().getValue(),2)));

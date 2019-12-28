@@ -27,9 +27,12 @@ public class MAR extends Part {
         return new ExtendedVMPart() {
             private byte addr_h;
             private byte addr_l;
+            private byte addr_offset;
+
 
             private byte newAddr_h;
             private byte newAddr_l;
+            private byte newAddrOffset;
 
             @Override
             public void onCLKRising() {
@@ -56,12 +59,14 @@ public class MAR extends Part {
                     newAddr_l=addr_l;
                     newAddr_h=addr_h;
                 }
+                newAddrOffset = getCurrentBusReader() == BUS.BusReader.MAR_OFFSET_IN ? getValueFromBus() : addr_offset;
             }
 
             @Override
             public void onCLKRisingDone() {
                 addr_h = newAddr_h;
                 addr_l = newAddr_l;
+                addr_offset=newAddrOffset;
             }
 
             @Override
@@ -93,11 +98,23 @@ public class MAR extends Part {
             public byte getLowValue() {
                 return addr_l;
             }
+
+            @Override
+            public byte getOffset() {
+                return addr_offset;
+            }
+
+            @Override
+            public int getValue() {
+                return ((getHighValue() & 0xff) * 256 + (getLowValue() & 0xff))+addr_offset;
+            }
         };
     }
 
     public abstract class ExtendedVMPart extends VMPart {
         public abstract byte getHighValue();
         public abstract byte getLowValue();
+        public abstract byte getOffset();
+        public abstract int getValue();
     }
 }

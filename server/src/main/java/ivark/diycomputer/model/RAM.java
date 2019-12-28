@@ -38,7 +38,7 @@ public class RAM extends Part {
             @Override
             public void onCLKFalling() {
                 if (c.instReg.getVMPart().getCurrentBusReader() == BUS.BusReader.RAM_IN) {
-                    memory[getMARAddress()] = newVal;
+                    memory[c.mar.getVMPart().getValue()] = newVal;
                 }
             }
 
@@ -53,7 +53,7 @@ public class RAM extends Part {
 
             @Override
             public byte getBusOutput() {
-                int address = getMARAddress();
+                int address = c.mar.getVMPart().getValue();
                 return memory[address];
             }
 
@@ -65,10 +65,6 @@ public class RAM extends Part {
             @Override
             public void write(int address, byte value) {
                 memory[address]=value;
-            }
-
-            private int getMARAddress() {
-                return (c.mar.getVMPart().getHighValue() & 0xff) * 256 + (c.mar.getVMPart().getLowValue() & 0xff);
             }
         };
     }

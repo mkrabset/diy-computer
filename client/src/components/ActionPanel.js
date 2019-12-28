@@ -22,10 +22,12 @@ class ActionPanel extends Component {
         this.halt= this.halt.bind(this);
         this.step= this.step.bind(this);
         this.updateRunDelay= this.updateRunDelay.bind(this);
+        this.setRunSlow= this.setRunSlow.bind(this);
         this.state = {
             expanded: false,
             camOn: false,
-            runDelay: 5000
+            runDelay: 5000,
+            runSlow: false
         };
     }
 
@@ -111,14 +113,28 @@ class ActionPanel extends Component {
     }
 
     halt() {
-        this.sendCommand("halt")
+        this.sendCommand("halt", ()=>{this.setState({runSlow:false})})
     }
 
     step() {
-        this.sendCommand("step", this.props.updateVMState)
+        this.sendCommand("step", ()=>{
+            this.props.updateVMState()
+            if (this.state.runSlow) {
+                setTimeout(this.step, 1);
+            }
+        })
+    }
+
+    setRunSlow(e) {
+        this.setState({runSlow: e.target.checked})
     }
 
     render() {
+        const Checkbox = props => (
+            <input type="checkbox" {...props} />
+        )
+
+
         return (
             <div id="actionpanel">
                 <button onClick={this.reconnect}>Reconnect</button><br/>
@@ -126,7 +142,9 @@ class ActionPanel extends Component {
                 <button onClick={this.resetPc}>Reset program counter</button><br/>
                 <button onClick={this.run}>Run</button><br/>
                 <button onClick={this.halt}>Halt</button><br/>
-                <button onClick={this.step}>Single step</button><br/>
+                <button onClick={this.step}>Stepwise</button><br/>
+                Keep running<Checkbox checked={this.state.runSlow} onChange={this.setRunSlow}/>
+                <br/>
                 <input value={this.state.runDelay}
                        //onChange={this.updateRunDelay.bind(this)}
                        onChange={event => this.setState({runDelay: event.target.value.replace(/\D/,'')})}

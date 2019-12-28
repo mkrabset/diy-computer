@@ -72,6 +72,8 @@ class VirtualMachineDisplay extends Component {
             <SvgProxy selector="#disp_instreg_instr">{this.props.vmModel['instreg']['instr']}</SvgProxy>,
             <SvgProxy selector="#disp_instreg_step">{this.props.vmModel['instreg']['step']}</SvgProxy>,
             <SvgProxy selector="#disp_mar">{this.props.vmModel['mar']['address']}</SvgProxy>,
+            <SvgProxy selector="#disp_mar_offset">{this.props.vmModel['mar']['offset']}</SvgProxy>,
+            <SvgProxy selector="#disp_mar_value">{this.props.vmModel['mar']['value']}</SvgProxy>,
             <SvgProxy selector="#disp_reg_x">{this.props.vmModel['reg']['x']}</SvgProxy>,
             <SvgProxy selector="#disp_reg_y">{this.props.vmModel['reg']['y']}</SvgProxy>,
             <SvgProxy selector="#disp_reg_z">{this.props.vmModel['reg']['z']}</SvgProxy>,
