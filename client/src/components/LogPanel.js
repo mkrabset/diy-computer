@@ -55,20 +55,21 @@ class LogPanel extends Component {
             <div id="logpanel">
                 <Tabs>
                     <TabList>
+                        <Tab>Virtual Machine</Tab>
                         <Tab>Installed code</Tab>
                         <Tab>Programmer log</Tab>
-                        <Tab>Virtual Machine</Tab>
                     </TabList>
 
+                    <TabPanel>
+                        <VirtualMachineDisplay vmModel={this.props.vmState}/>
+                    </TabPanel>
                     <TabPanel>
                         <textarea id="mappedCode" editable={false} value={this.props.mappedCode}/>
                     </TabPanel>
                     <TabPanel>
                         <textarea id="log" editable={false} value={this.state.log}/>
                     </TabPanel>
-                    <TabPanel>
-                        <VirtualMachineDisplay vmModel={this.props.vmState}/>
-                    </TabPanel>
+
                 </Tabs>
             </div>
         );

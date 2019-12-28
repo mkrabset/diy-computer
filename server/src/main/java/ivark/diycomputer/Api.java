@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = {"http://localhost:8080","http://localhost:3000"})
 public class Api {
     private final Computer c =new Computer();
     private final Compiler compiler=new Compiler(c);
