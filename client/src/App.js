@@ -12,6 +12,7 @@ class App extends Component {
         this.state = {
             mappedCode: '',
             vmState: {
+                signals: [],
                 out: {
                     reg0: 'out0',
                     reg1: 'out1',
