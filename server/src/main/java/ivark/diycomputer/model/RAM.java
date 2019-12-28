@@ -58,6 +58,11 @@ public class RAM extends Part {
             }
 
             @Override
+            public void reset() {
+
+            }
+
+            @Override
             public byte read(int address) {
                 return memory[address];
             }

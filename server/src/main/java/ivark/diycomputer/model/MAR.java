@@ -90,6 +90,13 @@ public class MAR extends Part {
             }
 
             @Override
+            public void reset() {
+                addr_h=0;
+                addr_l=0;
+                addr_offset=0;
+            }
+
+            @Override
             public byte getHighValue() {
                 return addr_h;
             }

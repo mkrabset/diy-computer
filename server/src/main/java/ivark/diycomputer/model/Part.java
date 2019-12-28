@@ -60,5 +60,7 @@ public abstract class Part {
         public boolean isActive(Signal signal) {
             return c.instReg.getVMPart().isActive(signal);
         }
+
+        public abstract void reset();
     }
 }

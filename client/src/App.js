@@ -106,7 +106,7 @@ class App extends Component {
                     </div>
                     <div id="middlePanel">
                         <div className="header">ACTION</div>
-                        <ActionPanel onInstalled={this.onInstalled} updateVMState={this.updateVMState}/>
+                        <ActionPanel onInstalled={this.onInstalled} updateVMState={this.updateVMState} vmState={this.state.vmState}/>
                     </div>
                     <div id="rightPanel">
                         <LogPanel mappedCode={this.state.mappedCode} batchLogSetter={this.setBatchLog} vmState={this.state.vmState}/>

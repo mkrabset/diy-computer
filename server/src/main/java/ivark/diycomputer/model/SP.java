@@ -72,6 +72,12 @@ public class SP extends Part {
             }
 
             @Override
+            public void reset() {
+                val_h=0;
+                val_l=0;
+            }
+
+            @Override
             public byte getHighValue() {
                 return val_h;
             }

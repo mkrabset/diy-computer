@@ -79,7 +79,7 @@ public class Api {
 
 
     @PostMapping("/runDelay")
-    public void setRunDelay(String runDelay) throws Exception {
+    public void setRunDelay(@RequestBody String runDelay) throws Exception {
         this.runDelay = Math.max(Integer.valueOf(runDelay), 10);
         serialWriter.writeToSerial("rd " + this.runDelay);
     }

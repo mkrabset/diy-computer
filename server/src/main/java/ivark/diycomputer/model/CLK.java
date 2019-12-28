@@ -39,6 +39,11 @@ public class CLK extends Part {
             byte getBusOutput() {
                 return 0;
             }
+
+            @Override
+            public void reset() {
+
+            }
         };
     }
 }

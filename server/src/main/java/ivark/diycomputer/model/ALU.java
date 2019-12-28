@@ -189,6 +189,12 @@ public class ALU extends Part {
             byte getBusOutput() {
                 return calcResult(a, b).outval;
             }
+
+            @Override
+            public void reset() {
+                a=0;
+                b=0;
+            }
         };
     }
 

@@ -51,6 +51,11 @@ public class Register extends Part {
                 return value;
             }
 
+            @Override
+            public void reset() {
+                value=0;
+            }
+
             public void onCLKRising() {
                 newValue = getCurrentBusReader() == busReader ? getValueFromBus() : value;
             }

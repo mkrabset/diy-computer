@@ -36,8 +36,7 @@ public class VirtualMachine {
     }
 
     public void init() {
-        c.pc.getVMPart().reset();
-        c.instReg.getVMPart().reset();
+        c.parts.forEach(part->part.getVMPart().reset());
     }
 
     public void step() {
@@ -147,10 +146,10 @@ public class VirtualMachine {
         ObjectNode alu = objectMapper.createObjectNode();
 
         // Output registers
-        out.set("reg0",new TextNode(""+c.out0.getVMPart().getValue()));
-        out.set("reg1",new TextNode(""+c.out1.getVMPart().getValue()));
-        out.set("reg2",new TextNode(""+c.out2.getVMPart().getValue()));
-        out.set("reg3",new TextNode(""+c.out3.getVMPart().getValue()));
+        out.set("reg0",new TextNode(""+(256+c.out0.getVMPart().getValue()) % 256));
+        out.set("reg1",new TextNode(""+(256+c.out1.getVMPart().getValue()) % 256));
+        out.set("reg2",new TextNode(""+(256+c.out2.getVMPart().getValue()) % 256));
+        out.set("reg3",new TextNode(""+(256+c.out3.getVMPart().getValue()) % 256));
 
         // Instruction register
         instreg.set("instr", new TextNode(toHex(c.instReg.getVMPart().getCurrentInstruction().num,2)));
@@ -186,10 +185,10 @@ public class VirtualMachine {
         alu.set("b", new TextNode(toHex(c.alu.getVMPart().getB(),2)));
 
         ObjectNode aluflags = objectMapper.createObjectNode();
-        aluflags.set("c",new TextNode(c.alu.getVMPart().getC() ? "x" : " "));
-        aluflags.set("v",new TextNode(c.alu.getVMPart().getV() ? "x" : " "));
-        aluflags.set("z",new TextNode(c.alu.getVMPart().getZ() ? "x" : " "));
-        aluflags.set("n",new TextNode(c.alu.getVMPart().getN() ? "x" : " "));
+        aluflags.set("c",new TextNode(c.alu.getVMPart().getC() ? "x" : "_"));
+        aluflags.set("v",new TextNode(c.alu.getVMPart().getV() ? "x" : "_"));
+        aluflags.set("z",new TextNode(c.alu.getVMPart().getZ() ? "x" : "_"));
+        aluflags.set("n",new TextNode(c.alu.getVMPart().getN() ? "x" : "_"));
         alu.set("flags", aluflags);
 
         alu.set("operation", new TextNode(c.alu.getVMPart().getOperation().name()));
@@ -197,7 +196,7 @@ public class VirtualMachine {
         ALU.Result res = c.alu.getVMPart().getResult();
         ObjectNode aluResult = objectMapper.createObjectNode();
         aluResult.set("value", new TextNode(toHex(res.outval,2)));
-        aluResult.set("co", new TextNode(res.fc ? "x" : " "));
+        aluResult.set("co", new TextNode(res.fc ? "x" : "."));
         alu.set("result", aluResult);
 
         // Signals

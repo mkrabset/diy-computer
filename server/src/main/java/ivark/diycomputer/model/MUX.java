@@ -33,6 +33,11 @@ public class MUX extends Part {
             byte getBusOutput() {
                 return 0;
             }
+
+            @Override
+            public void reset() {
+
+            }
         };
     }
 }

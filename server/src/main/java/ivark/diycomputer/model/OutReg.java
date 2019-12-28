@@ -41,6 +41,11 @@ public class OutReg extends Part {
             }
 
             @Override
+            public void reset() {
+                value=0;
+            }
+
+            @Override
             public void onCLKRising() {
                 if (getCurrentBusReader()==busReader) {
                     this.newValue = getValueFromBus();

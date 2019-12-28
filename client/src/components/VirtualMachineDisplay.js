@@ -59,8 +59,6 @@ class VirtualMachineDisplay extends Component {
     }
 
     render() {
-        console.log(diycomputer)
-
         var proxies = [
             <SvgProxy selector="#disp_out0">{this.props.vmModel['out']['reg0']}</SvgProxy>,
             <SvgProxy selector="#disp_out1">{this.props.vmModel['out']['reg1']}</SvgProxy>,
