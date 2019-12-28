@@ -1,0 +1,34 @@
+start:
+LDX #01
+LDY #02
+LDZ #03
+loop:
+PUSH X
+PUSH Y
+PUSH Z
+
+POP Y
+POP X
+POP Z
+
+PUSH X
+PUSH Y
+PUSH Z
+
+POP Y
+POP X
+POP Z
+
+PUSH X
+PUSH Y
+PUSH Z
+
+POP Y
+POP X
+POP Z
+
+OUT0 X
+OUT1 Y
+OUT2 Z
+
+JMP loop

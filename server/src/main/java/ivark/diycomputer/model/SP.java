@@ -36,12 +36,12 @@ public class SP extends Part {
             private byte newval_l;
 
             public void onCLKRising() {
+                newval_h=val_h;
+                newval_l=val_l;
                 if (isActive(c.sp.resetSignal)) {
                     newval_h = 0;
                     newval_l = 0;
                 } else if (isActive(c.sp.cntSignal)) {
-                    newval_h=val_h;
-                    newval_l=val_l;
                     if (isActive(c.sp.dirDownSignal)) {
                         if (newval_l == 0) {
                             newval_h--;

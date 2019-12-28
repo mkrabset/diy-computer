@@ -17,6 +17,8 @@ lcdloop:
   JSR writemessage
   JMP lcdloop
 
+
+HLT
 scramble1:
   LDX #00
   LDY #57
@@ -28,6 +30,7 @@ scramble1_loop:
   BLS scramble1_loop
   RTS
 
+HLT
 scramble2:
   LDX #00
   LDY #01
@@ -48,6 +51,7 @@ scramble2_loop:
   BLS scramble2_loop
   RTS
 
+HLT
 scramble3:
   LDX #00
   LDY #AB
@@ -68,7 +72,7 @@ scramble3_loop:
   RTS
 
 
-
+HLT
 swapletters:
   LDZ message,X
   PUSH Z
@@ -77,6 +81,8 @@ swapletters:
   POP Z
   STZ message,Y
   RTS
+
+HLT
 
 
 // LCD Printout subroutines
@@ -87,6 +93,7 @@ lcdreset:
   POP X
   RTS
 
+HLT
 lcdclear:
   PUSH X
   LDX #01
@@ -94,6 +101,7 @@ lcdclear:
   POP X
   RTS
 
+HLT
 lcdhome:
   PUSH X
   LDX #02
@@ -101,7 +109,7 @@ lcdhome:
   POP X
   RTS
 
-
+HLT
 lcdinstr:
   OUT0 X
   LDX #02
@@ -110,6 +118,7 @@ lcdinstr:
   OUT1 X
   RTS
 
+HLT
 lcdwrite:
   OUT0 X
   LDX #03
@@ -118,6 +127,7 @@ lcdwrite:
   OUT1 X
   RTS
 
+HLT
 writemessage:
   LDX #00
   STX idxl // Reset index counter
@@ -134,6 +144,9 @@ loop:
   CMPX #00
   BNE notdone
   RTS
+
+  HLT
+
 notdone:
   JSR lcdwrite
   INC idxl
@@ -150,10 +163,11 @@ screennotfull:
   LDZ idxh
   JMP loop
 
+HLT
 getChar:
   LDX $0000
   RTS
-
+HLT
 idxl:
 B 0x 00
 idxh:

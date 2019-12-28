@@ -90,7 +90,6 @@ void setup() {
   Serial.println(">");
   halted=true;
   busDisable();
-  setSource(SRC_PROGRAMMER);
   initPC();
   Timer1.initialize(runDelay);
 }
@@ -136,7 +135,6 @@ void processCommand() {
   DEBUGOUT();
   DEBUGOUT(buffer);
   halt();
-  setSource(SRC_PROGRAMMER);
   if (beginsWith(buffer,"mar ")) {
     int address=getHex(&buffer[4],4);
     setMar(address);
@@ -173,6 +171,7 @@ void processCommand() {
       }
     }
   } else if (beginsWith(&buffer[0],"dm")) {  // Display memory in instruction reg display
+  // TODO read from bus and return in serial response instead
     halt();
     setSource(SRC_PROGRAMMER);
     if (buffer[2]==0) {
@@ -212,6 +211,7 @@ void processCommand() {
 
 
 void initPC() {
+  setSource(SRC_PROGRAMMER);
   for (int s=RESET_PC_START_STEP;s<=RESET_PC_END_STEP+1;s++) {
     setMicrocodeStep(RESET_PC_INSTR, s);
     tick();
@@ -233,6 +233,7 @@ void run() {
 }
 
 void writeBufferToRAM() {
+  setSource(SRC_PROGRAMMER);
   int p=2;
   byte last=0;
   int dpos=0;
@@ -265,9 +266,11 @@ void writeBufferToRAM() {
     DEBUGOUT(" ");
   }
   DEBUGOUT();
+  setSource(SRC_SELF);
 }
 
 
+// Assumes programmer...
 void setMicrocodeStep(byte instr, byte step) {
   DEBUGOUT("SETINST: ");
   DEBUGOUT(instr,HEX);
@@ -296,6 +299,7 @@ void tick() {
 
 
 void setMar(int address) {
+  setSource(SRC_PROGRAMMER);
   // Clear MAR offset
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_CLR_MAR_OFFSET_STEP); // Clear MAR offset
   tick();
@@ -313,8 +317,10 @@ void setMar(int address) {
   busEnable();
   tick();
   busDisable();
+  setSource(SRC_SELF);
 }
 
+// Assumes programmer
 void writeRamAndIncreaseMar(byte value) {
   // Write value to RAM
   setMicrocodeStep(RAMLOAD_INSTR,RAMLOAD_RAMWRITE_STEP);
