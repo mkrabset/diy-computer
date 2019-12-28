@@ -94,12 +94,17 @@ class VirtualMachineDisplay extends Component {
 
         proxies.push(<SvgProxy selector='#MAR_H_IN' style={this.opa(this.signalOn('MAR.LOADHIGH') && !this.signalOn('MAR.LOADLOW'))}/>)
         proxies.push(<SvgProxy selector='#MAR_L_IN' style={this.opa(this.signalOn('MAR.LOADLOW') && !this.signalOn('MAR.LOADHIGH'))}/>)
+        proxies.push(<SvgProxy selector='#pc2mux' style={this.opa(this.signalOn('MAR.LOADLOW') && this.signalOn('MAR.LOADHIGH') && !this.signalOn('MUX.selectStackPointer'))}/>)
+        proxies.push(<SvgProxy selector='#sp2mux' style={this.opa(this.signalOn('MAR.LOADLOW') && this.signalOn('MAR.LOADHIGH') && this.signalOn('MUX.selectStackPointer'))}/>)
+        proxies.push(<SvgProxy selector='#mux2mar' style={this.opa(this.signalOn('MAR.LOADLOW') && this.signalOn('MAR.LOADHIGH'))}/>)
 
         return (
             <div id="disp">
                 <SvgLoader path={diycomputer}>
                     {proxies}
                 </SvgLoader>
+                <br/>
+                {this.props.vmModel['bus']['from']}  {'--->'}   {this.props.vmModel['bus']['to']}
                 <br/>
                 <span>
                     {JSON.stringify(this.props.vmModel['signals'])}
