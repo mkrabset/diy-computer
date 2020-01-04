@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:8080","http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
 public class Api {
-    private final Computer c =new Computer();
-    private final Compiler compiler=new Compiler(c);
-    private final VirtualMachine vm = new VirtualMachine(c,compiler);
+    private final Computer c = new Computer();
+    private final Compiler compiler = new Compiler(c);
+    private final VirtualMachine vm = new VirtualMachine(c, compiler);
     private String code = "";
     private String mappedCode = "";
     private int runDelay = 5000;
@@ -109,13 +109,15 @@ public class Api {
                 Map<String, Integer> labelMap = compiler.createLabelMap(lines);
                 Compiler.ByteCode byteCode = compiler.getByteCode(lines, labelMap);
                 List<Byte> bytes = byteCode.getBytes();
-                for (int i=0;i<bytes.size();i++) {
-                    vm.c.ram.getVMPart().write(i,bytes.get(i));
+                for (int i = 0; i < bytes.size(); i++) {
+                    vm.c.ram.getVMPart().write(i, bytes.get(i));
                 }
                 this.mappedCode = byteCode.mappedCode.stream().map(Object::toString).collect(Collectors.joining("\n"));
                 this.mappedCode = this.mappedCode + "\n\nChecksum: " + byteCode.checksum() + "\n";
                 List<String> installInstructions = compiler.genInstallInstructions(byteCode.getBytes());
-                serialWriter.writeToSerial(installInstructions);
+                if (serialWriter!=null) {
+                    serialWriter.writeToSerial(installInstructions);
+                }
                 break;
             }
             case initPc: {
@@ -131,7 +133,9 @@ public class Api {
                 break;
             }
             case step: {
-                serialWriter.writeToSerial("s");
+                if (serialWriter!=null) {
+                    serialWriter.writeToSerial("s");
+                }
                 vm.step();
                 break;
             }
@@ -143,6 +147,9 @@ public class Api {
                 }
                 serialWriter = null;
                 init();
+                if (serialWriter==null) {
+                    throw new RuntimeException("failed to connect");
+                }
             }
         }
     }

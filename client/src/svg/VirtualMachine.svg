@@ -370,8 +370,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="299.66737"
-     inkscape:cy="137.39785"
+     inkscape:cx="8.2387943"
+     inkscape:cy="360.255"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1660,7 +1660,8 @@
       </g>
     </g>
     <g
-       id="INSTREG_IN">
+       id="INSTREG_IN"
+       transform="matrix(1,0,0,-1,0,218.43299)">
       <g
          id="g1961">
         <path
@@ -1766,5 +1767,24 @@
          y="120.39326"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace;fill:#ffffff;stroke-width:0.08067437"
          id="tspan5090-9-4-6-2">Offset</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke:#ffff00;stroke-width:0.24060383;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4873-8-3-1-3"
+       width="17.648817"
+       height="5.8331146"
+       x="8.1385803"
+       y="114.14505"
+       ry="0.86793602" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.13288212px;line-height:1.25;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:0.24060383"
+       x="16.997423"
+       y="118.94032"
+       id="text4922-50-8-1-6"><tspan
+         sodipodi:role="line"
+         id="disp_instreg_inst_txt"
+         x="16.997423"
+         y="118.94032"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.13288212px;font-family:monospace;-inkscape-font-specification:monospace;text-align:center;text-anchor:middle;fill:#ff0000;stroke:#ff0000;stroke-width:0.24060383">INST</tspan></text>
   </g>
 </svg>

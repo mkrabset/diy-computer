@@ -21,6 +21,7 @@ class App extends Component {
                 },
                 instreg: {
                     instr: 'IN',
+                    insttxt: 'INST',
                     step: 'ST'
                 },
                 bus: {

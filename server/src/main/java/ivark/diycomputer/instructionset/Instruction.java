@@ -40,7 +40,7 @@ public final class Instruction {
             // Put ram-value into instruction register, and increase pc and mar by 1
             addStep(new Microcode().bus(RAM_OUT, INSTREG_IN).withActive(c.pc.incSignal));
 
-            // Must wait with marinc to next step because instructions a loaded on clk falling edge
+            // Must wait with marinc to next step because instructions are loaded on clk falling edge
             addStep(new Microcode().bus(ZEROS, NO_INPUT).withActive(c.mar.incSignal));
 
             // Instruction is loaded, offset is zero, and pc and mar points to first operand or next instruction.

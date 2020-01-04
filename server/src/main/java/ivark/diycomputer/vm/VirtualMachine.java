@@ -153,6 +153,7 @@ public class VirtualMachine {
 
         // Instruction register
         instreg.set("instr", new TextNode(toHex(c.instReg.getVMPart().getCurrentInstruction().num,2)));
+        instreg.set("insttxt", new TextNode(c.instReg.getVMPart().getCurrentInstruction().opcode));
         instreg.set("step", new TextNode(toHex(c.instReg.getVMPart().getCurrentStep(),2)));
 
         // bus
@@ -178,7 +179,6 @@ public class VirtualMachine {
         reg.set("t", new TextNode(toHex(c.tmp.getVMPart().getValue(),2)));
 
         // sp
-        System.out.println(c.sp.getVMPart().getLowValue());
         sp.set("address", new TextNode(toHex(c.sp.getVMPart().getHighValue(),2)+toHex(c.sp.getVMPart().getLowValue(),2)));
 
         // alu
@@ -214,7 +214,6 @@ public class VirtualMachine {
         result.set("reg",reg);
         result.set("sp",sp);
         result.set("alu",alu);
-        System.out.println(result.toString());
         return result;
     }
 }
