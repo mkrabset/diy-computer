@@ -7,7 +7,5 @@ Inspired by Ben Eater's '8-bit breadboard computer' youtube-series.
 
 Videos:
 
-(software multiplication): https://flic.kr/p/DDZWrS
-
 (collatz conjecture test): https://flic.kr/p/2gsp1po
 
