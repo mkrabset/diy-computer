@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'com.google.cloud.tools.jib' version '2.4.0'
 }
 
 springBoot {
@@ -19,6 +20,24 @@ repositories {
 
 configurations {
     extralibs
+}
+
+jib {
+    from {
+        image = 'adoptopenjdk/openjdk13'
+    }
+    to {
+        image = 'diycomputer'
+        tags = ['latest']
+    }
+    container {
+        jvmFlags = ['-Xms512m', '-Xdebug']
+        mainClass = 'ivark.diycomputer.Application'
+        //args = ['some', 'args']
+        ports = ['8080', '2000-2003/udp']
+        // labels = [key1:'value1', key2:'value2']
+        // format = 'OCI'
+    }
 }
 
 dependencies {
