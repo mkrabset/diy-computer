@@ -182,7 +182,7 @@ class ActionPanel extends Component {
 
                 <br/>
                 <br/>
-                breakpoint expr:
+                breakpoint expr: example: <b>this.bus.to=='PC_JMP_H_IN'</b>
                 <br/>
                 <input value={this.state.breakpoint} onChange={event => this.setState({
                     breakpoint: event.target.value,

@@ -94,6 +94,7 @@ getChar:
 idxl:
 B 0x 00
 idxh:
+B 0x 00
 
 messageptr:
 LDX message

@@ -237,7 +237,7 @@ public class DIYInstructionSet extends InstructionSet {
         Instruction i = new Instruction(c, "NOT" + r.name, "NOT" + r.name, r.name + " := NOT(" + r.name + ")", "na");
         addStep(i, ZEROS, ALU_A_IN);
         addStep(i, r.busWrite(), ALU_B_IN);
-        addStep(i, ALU_OUT, r.busRead(), c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        addStep(i, ALU_OUT, r.busRead(), c.alu.orOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
@@ -291,7 +291,7 @@ public class DIYInstructionSet extends InstructionSet {
         argsToMar(i);
         addStep(i, ZEROS, ALU_A_IN);
         addStep(i, RAM_OUT, ALU_B_IN, c.alu.clearCarrySignal);
-        addStep(i, ALU_OUT, RAM_IN, c.alu.addOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
+        addStep(i, ALU_OUT, RAM_IN, c.alu.orOpSignals, c.alu.invertBSignal, c.alu.updateFlagsSignal);
         return i;
     }
 
