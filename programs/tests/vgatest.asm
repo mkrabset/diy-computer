@@ -22,7 +22,6 @@ cont:
 JMP start
 
 
-
 writeMessage:
   PUSH X
   PUSH Y
@@ -43,11 +42,6 @@ writeMessage_done:
   POP Y
   POP X
   RTS
-
-
-
-
-
 
 
 blankVga:
@@ -96,8 +90,6 @@ LDX vgaData
 OUT0 X
 POP X
 RTS
-
-
 
 
 writeVga:
