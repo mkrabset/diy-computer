@@ -1,25 +1,17 @@
+buildscript {
+    ext {
+        springBootVersion = '2.5.5'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 plugins {
-    id 'org.springframework.boot' version '2.2.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
-    id 'com.google.cloud.tools.jib' version '2.4.0'
-}
-
-springBoot {
-    mainClassName = 'ivark.diycomputer.Application'
-}
-
-group = 'ivark.diycomputer'
-version = '1.0'
-sourceCompatibility = '1.11'
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
-
-configurations {
-    extralibs
+    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
 jib {
@@ -33,27 +25,46 @@ jib {
     container {
         jvmFlags = ['-Xms512m', '-Xdebug']
         mainClass = 'ivark.diycomputer.Application'
-        //args = ['some', 'args']
         ports = ['8080', '2000-2003/udp']
-        // labels = [key1:'value1', key2:'value2']
-        // format = 'OCI'
     }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'ivark.diycomputer'
+version = '1.0'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-    //implementation 'org.springframework:spring-web'
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
     implementation ('org.springframework.boot:spring-boot-starter-web') {
         exclude module: "spring-boot-starter-tomcat"
     }
 
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.9.9'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.15.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.15'
     implementation 'org.scream3r:jssc:2.8.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'junit:junit:4.12'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+springBoot {
+    mainClassName = 'ivark.diycomputer.Application'
+}
+
+sourceCompatibility = '1.11'
+
+
+configurations {
+    extralibs
 }
